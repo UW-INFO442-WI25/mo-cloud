@@ -30,3 +30,9 @@ MongoDB Atlas / Firebase Firestore – Stores user task logs, labor distribution
 Render – Hosts the React frontend and Node.js backend for seamless user access.
 
 
+## Usage Guide
+1. How to log labor entries
+   
+2. How to view and interpret tracking data
+
+3. How the assessment works and how to use recommendations
