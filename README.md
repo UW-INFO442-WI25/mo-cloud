@@ -1,7 +1,9 @@
 # mo-cloud
 
 ## Project Overview
-This project explores the concept of invisible labor, which refers to work that is undervalued, unrecognized, or uncompensated despite its essential contributions to society and organizations. The project aims to identify, analyze, and visualize the impacts of invisible labor in various contexts, shedding light on how it affects individuals and communities.
+Invisible labor, work that is undervalued, unrecognized, or uncompensated, plays a critical role in families, workplaces, and society. One of the most affected groups is new parents, who often experience an unequal distribution of household and caregiving responsibilities. Despite its essential contributions, this labor remains largely unnoticed, leading to stress, burnout, and relationship imbalances.
+
+This project aims to raise awareness and promote accountability by providing a digital platform where new parents can log, track, and visualize their daily labor. Through data-driven insights, personalized assessments, and interactive dashboards, our platform empowers users to recognize hidden work patterns, foster open discussions, and drive positive change in labor distribution within families. By making invisible labor visible, we want to create stronger relationships, improve equity, and encourage shared responsibility in caregiving and household tasks.
 
 ## Problem Statement
 How might we raise awareness about invisible labor within new parents to build stronger relationships and accountability?
