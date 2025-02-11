@@ -10,6 +10,7 @@ import Question6 from "./components/Assessment/question6"
 import Question7 from "./components/Assessment/question7"
 import Question8 from "./components/Assessment/question8"
 import Question9 from "./components/Assessment/question9"
+import Contact from "./components/Contact/contact"
 import Home from "./components/Home/home"
 import Tasks from "./components/Tasks/tasks"
 
@@ -30,13 +31,10 @@ function App() {
         <Route path="/self-assessment/question8" element={<Question8 />} />
         <Route path="/self-assessment/question9" element={<Question9 />} />
         <Route path="/self-assessment/question10" element={<Question10 />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   )
 }
 
 export default App
-
-
-
-
