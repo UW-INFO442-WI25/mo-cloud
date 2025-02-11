@@ -36,3 +36,62 @@ Render – Hosts the React frontend and Node.js backend for seamless user access
 2. How to view and interpret tracking data
 
 3. How the assessment works and how to use recommendations
+
+
+## Installation
+
+1. Clone the repository:
+   \`\`\`bash
+   git clone https://github.com/UW-INFO442-WI25/mo-cloud.git
+   \`\`\`
+
+2. Navigate to the project directory:
+   \`\`\`bash
+   cd mo-cloud
+   \`\`\`
+
+3. Install the dependencies:
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+## 🚀 Getting Started
+
+After you've installed the project, follow these steps to start the website:
+
+1. Ensure you're in the project directory:
+   \`\`\`bash
+   cd mo-cloud
+   \`\`\`
+
+2. Start the development server:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+3. Open your web browser and visit:
+   \`\`\`
+   http://localhost:5173
+   \`\`\`
+
+   You should now see the MoCloud website running locally on your machine.
+
+4. To stop the server, press `Ctrl + C` in the terminal where the server is running.
+
+### Building for Production
+
+When you're ready to build the project for production:
+
+1. Run the build command:
+   \`\`\`bash
+   npm run build
+   \`\`\`
+
+2. The built files will be in the `dist` directory. You can serve these files using a static server:
+   \`\`\`bash
+   npm run preview
+   \`\`\`
+
+3. Visit `http://localhost:4173` to see the production build.
+
+Note: The production build is optimized for performance and is what you would deploy to a web server.
