@@ -23,8 +23,8 @@ const Home = () => {
             <a href="/resources" className="text-white hover:text-[#64B5F6]">
               Resources
             </a>
-            <a href="/contact" className="text-white hover:text-[#64B5F6]">
-              Contact
+            <a href="/about" className="text-white hover:text-[#64B5F6]">
+              About
             </a>
           </div>
           <div className="flex items-center space-x-4">
