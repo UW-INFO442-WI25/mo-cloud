@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import p1 from "../../assets/task1.png"
 import p10 from "../../assets/task10.png"
 import p12 from "../../assets/task12.png"
@@ -20,6 +21,7 @@ import Filter from "./filter.jsx"
 
 const Tasks = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const navigate = useNavigate()
 
   const tasks = [
     {
@@ -27,91 +29,120 @@ const Tasks = () => {
       time: "2 h 20 min",
       image: p9,
       bgColor: "bg-[#FFF8E7]",
-      path: "/tasks/meal-preparation",
+      route: "/tasks/meal-preparation",
+      category: "Cook",
     },
     {
       title: "Grocery Shopping & Inventory Management",
       time: "2 h 15 min",
       image: p14,
       bgColor: "bg-[#FFF8E7]",
+      route: "/tasks/grocery-management",
+      category: "Cook",
     },
     {
       title: "Kitchen Maintenance & Cleanup",
       time: "55 min",
       image: p16,
       bgColor: "bg-[#FFF8E7]",
+      route: "/tasks/kitchen-maintenance",
+      category: "Cook",
     },
     {
       title: "Surface & Floor Cleaning",
       time: "1 h 5 min",
       image: p12,
       bgColor: "bg-[#FFE4E6]",
+      route: "/tasks/surface-floor-cleaning",
+      category: "Clean",
     },
     {
       title: "Laundry & Fabric Care",
       time: "2 h 40 min",
       image: p13,
       bgColor: "bg-[#FFE4E6]",
+      route:"/tasks/laundry-fabric-care",
+      category: "Clean",
     },
     {
       title: "Deep Cleaning & Organization",
       time: "2 h 50 min",
       image: p15,
       bgColor: "bg-[#FFE4E6]",
+      route: "/tasks/deep-cleaning-organization",
+      category: "Clean",
     },
     {
       title: "Childcare & Parenting",
       time: "4 h",
       image: p1,
       bgColor: "bg-[#E5EAD7]",
+      route: "/tasks/childcare-parenting",
+      category: "Care",
     },
     {
       title: "Elderly & Family Care",
       time: "3 h 30 min",
       image: p22,
       bgColor: "bg-[#E5EAD7]",
+      route: "/tasks/elderly-family-care",
+      category: "Care",
     },
     {
       title: "Pet Care",
       time: "2 h",
       image: p6,
       bgColor: "bg-[#E5EAD7]",
+      route: "/tasks/pet-care",
+      category: "Care",
     },
     {
       title: "Family Relationship & Emotional Support",
       time: "3 h",
       image: p17,
       bgColor: "bg-[#FED7AA]",
+      route: "/tasks/family-relationship-emotional-support",
+      category: "Emotion",
     },
     {
       title: "Social & Community Engagement",
       time: "3 h 45 min",
       image: p3,
       bgColor: "bg-[#FED7AA]",
+      route: "/tasks/social-community-engagement",
+      category: "Emotion",
     },
     {
       title: "Household Mood & Stress Management",
       time: "2 h",
       image: p20,
       bgColor: "bg-[#FED7AA]",
+      route: "/tasks/household-mood-stress-management",
+      category: "Emotion",
     },
     {
       title: "Household Repairs & Fixes",
       time: "3 h 30 min",
       image: p4,
       bgColor: "bg-[#DCD5FC]",
+      route: "/tasks/household-repairs-fixes",
+      category: "Repair",
     },
     {
       title: "Seasonal & Preventative Maintenance",
       time: "3 h",
       image: p10,
       bgColor: "bg-[#DCD5FC]",
+      route: "/tasks/seasonal-preventative-maintenance",
+      category: "Repair",
     },
     {
       title: "Vehicle & Equipment Maintenance",
       time: "2 h",
       image: p18,
       bgColor: "bg-[#DCD5FC]",
+      route: "/tasks/vehicle-equipment-maintenance",
+      category: "Repair",
     },
   ]
 
@@ -194,6 +225,7 @@ const Tasks = () => {
               {tasks.map((task, index) => (
                 <div
                   key={index}
+                  onClick={() => navigate(task.route)}
                   className="bg-white rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105 cursor-pointer"
                 >
                   {/* Image Container */}

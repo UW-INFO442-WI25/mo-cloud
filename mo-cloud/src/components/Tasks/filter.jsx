@@ -3,7 +3,7 @@
 import { useState } from "react"
 
 export default function Filter() {
-  const [openFilter, setOpenFilter] = useState(null)
+  const [openFilter, setOpenFilter] = useState([])
   const [filterState, setFilterState] = useState({
     time: [],
     visibility: 5,
@@ -19,19 +19,71 @@ export default function Filter() {
     "More than 2 hours",
   ]
 
-  const categoryOptions = ["Cook", "Clean", "Care", "Emotion", "Repair"]
+  const categoryOptions = [
+    {
+      name: "Cook",
+      tasks: ["Meal Preparation & Cooking", "Grocery Shopping & Inventory Management", "Kitchen Maintenance & Cleanup"],
+    },
+    {
+      name: "Clean",
+      tasks: ["Surface & Floor Cleaning", "Laundry & Fabric Care", "Deep Cleaning & Organization"],
+    },
+    {
+      name: "Care",
+      tasks: ["Childcare & Parenting", "Elderly & Family Care", "Pet Care"],
+    },
+    {
+      name: "Emotion",
+      tasks: [
+        "Family Relationship & Emotional Support",
+        "Social & Community Engagement",
+        "Household Mood & Stress Management",
+      ],
+    },
+    {
+      name: "Repair",
+      tasks: ["Household Repairs & Fixes", "Seasonal & Preventative Maintenance", "Vehicle & Equipment Maintenance"],
+    },
+  ]
   const frequencyOptions = ["Daily", "Weekly", "Monthly"]
 
   const handleFilterClick = (filterName) => {
     setOpenFilter(openFilter === filterName ? null : filterName)
   }
 
-  const handleCheckboxChange = (filterType, value) => {
+  const handleCheckboxChange = (filterType, value, task = null) => {
     setFilterState((prev) => {
       const currentValues = prev[filterType]
-      const newValues = currentValues.includes(value)
-        ? currentValues.filter((v) => v !== value)
-        : [...currentValues, value]
+      let newValues
+
+      if (task) {
+        // If a task is provided, toggle it within the category
+        const categoryIndex = currentValues.findIndex((item) => item.category === value)
+        if (categoryIndex > -1) {
+          const category = currentValues[categoryIndex]
+          const taskIndex = category.tasks.indexOf(task)
+          const newTasks = taskIndex > -1 ? category.tasks.filter((t) => t !== task) : [...category.tasks, task]
+
+          newValues = [
+            ...currentValues.slice(0, categoryIndex),
+            { ...category, tasks: newTasks },
+            ...currentValues.slice(categoryIndex + 1),
+          ]
+
+          // Remove the category if no tasks are selected
+          if (newTasks.length === 0) {
+            newValues = newValues.filter((item) => item.category !== value)
+          }
+        } else {
+          newValues = [...currentValues, { category: value, tasks: [task] }]
+        }
+      } else {
+        // Toggle the entire category
+        newValues = currentValues.some((item) => item.category === value)
+          ? currentValues.filter((item) => item.category !== value)
+          : [...currentValues, { category: value, tasks: [] }]
+      }
+
       return { ...prev, [filterType]: newValues }
     })
   }
@@ -43,6 +95,13 @@ export default function Filter() {
   const handleApplyFilter = () => {
     console.log("Applied filters:", filterState)
     // Add your filter logic here
+    // You can use the filterState.category array to get the selected categories and tasks
+    // Each item in the array will have a 'category' property and a 'tasks' array
+    // Example:
+    // filterState.category.forEach(item => {
+    //   console.log(`Category: ${item.category}`)
+    //   console.log(`Selected tasks: ${item.tasks.join(', ')}`)
+    // })
   }
 
   return (
@@ -127,16 +186,33 @@ export default function Filter() {
         </button>
         {openFilter === "category" && (
           <div className="absolute top-full left-0 w-full mt-2 bg-white rounded-2xl p-4 shadow-lg z-10">
-            {categoryOptions.map((option) => (
-              <label key={option} className="flex items-center space-x-3 py-2">
-                <input
-                  type="checkbox"
-                  checked={filterState.category.includes(option)}
-                  onChange={() => handleCheckboxChange("category", option)}
-                  className="w-5 h-5 rounded border-gray-300 text-[#64B5F6] focus:ring-[#64B5F6]"
-                />
-                <span className="text-gray-700">{option}</span>
-              </label>
+            {categoryOptions.map((category) => (
+              <div key={category.name} className="mb-4">
+                <label className="flex items-center space-x-3 py-2 font-semibold">
+                  <input
+                    type="checkbox"
+                    checked={filterState.category.some((item) => item.category === category.name)}
+                    onChange={() => handleCheckboxChange("category", category.name)}
+                    className="w-5 h-5 rounded border-gray-300 text-[#64B5F6] focus:ring-[#64B5F6]"
+                  />
+                  <span className="text-gray-700">{category.name}</span>
+                </label>
+                <div className="ml-6 space-y-2">
+                  {category.tasks.map((task) => (
+                    <label key={task} className="flex items-center space-x-3 py-1">
+                      <input
+                        type="checkbox"
+                        checked={filterState.category.some(
+                          (item) => item.category === category.name && item.tasks.includes(task),
+                        )}
+                        onChange={() => handleCheckboxChange("category", category.name, task)}
+                        className="w-4 h-4 rounded border-gray-300 text-[#64B5F6] focus:ring-[#64B5F6]"
+                      />
+                      <span className="text-gray-600 text-sm">{task}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
             ))}
             <div className="text-right mt-2">
               <button onClick={() => setOpenFilter(null)} className="text-[#FFD54F] font-medium">
@@ -189,4 +265,5 @@ export default function Filter() {
     </div>
   )
 }
+
 

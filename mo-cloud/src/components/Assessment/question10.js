@@ -125,5 +125,3 @@ const Question10 = () => {
 
 export default Question10
 
-
-
