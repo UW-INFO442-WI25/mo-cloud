@@ -2,15 +2,16 @@
 
 import { useState } from "react"
 
-export default function Filter() {
-  const [openFilter, setOpenFilter] = useState([])
+export default function Filter({ onApply }) {
+  const [openFilter, setOpenFilter] = useState(null)
   const [filterState, setFilterState] = useState({
     time: [],
     visibility: 5,
-    category: [],
+    category: [], // each item: { category: "Cook", tasks: [...] }
     frequency: [],
   })
 
+  // ----- TIME, VISIBILITY, FREQUENCY OPTIONS -----
   const timeOptions = [
     "Less than 10 minutes",
     "10 - 30 minutes",
@@ -19,18 +20,34 @@ export default function Filter() {
     "More than 2 hours",
   ]
 
+  const frequencyOptions = ["Daily", "Weekly", "Monthly"]
+
+  // ----- CATEGORY OPTIONS -----
+  // Each category has a name and an array of sub-tasks
   const categoryOptions = [
     {
       name: "Cook",
-      tasks: ["Meal Preparation & Cooking", "Grocery Shopping & Inventory Management", "Kitchen Maintenance & Cleanup"],
+      tasks: [
+        "Meal Preparation & Cooking",
+        "Grocery Shopping & Inventory Management",
+        "Kitchen Maintenance & Cleanup",
+      ],
     },
     {
       name: "Clean",
-      tasks: ["Surface & Floor Cleaning", "Laundry & Fabric Care", "Deep Cleaning & Organization"],
+      tasks: [
+        "Surface & Floor Cleaning",
+        "Laundry & Fabric Care",
+        "Deep Cleaning & Organization",
+      ],
     },
     {
       name: "Care",
-      tasks: ["Childcare & Parenting", "Elderly & Family Care", "Pet Care"],
+      tasks: [
+        "Childcare & Parenting",
+        "Elderly & Family Care",
+        "Pet Care",
+      ],
     },
     {
       name: "Emotion",
@@ -42,76 +59,165 @@ export default function Filter() {
     },
     {
       name: "Repair",
-      tasks: ["Household Repairs & Fixes", "Seasonal & Preventative Maintenance", "Vehicle & Equipment Maintenance"],
+      tasks: [
+        "Household Repairs & Fixes",
+        "Seasonal & Preventative Maintenance",
+        "Vehicle & Equipment Maintenance",
+      ],
     },
   ]
-  const frequencyOptions = ["Daily", "Weekly", "Monthly"]
 
+  // ------------------------------------------------
+  // HELPERS for Category Checking/Unchecking Logic
+  // ------------------------------------------------
+
+  // Get the selected category object from filterState (or undefined if not present)
+  const getSelectedCategory = (catName) => {
+    return filterState.category.find((item) => item.category === catName)
+  }
+
+  // Check if a sub-task is currently selected for a given category
+  const isSubTaskSelected = (catName, subTask) => {
+    const catObj = getSelectedCategory(catName)
+    if (!catObj) return false
+    return catObj.tasks.includes(subTask)
+  }
+
+  // Check if *all* sub-tasks in a category are selected
+  const areAllSubTasksSelected = (catName) => {
+    const catDef = categoryOptions.find((c) => c.name === catName)
+    const catState = getSelectedCategory(catName)
+    if (!catDef || !catState) return false
+    // If the number of selected tasks equals the total tasks in that category
+    return catDef.tasks.length === catState.tasks.length
+  }
+
+  // ------------------------------------------------
+  // MAIN CHECKBOX CHANGE HANDLER
+  // (For Time, Frequency, Visibility, Category, etc.)
+  // ------------------------------------------------
+  const handleCheckboxChange = (filterType, value, subValue = null) => {
+    // Handle TIME or FREQUENCY (simple arrays of strings)
+    if (filterType === "time" || filterType === "frequency") {
+      setFilterState((prev) => {
+        const currentList = prev[filterType]
+        const alreadySelected = currentList.includes(value)
+        const newList = alreadySelected
+          ? currentList.filter((x) => x !== value)
+          : [...currentList, value]
+        return { ...prev, [filterType]: newList }
+      })
+      return
+    }
+
+    // Handle CATEGORY with sub-items
+    if (filterType === "category") {
+      setFilterState((prev) => {
+        const currentCategories = prev.category
+        let newCategories
+
+        // If subValue is null, user toggled the main category
+        if (!subValue) {
+          // Find the category definition (list of all sub-tasks)
+          const catDef = categoryOptions.find((c) => c.name === value)
+          if (!catDef) return prev
+
+          // Check if we already have it fully selected
+          const existing = currentCategories.find((c) => c.category === value)
+          const isFullySelected =
+            existing && existing.tasks.length === catDef.tasks.length
+
+          // If it's fully selected, uncheck everything
+          if (isFullySelected) {
+            newCategories = currentCategories.filter((c) => c.category !== value)
+          } else {
+            // Otherwise, select ALL sub-tasks for this category
+            // (remove old partial category, then add full set)
+            const filteredOut = currentCategories.filter((c) => c.category !== value)
+            newCategories = [
+              ...filteredOut,
+              { category: value, tasks: [...catDef.tasks] },
+            ]
+          }
+        }
+        // If subValue is not null, user toggled a single sub-task
+        else {
+          const existing = currentCategories.find((c) => c.category === value)
+          if (!existing) {
+            // If we have no category yet, create it with just this sub-task
+            newCategories = [
+              ...currentCategories,
+              { category: value, tasks: [subValue] },
+            ]
+          } else {
+            // Add or remove this sub-task from existing.tasks
+            const alreadySelected = existing.tasks.includes(subValue)
+            let updatedTasks
+            if (alreadySelected) {
+              // remove it
+              updatedTasks = existing.tasks.filter((t) => t !== subValue)
+            } else {
+              // add it
+              updatedTasks = [...existing.tasks, subValue]
+            }
+
+            // If no sub-tasks remain, remove the entire category
+            if (updatedTasks.length === 0) {
+              newCategories = currentCategories.filter((c) => c.category !== value)
+            } else {
+              // Otherwise, update with the new sub-tasks
+              const others = currentCategories.filter((c) => c.category !== value)
+              newCategories = [
+                ...others,
+                { category: value, tasks: updatedTasks },
+              ]
+            }
+          }
+        }
+
+        return { ...prev, category: newCategories }
+      })
+      return
+    }
+  }
+
+  // ------------------------------------------------
+  // VISIBILITY (Slider)
+  // ------------------------------------------------
+  const handleVisibilityChange = (event) => {
+    const newValue = Number.parseInt(event.target.value, 10)
+    setFilterState((prev) => ({
+      ...prev,
+      visibility: newValue,
+    }))
+  }
+
+  // ------------------------------------------------
+  // APPLY FILTERS (calls the parent onApply)
+  // ------------------------------------------------
+  const handleApplyFilter = () => {
+    onApply(filterState)
+    setOpenFilter(null) // optional: close all dropdowns
+  }
+
+  // Toggles the dropdown open/closed
   const handleFilterClick = (filterName) => {
     setOpenFilter(openFilter === filterName ? null : filterName)
   }
 
-  const handleCheckboxChange = (filterType, value, task = null) => {
-    setFilterState((prev) => {
-      const currentValues = prev[filterType]
-      let newValues
-
-      if (task) {
-        // If a task is provided, toggle it within the category
-        const categoryIndex = currentValues.findIndex((item) => item.category === value)
-        if (categoryIndex > -1) {
-          const category = currentValues[categoryIndex]
-          const taskIndex = category.tasks.indexOf(task)
-          const newTasks = taskIndex > -1 ? category.tasks.filter((t) => t !== task) : [...category.tasks, task]
-
-          newValues = [
-            ...currentValues.slice(0, categoryIndex),
-            { ...category, tasks: newTasks },
-            ...currentValues.slice(categoryIndex + 1),
-          ]
-
-          // Remove the category if no tasks are selected
-          if (newTasks.length === 0) {
-            newValues = newValues.filter((item) => item.category !== value)
-          }
-        } else {
-          newValues = [...currentValues, { category: value, tasks: [task] }]
-        }
-      } else {
-        // Toggle the entire category
-        newValues = currentValues.some((item) => item.category === value)
-          ? currentValues.filter((item) => item.category !== value)
-          : [...currentValues, { category: value, tasks: [] }]
-      }
-
-      return { ...prev, [filterType]: newValues }
-    })
-  }
-
-  const handleVisibilityChange = (event) => {
-    setFilterState((prev) => ({ ...prev, visibility: Number.parseInt(event.target.value) }))
-  }
-
-  const handleApplyFilter = () => {
-    console.log("Applied filters:", filterState)
-    // Add your filter logic here
-    // You can use the filterState.category array to get the selected categories and tasks
-    // Each item in the array will have a 'category' property and a 'tasks' array
-    // Example:
-    // filterState.category.forEach(item => {
-    //   console.log(`Category: ${item.category}`)
-    //   console.log(`Selected tasks: ${item.tasks.join(', ')}`)
-    // })
-  }
-
+  // ------------------------------------------------
+  // RENDER
+  // ------------------------------------------------
   return (
     <div className="w-64 space-y-4">
-      {/* Time Filter */}
+      {/* Filter by Time */}
       <div className="relative">
         <button
           onClick={() => handleFilterClick("time")}
           className={`w-full px-6 py-3 rounded-full text-left transition-colors ${
-            openFilter === "time" ? "bg-[#FFD54F] text-black" : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
+            openFilter === "time"
+              ? "bg-[#FFD54F] text-black"
+              : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
           }`}
         >
           Filter by Time {openFilter === "time" ? "^" : "▼"}
@@ -130,7 +236,7 @@ export default function Filter() {
               </label>
             ))}
             <div className="text-right mt-2">
-              <button onClick={() => setOpenFilter(null)} className="text-[#FFD54F] font-medium">
+              <button onClick={handleApplyFilter} className="text-[#FFD54F] font-medium">
                 Apply
               </button>
             </div>
@@ -138,12 +244,14 @@ export default function Filter() {
         )}
       </div>
 
-      {/* Visibility Filter */}
+      {/* Filter by Visibility (slider) */}
       <div className="relative">
         <button
           onClick={() => handleFilterClick("visibility")}
           className={`w-full px-6 py-3 rounded-full text-left transition-colors ${
-            openFilter === "visibility" ? "bg-[#FFD54F] text-black" : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
+            openFilter === "visibility"
+              ? "bg-[#FFD54F] text-black"
+              : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
           }`}
         >
           Filter by Visibility {openFilter === "visibility" ? "^" : "▼"}
@@ -166,7 +274,7 @@ export default function Filter() {
               <div className="text-center text-gray-700">{filterState.visibility}</div>
             </div>
             <div className="text-right mt-2">
-              <button onClick={() => setOpenFilter(null)} className="text-[#FFD54F] font-medium">
+              <button onClick={handleApplyFilter} className="text-[#FFD54F] font-medium">
                 Apply
               </button>
             </div>
@@ -174,12 +282,14 @@ export default function Filter() {
         )}
       </div>
 
-      {/* Category Filter */}
+      {/* Filter by Category (with sub-items) */}
       <div className="relative">
         <button
           onClick={() => handleFilterClick("category")}
           className={`w-full px-6 py-3 rounded-full text-left transition-colors ${
-            openFilter === "category" ? "bg-[#FFD54F] text-black" : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
+            openFilter === "category"
+              ? "bg-[#FFD54F] text-black"
+              : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
           }`}
         >
           Filter by Category {openFilter === "category" ? "^" : "▼"}
@@ -188,24 +298,27 @@ export default function Filter() {
           <div className="absolute top-full left-0 w-full mt-2 bg-white rounded-2xl p-4 shadow-lg z-10">
             {categoryOptions.map((category) => (
               <div key={category.name} className="mb-4">
+                {/* MAIN CATEGORY CHECKBOX */}
                 <label className="flex items-center space-x-3 py-2 font-semibold">
                   <input
                     type="checkbox"
-                    checked={filterState.category.some((item) => item.category === category.name)}
+                    // "checked" if all sub-tasks are selected
+                    checked={areAllSubTasksSelected(category.name)}
                     onChange={() => handleCheckboxChange("category", category.name)}
                     className="w-5 h-5 rounded border-gray-300 text-[#64B5F6] focus:ring-[#64B5F6]"
                   />
                   <span className="text-gray-700">{category.name}</span>
                 </label>
+                {/* SUB-TASK CHECKBOXES */}
                 <div className="ml-6 space-y-2">
                   {category.tasks.map((task) => (
                     <label key={task} className="flex items-center space-x-3 py-1">
                       <input
                         type="checkbox"
-                        checked={filterState.category.some(
-                          (item) => item.category === category.name && item.tasks.includes(task),
-                        )}
-                        onChange={() => handleCheckboxChange("category", category.name, task)}
+                        checked={isSubTaskSelected(category.name, task)}
+                        onChange={() =>
+                          handleCheckboxChange("category", category.name, task)
+                        }
                         className="w-4 h-4 rounded border-gray-300 text-[#64B5F6] focus:ring-[#64B5F6]"
                       />
                       <span className="text-gray-600 text-sm">{task}</span>
@@ -215,7 +328,7 @@ export default function Filter() {
               </div>
             ))}
             <div className="text-right mt-2">
-              <button onClick={() => setOpenFilter(null)} className="text-[#FFD54F] font-medium">
+              <button onClick={handleApplyFilter} className="text-[#FFD54F] font-medium">
                 Apply
               </button>
             </div>
@@ -223,12 +336,14 @@ export default function Filter() {
         )}
       </div>
 
-      {/* Frequency Filter */}
+      {/* Filter by Frequency */}
       <div className="relative">
         <button
           onClick={() => handleFilterClick("frequency")}
           className={`w-full px-6 py-3 rounded-full text-left transition-colors ${
-            openFilter === "frequency" ? "bg-[#FFD54F] text-black" : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
+            openFilter === "frequency"
+              ? "bg-[#FFD54F] text-black"
+              : "bg-[#64B5F6] text-white hover:bg-[#64B5F6]/90"
           }`}
         >
           Filter by Frequency {openFilter === "frequency" ? "^" : "▼"}
@@ -247,7 +362,7 @@ export default function Filter() {
               </label>
             ))}
             <div className="text-right mt-2">
-              <button onClick={() => setOpenFilter(null)} className="text-[#FFD54F] font-medium">
+              <button onClick={handleApplyFilter} className="text-[#FFD54F] font-medium">
                 Apply
               </button>
             </div>
@@ -255,7 +370,7 @@ export default function Filter() {
         )}
       </div>
 
-      {/* Apply All Filters Button */}
+      {/* Big "Apply Filter" Button (applies all) */}
       <button
         onClick={handleApplyFilter}
         className="w-full border-2 border-white text-white px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
@@ -265,5 +380,3 @@ export default function Filter() {
     </div>
   )
 }
-
-

@@ -21,8 +21,15 @@ import Filter from "./filter.jsx"
 
 const Tasks = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [filters, setFilters] = useState({
+    time: [],
+    visibility: 5,
+    category: [],
+    frequency: [],
+  })
   const navigate = useNavigate()
 
+  // Our tasks array, each with a `title` and `category`
   const tasks = [
     {
       title: "Meal Preparation & Cooking",
@@ -61,7 +68,7 @@ const Tasks = () => {
       time: "2 h 40 min",
       image: p13,
       bgColor: "bg-[#FFE4E6]",
-      route:"/tasks/laundry-fabric-care",
+      route: "/tasks/laundry-fabric-care",
       category: "Clean",
     },
     {
@@ -146,6 +153,68 @@ const Tasks = () => {
     },
   ]
 
+  // ------------------------------------------------------
+  // 1) A helper to check if a task matches the category filter
+  // ------------------------------------------------------
+  const matchesCategoryFilter = (task, categoryFilter) => {
+    // If user hasn't selected any categories at all, pass
+    if (categoryFilter.length === 0) {
+      return true
+    }
+
+    // We do an "OR" check across each category object in filterState
+    // If task matches at least one, it's included
+    for (let catObj of categoryFilter) {
+      // Must match the same top-level category first
+      if (catObj.category !== task.category) {
+        continue
+      }
+
+      // If catObj.tasks is empty, that means user selected the *entire* category
+      // => match
+      if (catObj.tasks.length === 0) {
+        return true
+      }
+
+      // Otherwise, user selected specific sub-tasks
+      // => only match if this task's `title` is in the array
+      if (catObj.tasks.includes(task.title)) {
+        return true
+      }
+    }
+    // If no match was found, return false
+    return false
+  }
+
+  // ------------------------------------------------------
+  // 2) Do the final filtering of tasks
+  // ------------------------------------------------------
+  const filteredTasks = tasks.filter((task) => {
+    // Search Query (by task.title)
+    if (
+      searchQuery &&
+      !task.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ) {
+      return false
+    }
+
+    // Category Filter
+    if (!matchesCategoryFilter(task, filters.category)) {
+      return false
+    }
+
+    // Time Filter (if you want to implement it, you'd look at filters.time here)
+    // Frequency Filter (similarly)
+    // Visibility Filter (similarly)
+
+    return true
+  })
+
+  // This is called by the Filter component whenever the user clicks "Apply"
+  const handleApplyFilter = (newFilters) => {
+    setFilters(newFilters)
+  }
+
   return (
     <div className="min-h-screen bg-[#002B5C]">
       {/* Navigation */}
@@ -172,7 +241,9 @@ const Tasks = () => {
             </a>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">Login /Register</button>
+            <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">
+              Login /Register
+            </button>
             <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
               One Time User →
             </button>
@@ -185,7 +256,7 @@ const Tasks = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="w-full lg:w-64">
-            <Filter />
+            <Filter onApply={handleApplyFilter} />
           </div>
 
           {/* Tasks Grid */}
@@ -220,9 +291,9 @@ const Tasks = () => {
               </button>
             </div>
 
-            {/* Tasks Cards */}
+            {/* Filtered Task Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {tasks.map((task, index) => (
+              {filteredTasks.map((task, index) => (
                 <div
                   key={index}
                   onClick={() => navigate(task.route)}
@@ -252,4 +323,3 @@ const Tasks = () => {
 }
 
 export default Tasks
-
