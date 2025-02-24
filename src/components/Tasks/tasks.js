@@ -105,7 +105,7 @@ const Tasks = () => {
       bgColor: "bg-[#E5EAD7]",
       route: "/tasks/pet-care",
       category: "Care",
-      frequency: "Daily"
+      frequency: ["Daily", "Weekly"]
     },
     {
       title: "Family Relationship & Emotional Support",
@@ -304,4 +304,5 @@ const Tasks = () => {
 }
 
 export default Tasks
+
 
