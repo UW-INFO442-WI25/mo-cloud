@@ -1,12 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import Filter from "./filter"
+import { FilterContext } from "./FilterContext"
 
-const VehicleEquipmentMaintenance = () => {
-  const [searchQuery, setSearchQuery] = useState("")
+function VehicleEquipmentMaintenance () {
   const navigate = useNavigate()
+  const { filters } = useContext(FilterContext)
+  const [searchQuery, setSearchQuery] = useState("")
 
   const subTasks = [
     {
@@ -31,6 +33,17 @@ const VehicleEquipmentMaintenance = () => {
       frequency: "As Needed"
     },
   ]
+  const filteredSubTasks = subTasks.filter((t) => {
+    // 1) match search query
+    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
+    }
+    // 2) match frequency from context
+    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+      return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-[#002B5C]">
@@ -119,7 +132,7 @@ const VehicleEquipmentMaintenance = () => {
               <div className="bg-white rounded-3xl p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Vehicle & Equipment Maintenance Tasks</h2>
                 <div className="space-y-4">
-                  {subTasks.map((task) => (
+                  {filteredSubTasks.map((task) => (
                     <div
                       key={task.id}
                       className={`flex items-center justify-between p-4 rounded-xl transition-colors ${
