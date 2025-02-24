@@ -11,25 +11,29 @@ const LaundryFabricCare = () => {
       id: 1,
       name: "Sorting laundry by fabric type and color",
       timeRange: "5-10",
-      completed: false
+      completed: false,
+      frequency: "Weekly"
     },
     {
       id: 2,
       name: "Washing and drying clothes",
       timeRange: "45-90",
-      completed: false
+      completed: false,
+      frequency: "Weekly"
     },
     {
       id: 3,
       name: "Folding and putting away clothes",
       timeRange: "15-30",
-      completed: false
+      completed: false,
+      frequency: "Weekly"
     },
     {
       id: 4,
       name: "Ironing and steaming clothes",
       timeRange: "15-45",
-      completed: false
+      completed: false,
+      frequency: "Weekly"
     }
   ]
 

@@ -14,12 +14,14 @@ const SurfaceFloorCleaning = () => {
       name: "Sweeping, vacuuming, and mopping floors",
       timeRange: "15-45",
       completed: false,
+      frequency: "Weekly"
     },
     {
       id: 2,
       name: "Dusting furniture and surfaces",
       timeRange: "10-20",
       completed: false,
+      frequency: "Weekly"
     },
   ]
 

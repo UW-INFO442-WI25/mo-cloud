@@ -14,24 +14,28 @@ const ChildcareParenting = () => {
       name: "Preparing kids for school (dressing, packing bags)",
       timeRange: "20-40",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 2,
       name: "Helping with homework",
       timeRange: "30-60",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 3,
       name: "Reading bedtime stories, putting kids to sleep",
       timeRange: "15-30",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 4,
       name: "Monitoring and supervising children's play",
       timeRange: "30-120",
       completed: false,
+      frequency: "Daily"
     },
   ]
 

@@ -14,18 +14,21 @@ const SeasonalPreventativeMaintenance = () => {
       name: "Replacing light bulbs and batteries",
       timeRange: "10-20",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 2,
       name: "Checking for leaks, insulation, and water damage",
       timeRange: "20-60",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 3,
       name: "Cleaning gutters and outdoor spaces",
       timeRange: "45-120",
       completed: false,
+      frequency: "As Needed"
     },
   ]
 

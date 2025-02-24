@@ -14,30 +14,35 @@ const MealPreparationCooking = () => {
       name: "Preparing ingredients (chopping, marinating, seasoning)",
       timeRange: "15-30",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 2,
       name: "Cooking meals",
       timeRange: "30-60",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 3,
       name: "Setting the table",
       timeRange: "5-10",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 4,
       name: "Serving food",
       timeRange: "5-10",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 5,
       name: "Washing dishes and cookware",
       timeRange: "15-30",
       completed: false,
+      frequency: "Daily"
     },
   ]
 

@@ -28,42 +28,45 @@ import SocialCommunityEngagement from "./components/Tasks/SocialCommunityEngagem
 import SurfaceFloorCleaning from "./components/Tasks/SurfaceFloorCleaning"
 import Tasks from "./components/Tasks/tasks"
 import VehicleEquipmentMaintenance from "./components/Tasks/VehicleEquipmentMaintenance"
+import { FilterProvider } from "./components/Tasks/FilterContext"
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/tasks" element={<Tasks />} />
-        <Route path="/tasks/meal-preparation" element={<MealPreparationCooking />} />
-        <Route path="/tasks/grocery-management" element={<GroceryManagement />} />
-        <Route path="/tasks/kitchen-maintenance" element={<KitchenMaintenance />} />
-        <Route path="/tasks/surface-floor-cleaning" element={<SurfaceFloorCleaning />} />
-        <Route path="/tasks/laundry-fabric-care" element={<LaundryFabricCare />} />
-        <Route path="/tasks/deep-cleaning-organization" element={<DeepCleaningOrganization />} />
-        <Route path="/tasks/childcare-parenting" element={<ChildcareParenting />} />
-        <Route path="/tasks/elderly-family-care" element={<ElderlyFamilyCare />} />
-        <Route path="/tasks/pet-care" element={<PetCare />} />
-        <Route path="/tasks/family-relationship-emotional-support" element={<FamilyRelationshipEmotionalSupport />} />
-        <Route path="/tasks/social-community-engagement" element={<SocialCommunityEngagement />} />
-        <Route path="/tasks/household-mood-stress-management" element={<HouseholdMoodStressManagement />} />
-        <Route path="/tasks/household-repairs-fixes" element={<HouseholdRepairsFixes />} />
-        <Route path="/tasks/seasonal-preventative-maintenance" element={<SeasonalPreventativeMaintenance />} />
-        <Route path="/tasks/vehicle-equipment-maintenance" element={<VehicleEquipmentMaintenance />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/self-assessment" element={<Assessment />} />
-        <Route path="/self-assessment/question" element={<Question />} />
-        <Route path="/self-assessment/question2" element={<Question2 />} />
-        <Route path="/self-assessment/question3" element={<Question3 />} />
-        <Route path="/self-assessment/question4" element={<Question4 />} />
-        <Route path="/self-assessment/question5" element={<Question5 />} />
-        <Route path="/self-assessment/question6" element={<Question6 />} />
-        <Route path="/self-assessment/question7" element={<Question7 />} />
-        <Route path="/self-assessment/question8" element={<Question8 />} />
-        <Route path="/self-assessment/question9" element={<Question9 />} />
-        <Route path="/self-assessment/question10" element={<Question10 />} />
-      </Routes>
-    </Router>
+    <FilterProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/tasks/meal-preparation" element={<MealPreparationCooking />} />
+          <Route path="/tasks/grocery-management" element={<GroceryManagement />} />
+          <Route path="/tasks/kitchen-maintenance" element={<KitchenMaintenance />} />
+          <Route path="/tasks/surface-floor-cleaning" element={<SurfaceFloorCleaning />} />
+          <Route path="/tasks/laundry-fabric-care" element={<LaundryFabricCare />} />
+          <Route path="/tasks/deep-cleaning-organization" element={<DeepCleaningOrganization />} />
+          <Route path="/tasks/childcare-parenting" element={<ChildcareParenting />} />
+          <Route path="/tasks/elderly-family-care" element={<ElderlyFamilyCare />} />
+          <Route path="/tasks/pet-care" element={<PetCare />} />
+          <Route path="/tasks/family-relationship-emotional-support" element={<FamilyRelationshipEmotionalSupport />} />
+          <Route path="/tasks/social-community-engagement" element={<SocialCommunityEngagement />} />
+          <Route path="/tasks/household-mood-stress-management" element={<HouseholdMoodStressManagement />} />
+          <Route path="/tasks/household-repairs-fixes" element={<HouseholdRepairsFixes />} />
+          <Route path="/tasks/seasonal-preventative-maintenance" element={<SeasonalPreventativeMaintenance />} />
+          <Route path="/tasks/vehicle-equipment-maintenance" element={<VehicleEquipmentMaintenance />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/self-assessment" element={<Assessment />} />
+          <Route path="/self-assessment/question" element={<Question />} />
+          <Route path="/self-assessment/question2" element={<Question2 />} />
+          <Route path="/self-assessment/question3" element={<Question3 />} />
+          <Route path="/self-assessment/question4" element={<Question4 />} />
+          <Route path="/self-assessment/question5" element={<Question5 />} />
+          <Route path="/self-assessment/question6" element={<Question6 />} />
+          <Route path="/self-assessment/question7" element={<Question7 />} />
+          <Route path="/self-assessment/question8" element={<Question8 />} />
+          <Route path="/self-assessment/question9" element={<Question9 />} />
+          <Route path="/self-assessment/question10" element={<Question10 />} />
+        </Routes>
+      </Router>
+    </FilterProvider>
   )
 }
 

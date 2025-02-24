@@ -14,18 +14,21 @@ const DeepCleaningOrganization = () => {
       name: "Cleaning windows, curtains, and blinds",
       timeRange: "30-60",
       completed: false,
+      frequency: "Monthly"
     },
     {
       id: 2,
       name: "Decluttering and organizing storage spaces (closets, garage, attic)",
       timeRange: "30-90",
       completed: false,
+      frequency: "Monthly"
     },
     {
       id: 3,
       name: "Checking and replacing air filters, vacuum bags",
       timeRange: "10-20",
       completed: false,
+      frequency: "Monthly"
     },
   ]
 

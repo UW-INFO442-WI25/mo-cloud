@@ -14,12 +14,14 @@ const HouseholdRepairsFixes = () => {
       name: "Fixing minor home damages (furniture, appliances)",
       timeRange: "30-90",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 2,
       name: "Painting walls or fences",
       timeRange: "60-240",
       completed: false,
+      frequency: "As Needed"
     },
   ]
 

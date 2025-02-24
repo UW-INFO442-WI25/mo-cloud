@@ -14,18 +14,21 @@ const ElderlyFamilyCare = () => {
       name: "Assisting with medication and doctor appointments",
       timeRange: "15-60",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 2,
       name: "Helping with mobility, bathing, or feeding",
       timeRange: "30-90",
       completed: false,
+      frequency: "Daily"
     },
     {
       id: 3,
       name: "Providing emotional support and companionship",
       timeRange: "30-120",
       completed: false,
+      frequency: "Daily"
     },
   ]
 

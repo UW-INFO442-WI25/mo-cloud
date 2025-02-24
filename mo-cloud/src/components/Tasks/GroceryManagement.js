@@ -14,24 +14,28 @@ const GroceryManagement = () => {
       name: "Making a grocery list",
       timeRange: "5-15",
       completed: false,
+      frequency: "Weekly"
     },
     {
       id: 2,
       name: "Checking pantry for missing ingredients",
       timeRange: "5-10",
       completed: false,
+      frequency: "Weekly"
     },
     {
       id: 3,
       name: "Grocery shopping (in-store/online)",
       timeRange: "30-90",
       completed: false,
+      frequency: "Weekly"
     },
     {
       id: 4,
       name: "Organizing groceries after shopping",
       timeRange: "10-20",
       completed: false,
+      frequency: "Weekly"
     },
   ]
 

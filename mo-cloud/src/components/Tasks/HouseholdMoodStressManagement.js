@@ -14,12 +14,14 @@ const HouseholdMoodStressManagement = () => {
       name: "Ensuring a positive home atmosphere",
       timeRange: "Ongoing",
       completed: false,
+      frequency: "Weekly"
     },
     {
       id: 2,
       name: "Managing and anticipating family stress levels",
       timeRange: "Ongoing",
       completed: false,
+      frequency: "Weekly"
     },
   ]
 

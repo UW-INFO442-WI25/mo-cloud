@@ -1,6 +1,5 @@
 "use client"
-
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import p1 from "../../assets/task1.png"
 import p10 from "../../assets/task10.png"
@@ -18,18 +17,14 @@ import p4 from "../../assets/task4.png"
 import p6 from "../../assets/task6.png"
 import p9 from "../../assets/task9.png"
 import Filter from "./filter.jsx"
+import { FilterContext } from "./FilterContext"
 
 const Tasks = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [filters, setFilters] = useState({
-    time: [],
-    visibility: 5,
-    category: [],
-    frequency: [],
-  })
+  const { filters } = useContext(FilterContext)  // read from context
   const navigate = useNavigate()
+  const [searchQuery, setSearchQuery] = useState("")
 
-  // Our tasks array, each with a `title` and `category`
+  // Updated tasks array with a frequency property based on your mapping:
   const tasks = [
     {
       title: "Meal Preparation & Cooking",
@@ -38,6 +33,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFF8E7]",
       route: "/tasks/meal-preparation",
       category: "Cook",
+      frequency: "Daily"
     },
     {
       title: "Grocery Shopping & Inventory Management",
@@ -46,6 +42,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFF8E7]",
       route: "/tasks/grocery-management",
       category: "Cook",
+      frequency: "Weekly"
     },
     {
       title: "Kitchen Maintenance & Cleanup",
@@ -54,6 +51,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFF8E7]",
       route: "/tasks/kitchen-maintenance",
       category: "Cook",
+      frequency: ["Daily", "Weekly"]
     },
     {
       title: "Surface & Floor Cleaning",
@@ -62,6 +60,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFE4E6]",
       route: "/tasks/surface-floor-cleaning",
       category: "Clean",
+      frequency: "Weekly"
     },
     {
       title: "Laundry & Fabric Care",
@@ -70,6 +69,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFE4E6]",
       route: "/tasks/laundry-fabric-care",
       category: "Clean",
+      frequency: "Weekly"
     },
     {
       title: "Deep Cleaning & Organization",
@@ -78,6 +78,7 @@ const Tasks = () => {
       bgColor: "bg-[#FFE4E6]",
       route: "/tasks/deep-cleaning-organization",
       category: "Clean",
+      frequency: "Monthly"
     },
     {
       title: "Childcare & Parenting",
@@ -86,6 +87,7 @@ const Tasks = () => {
       bgColor: "bg-[#E5EAD7]",
       route: "/tasks/childcare-parenting",
       category: "Care",
+      frequency: "Daily"
     },
     {
       title: "Elderly & Family Care",
@@ -94,6 +96,7 @@ const Tasks = () => {
       bgColor: "bg-[#E5EAD7]",
       route: "/tasks/elderly-family-care",
       category: "Care",
+      frequency: "Daily"
     },
     {
       title: "Pet Care",
@@ -102,6 +105,7 @@ const Tasks = () => {
       bgColor: "bg-[#E5EAD7]",
       route: "/tasks/pet-care",
       category: "Care",
+      frequency: "Daily"
     },
     {
       title: "Family Relationship & Emotional Support",
@@ -110,6 +114,7 @@ const Tasks = () => {
       bgColor: "bg-[#FED7AA]",
       route: "/tasks/family-relationship-emotional-support",
       category: "Emotion",
+      frequency: "As Needed"
     },
     {
       title: "Social & Community Engagement",
@@ -118,6 +123,7 @@ const Tasks = () => {
       bgColor: "bg-[#FED7AA]",
       route: "/tasks/social-community-engagement",
       category: "Emotion",
+      frequency: "As Needed"
     },
     {
       title: "Household Mood & Stress Management",
@@ -126,6 +132,7 @@ const Tasks = () => {
       bgColor: "bg-[#FED7AA]",
       route: "/tasks/household-mood-stress-management",
       category: "Emotion",
+      frequency: "Daily"
     },
     {
       title: "Household Repairs & Fixes",
@@ -134,6 +141,7 @@ const Tasks = () => {
       bgColor: "bg-[#DCD5FC]",
       route: "/tasks/household-repairs-fixes",
       category: "Repair",
+      frequency: "As Needed"
     },
     {
       title: "Seasonal & Preventative Maintenance",
@@ -142,6 +150,7 @@ const Tasks = () => {
       bgColor: "bg-[#DCD5FC]",
       route: "/tasks/seasonal-preventative-maintenance",
       category: "Repair",
+      frequency: "As Needed"
     },
     {
       title: "Vehicle & Equipment Maintenance",
@@ -150,67 +159,41 @@ const Tasks = () => {
       bgColor: "bg-[#DCD5FC]",
       route: "/tasks/vehicle-equipment-maintenance",
       category: "Repair",
+      frequency: "As Needed"
     },
   ]
 
-  // ------------------------------------------------------
-  // 1) A helper to check if a task matches the category filter
-  // ------------------------------------------------------
+  // Filtering logic for category and frequency:
   const matchesCategoryFilter = (task, categoryFilter) => {
-    // If user hasn't selected any categories at all, pass
-    if (categoryFilter.length === 0) {
-      return true
-    }
-
-    // We do an "OR" check across each category object in filterState
-    // If task matches at least one, it's included
+    if (categoryFilter.length === 0) return true
     for (let catObj of categoryFilter) {
-      // Must match the same top-level category first
-      if (catObj.category !== task.category) {
-        continue
-      }
-
-      // If catObj.tasks is empty, that means user selected the *entire* category
-      // => match
-      if (catObj.tasks.length === 0) {
-        return true
-      }
-
-      // Otherwise, user selected specific sub-tasks
-      // => only match if this task's `title` is in the array
-      if (catObj.tasks.includes(task.title)) {
-        return true
-      }
+      if (catObj.category !== task.category) continue
+      if (catObj.tasks.length === 0) return true
+      if (catObj.tasks.includes(task.title)) return true
     }
-    // If no match was found, return false
     return false
   }
 
-  // ------------------------------------------------------
-  // 2) Do the final filtering of tasks
-  // ------------------------------------------------------
   const filteredTasks = tasks.filter((task) => {
-    // Search Query (by task.title)
     if (
       searchQuery &&
       !task.title.toLowerCase().includes(searchQuery.toLowerCase())
     ) {
       return false
     }
-
-    // Category Filter
     if (!matchesCategoryFilter(task, filters.category)) {
       return false
     }
+  if (filters.frequency.length > 0) {
+    const freqArray = Array.isArray(task.frequency)
+      ? task.frequency
+      : [task.frequency]
+    const hasOverlap = freqArray.some((f) => filters.frequency.includes(f))
+    if (!hasOverlap) return false
+  }
+  return true
+})
 
-    // Time Filter (if you want to implement it, you'd look at filters.time here)
-    // Frequency Filter (similarly)
-    // Visibility Filter (similarly)
-
-    return true
-  })
-
-  // This is called by the Filter component whenever the user clicks "Apply"
   const handleApplyFilter = (newFilters) => {
     setFilters(newFilters)
   }
@@ -258,7 +241,6 @@ const Tasks = () => {
           <div className="w-full lg:w-64">
             <Filter onApply={handleApplyFilter} />
           </div>
-
           {/* Tasks Grid */}
           <div className="flex-1">
             {/* Search Bar */}
@@ -290,8 +272,7 @@ const Tasks = () => {
                 Search
               </button>
             </div>
-
-            {/* Filtered Task Cards */}
+            {/* Task Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredTasks.map((task, index) => (
                 <div
@@ -299,7 +280,6 @@ const Tasks = () => {
                   onClick={() => navigate(task.route)}
                   className="bg-white rounded-[32px] overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105 cursor-pointer"
                 >
-                  {/* Image Container */}
                   <div className={`${task.bgColor} aspect-[4/3] relative overflow-hidden`}>
                     <img
                       src={task.image || "/placeholder.svg"}
@@ -307,10 +287,11 @@ const Tasks = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  {/* Text Container */}
                   <div className="p-6">
                     <div className="text-sm text-gray-500 mb-2">Whole time: {task.time}</div>
-                    <h3 className="text-xl text-gray-900 font-semibold leading-tight">{task.title}</h3>
+                    <h3 className="text-xl text-gray-900 font-semibold leading-tight">
+                      {task.title}
+                    </h3>
                   </div>
                 </div>
               ))}
@@ -323,3 +304,4 @@ const Tasks = () => {
 }
 
 export default Tasks
+

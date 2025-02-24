@@ -14,18 +14,21 @@ const FamilyRelationshipEmotionalSupport = () => {
       name: "Mediating family disputes",
       timeRange: "30-90",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 2,
       name: "Checking in on family members' emotional well-being",
       timeRange: "10-30",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 3,
       name: "Organizing and planning family vacations",
       timeRange: "60-180",
       completed: false,
+      frequency: "As Needed"
     },
   ]
 

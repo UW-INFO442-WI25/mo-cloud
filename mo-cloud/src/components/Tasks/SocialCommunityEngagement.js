@@ -14,18 +14,21 @@ const SocialCommunityEngagement = () => {
       name: "Hosting and organizing family gatherings",
       timeRange: "60-240",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 2,
       name: "Attending school meetings and social events",
       timeRange: "60-120",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 3,
       name: "Planning holiday celebrations and gift-giving",
       timeRange: "30-90",
       completed: false,
+      frequency: "As Needed"
     },
   ]
 

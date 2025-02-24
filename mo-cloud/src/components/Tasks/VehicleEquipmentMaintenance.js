@@ -14,18 +14,21 @@ const VehicleEquipmentMaintenance = () => {
       name: "Checking tire pressure and oil levels",
       timeRange: "10-30",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 2,
       name: "Scheduling car servicing and registration renewals",
       timeRange: "15-60",
       completed: false,
+      frequency: "As Needed"
     },
     {
       id: 3,
       name: "Maintaining power tools and household equipment",
       timeRange: "30-90",
       completed: false,
+      frequency: "As Needed"
     },
   ]
 
