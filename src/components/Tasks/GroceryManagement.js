@@ -16,39 +16,47 @@ function GroceryManagement () {
       name: "Making a grocery list",
       timeRange: "5-15",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 3
     },
     {
       id: 2,
       name: "Checking pantry for missing ingredients",
       timeRange: "5-10",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 2
     },
     {
       id: 3,
       name: "Grocery shopping (in-store/online)",
       timeRange: "30-90",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 7
     },
     {
       id: 4,
       name: "Organizing groceries after shopping",
       timeRange: "10-20",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 4
     },
   ]
   
-  // Filter the subTasks
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true

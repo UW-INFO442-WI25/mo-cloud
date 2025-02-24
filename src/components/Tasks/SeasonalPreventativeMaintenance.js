@@ -16,31 +16,38 @@ function SeasonalPreventativeMaintenance () {
       name: "Replacing light bulbs and batteries",
       timeRange: "10-20",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 4
     },
     {
       id: 2,
       name: "Checking for leaks, insulation, and water damage",
       timeRange: "20-60",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 3
     },
     {
       id: 3,
       name: "Cleaning gutters and outdoor spaces",
       timeRange: "45-120",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 2
     },
   ]
-  // Filter the subTasks
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true

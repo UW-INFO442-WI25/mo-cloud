@@ -16,45 +16,54 @@ function MealPreparationCooking () {
       name: "Preparing ingredients (chopping, marinating, seasoning)",
       timeRange: "15-30",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 4
     },
     {
       id: 2,
       name: "Cooking meals",
       timeRange: "30-60",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 8
     },
     {
       id: 3,
       name: "Setting the table",
       timeRange: "5-10",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 7
     },
     {
       id: 4,
       name: "Serving food",
       timeRange: "5-10",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 8
     },
     {
       id: 5,
       name: "Washing dishes and cookware",
       timeRange: "15-30",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 6
     },
   ]
-  // Filter the subTasks
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true

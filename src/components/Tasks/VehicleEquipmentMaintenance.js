@@ -16,35 +16,42 @@ function VehicleEquipmentMaintenance () {
       name: "Checking tire pressure and oil levels",
       timeRange: "10-30",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 6
     },
     {
       id: 2,
       name: "Scheduling car servicing and registration renewals",
       timeRange: "15-60",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 5
     },
     {
       id: 3,
       name: "Maintaining power tools and household equipment",
       timeRange: "30-90",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 2
     },
   ]
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true
   })
-
   return (
     <div className="min-h-screen bg-[#002B5C]">
       {/* Navigation */}

@@ -16,29 +16,35 @@ function SurfaceFloorCleaning () {
       name: "Sweeping, vacuuming, and mopping floors",
       timeRange: "15-45",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 7
     },
     {
       id: 2,
       name: "Dusting furniture and surfaces",
       timeRange: "10-20",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 5
     },
   ]
 
-// Filter the subTasks
-const filteredSubTasks = subTasks.filter((t) => {
-  // 1) match search query
-  if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-    return false
-  }
-  // 2) match frequency from context
-  if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
-    return false
-  }
-  return true
-})
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
+    }
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
+      return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-[#002B5C]">

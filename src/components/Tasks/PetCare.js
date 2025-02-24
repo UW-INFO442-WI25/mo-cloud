@@ -10,19 +10,23 @@ function PetCare () {
   const [searchQuery, setSearchQuery] = useState("")
 
   const subTasks = [
-    { id: 1, name: "Feeding pets", timeRange: "5-10", completed: false, frequency: "Daily" },
-    { id: 2, name: "Walking pets", timeRange: "15-60", completed: false, frequency: "Daily" },
-    { id: 3, name: "Grooming pets (brushing, washing)", timeRange: "20-45", completed: false, frequency: "Weekly" },
-    { id: 4, name: "Cleaning litter boxes, cages, aquariums", timeRange: "10-20", completed: false, frequency: "Daily" },
+    { id: 1, name: "Feeding pets", timeRange: "5-10", completed: false, frequency: "Daily", visibility: 8},
+    { id: 2, name: "Walking pets", timeRange: "15-60", completed: false, frequency: "Daily", visibility: 7 },
+    { id: 3, name: "Grooming pets (brushing, washing)", timeRange: "20-45", completed: false, frequency: "Weekly", visibility: 8 },
+    { id: 4, name: "Cleaning litter boxes, cages, aquariums", timeRange: "10-20", completed: false, frequency: "Daily", visibility: 6 },
   ]
-  // Filter the subTasks
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true

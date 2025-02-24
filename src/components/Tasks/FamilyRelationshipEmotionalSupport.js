@@ -16,36 +16,43 @@ function FamilyRelationshipEmotionalSupport () {
       name: "Mediating family disputes",
       timeRange: "30-90",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 7
     },
     {
       id: 2,
       name: "Checking in on family members' emotional well-being",
       timeRange: "10-30",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 5
     },
     {
       id: 3,
       name: "Organizing and planning family vacations",
       timeRange: "60-180",
       completed: false,
-      frequency: "As Needed"
+      frequency: "As Needed",
+      visibility: 6
     },
   ]
 
-    // Filter the subTasks
-    const filteredSubTasks = subTasks.filter((t) => {
-      // 1) match search query
-      if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return false
-      }
-      // 2) match frequency from context
-      if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
-        return false
-      }
-      return true
-    })
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
+    }
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
+      return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-[#002B5C]">

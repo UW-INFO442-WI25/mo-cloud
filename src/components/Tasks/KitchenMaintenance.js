@@ -17,6 +17,7 @@ function KitchenMaintenance() {
       timeRange: "10-20",
       completed: false,
       frequency: "Daily",
+      visibility: 6
     },
     {
       id: 2,
@@ -24,6 +25,7 @@ function KitchenMaintenance() {
       timeRange: "5-15",
       completed: false,
       frequency: "Daily",
+      visibility: 4
     },
     {
       id: 3,
@@ -31,6 +33,7 @@ function KitchenMaintenance() {
       timeRange: "5",
       completed: false,
       frequency: "Daily",
+      visibility: 9
     },
     {
       id: 4,
@@ -38,16 +41,22 @@ function KitchenMaintenance() {
       timeRange: "10-15",
       completed: false,
       frequency: "Weekly",
+      visibility: 2
     },
   ]
 
-  const filteredSubTasks = subTasks.filter((t) => {
-    // Filter by search query if any
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // Filter by frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true

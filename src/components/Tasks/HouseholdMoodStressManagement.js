@@ -16,29 +16,35 @@ function HouseholdMoodStressManagement () {
       name: "Ensuring a positive home atmosphere",
       timeRange: "Ongoing",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 4
     },
     {
       id: 2,
       name: "Managing and anticipating family stress levels",
       timeRange: "Ongoing",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 3
     },
   ]
 
-    // Filter the subTasks
-    const filteredSubTasks = subTasks.filter((t) => {
-      // 1) match search query
-      if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return false
-      }
-      // 2) match frequency from context
-      if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
-        return false
-      }
-      return true
-    })
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
+    }
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
+      return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-[#002B5C]">

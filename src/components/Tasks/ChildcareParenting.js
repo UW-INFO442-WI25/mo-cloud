@@ -16,43 +16,52 @@ function ChildcareParenting (){
       name: "Preparing kids for school (dressing, packing bags)",
       timeRange: "20-40",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 8
     },
     {
       id: 2,
       name: "Helping with homework",
       timeRange: "30-60",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 7
     },
     {
       id: 3,
       name: "Reading bedtime stories, putting kids to sleep",
       timeRange: "15-30",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 8
     },
     {
       id: 4,
       name: "Monitoring and supervising children's play",
       timeRange: "30-120",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 6
     },
   ]
 
  // Filter the subTasks
- const filteredSubTasks = subTasks.filter((t) => {
-  // 1) match search query
-  if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+ const filteredSubTasks = subTasks.filter((task) => {
+  // 1) Filter by search
+  if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
     return false
   }
-  // 2) match frequency from context
-  if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+  // 2) Filter by visibility: only include if task.visibility === filters.visibility
+  if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+    return false
+  }
+  // 3) Filter by frequency
+  if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
     return false
   }
   return true
 })
+
 
   return (
     <div className="min-h-screen bg-[#002B5C]">

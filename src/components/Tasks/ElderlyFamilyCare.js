@@ -16,36 +16,43 @@ function ElderlyFamilyCare () {
       name: "Assisting with medication and doctor appointments",
       timeRange: "15-60",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 8
     },
     {
       id: 2,
       name: "Helping with mobility, bathing, or feeding",
       timeRange: "30-90",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 9
     },
     {
       id: 3,
       name: "Providing emotional support and companionship",
       timeRange: "30-120",
       completed: false,
-      frequency: "Daily"
+      frequency: "Daily",
+      visibility: 5
     },
   ]
 
-    // Filter the subTasks
-    const filteredSubTasks = subTasks.filter((t) => {
-      // 1) match search query
-      if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return false
-      }
-      // 2) match frequency from context
-      if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
-        return false
-      }
-      return true
-    })
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+      return false
+    }
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
+      return false
+    }
+    return true
+  })
 
   return (
     <div className="min-h-screen bg-[#002B5C]">

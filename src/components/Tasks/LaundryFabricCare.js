@@ -16,38 +16,46 @@ function LaundryFabricCare () {
       name: "Sorting laundry by fabric type and color",
       timeRange: "5-10",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 4
     },
     {
       id: 2,
       name: "Washing and drying clothes",
       timeRange: "45-90",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 6
     },
     {
       id: 3,
       name: "Folding and putting away clothes",
       timeRange: "15-30",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 5
     },
     {
       id: 4,
       name: "Ironing and steaming clothes",
       timeRange: "15-45",
       completed: false,
-      frequency: "Weekly"
+      frequency: "Weekly",
+      visibility: 3
     }
   ]
-  // Filter the subTasks
-  const filteredSubTasks = subTasks.filter((t) => {
-    // 1) match search query
-    if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase())) {
+  // Filter logic: search, visibility exact match, frequency
+  const filteredSubTasks = subTasks.filter((task) => {
+    // 1) Search
+    if (searchQuery && !task.name.toLowerCase().includes(searchQuery.toLowerCase())) {
       return false
     }
-    // 2) match frequency from context
-    if (filters.frequency.length > 0 && !filters.frequency.includes(t.frequency)) {
+    // 2) Visibility exact match
+    if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
+      return false
+    }
+    // 3) Frequency
+    if (filters.frequency.length > 0 && !filters.frequency.includes(task.frequency)) {
       return false
     }
     return true
