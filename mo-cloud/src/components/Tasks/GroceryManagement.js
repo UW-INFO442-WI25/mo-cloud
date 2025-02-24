@@ -61,9 +61,11 @@ const GroceryManagement = () => {
             </a>
           </div>
           <div className="flex items-center space-x-4">
-            <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">Login /Register</button>
+            <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">
+              Log in
+            </button>
             <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
-              One Time User →
+              Register
             </button>
           </div>
         </div>

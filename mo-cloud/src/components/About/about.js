@@ -95,10 +95,10 @@ function About() {
           </div>
           <div className="flex items-center space-x-4">
             <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">
-              Login /Register
+              Log in
             </button>
             <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
-              One Time User →
+              Register
             </button>
           </div>
         </div>
@@ -176,8 +176,11 @@ function About() {
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#002B5C] mb-4 md:mb-6">Send Us A Message</h2>
-              <p className="text-gray-600 mb-8">
-                Fill out the form and our team will get back to you as quickly as we can.
+              <p className="text-gray-300 text-lg md:text-l max-w-3xl">
+                Fill out the form and 
+                <br />
+                our team will get back to you as quickly as we can.
+                <br />
               </p>
 
               <div className="space-y-6">

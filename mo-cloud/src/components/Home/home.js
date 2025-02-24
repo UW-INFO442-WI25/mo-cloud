@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom"
 import Element from "../../assets/Element.png"
 import Illustration from "../../assets/Illustration.png"
 
 const Home = () => {
+  const navigate = useNavigate()
+
+  const handleGetStarted = () => {
+    navigate("/self-assessment")
+  }
+
+  const aboutUs = () => {
+    navigate("/about")
+  }
+
   return (
     <div className="min-h-screen bg-[#002B5C]">
       {/* Navigation */}
@@ -29,10 +40,10 @@ const Home = () => {
           </div>
           <div className="flex items-center space-x-4">
             <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">
-              Login /Register
+              Log in
             </button>
             <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
-              One Time User →
+              Register
             </button>
           </div>
         </div>
@@ -60,7 +71,10 @@ const Home = () => {
               Build stronger relationships through awareness and shared responsibility.
             </p>
             <div className="flex gap-4">
-              <button className="bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90">
+              <button
+                onClick={handleGetStarted}
+                className="bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90"
+              >
                 Get started now
               </button>
               <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10">
@@ -133,7 +147,7 @@ const Home = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/about" className="hover:text-[#64B5F6]">
+                  <a href="/about" onClick={aboutUs} className="hover:text-[#64B5F6]">
                     About us
                   </a>
                 </li>
