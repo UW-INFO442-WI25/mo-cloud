@@ -95,3 +95,6 @@ When you're ready to build the project for production:
 3. Visit `http://localhost:4173` to see the production build.
 
 Note: The production build is optimized for performance and is what you would deploy to a web server.
+
+### Documentation
+- [User Personas](docs/user_persona.md)
