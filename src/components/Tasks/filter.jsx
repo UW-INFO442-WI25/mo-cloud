@@ -224,7 +224,7 @@ export default function Filter() {
                 type="range"
                 min="0"
                 max="10"
-                value={tempFilterState.visibility}
+                value={tempFilterState.visibility ?? 5}
                 onChange={handleVisibilityChange}
                 className="w-full"
               />

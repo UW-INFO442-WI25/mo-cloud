@@ -9,7 +9,7 @@ export const FilterContext = createContext(null)
 export function FilterProvider({ children }) {
   const [filters, setFilters] = useState({
     time: [],
-    visibility: 5,
+    visibility: null,
     category: [],
     frequency: [],
   })

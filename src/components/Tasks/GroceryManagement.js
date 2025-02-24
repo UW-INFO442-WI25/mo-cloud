@@ -52,6 +52,13 @@ function GroceryManagement () {
       return false
     }
     // 2) Visibility exact match
+    if (filters.visibility !== null) {
+      // We only apply the filter if filters.visibility is not null
+      // Example for exact match:
+      if (task.visibility !== filters.visibility) {
+        return false
+      }
+    }
     if (typeof filters.visibility === "number" && task.visibility !== filters.visibility) {
       return false
     }
