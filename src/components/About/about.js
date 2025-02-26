@@ -13,6 +13,7 @@ import member3 from "../../assets/member3.png"
 import member4 from "../../assets/member4.png"
 import member5 from "../../assets/member5.png"
 import twitterIcon from "../../assets/twitter-icon.png"
+import NavigationBar from "../Navigation/NavigationBar"
 
 
 function About() {
@@ -39,7 +40,7 @@ function About() {
 
   const teamMembers = [
     { name: "Hanrul Tang", role: "Financial Advisor", image: member1 },
-    { name: "Jia Wu", role: "Financial Advisor", image: member2 },
+    { name: "Jia Wu", role: "Developer", image: member2 },
     { name: "Sophia Xiao", role: "Financial Advisor", image: member3 },
     { name: "Xiaoqian Zhou", role: "Designer", image: member4 },
     { name: "Yue Xu", role: "Product Advisor", image: member5 },
@@ -70,40 +71,7 @@ function About() {
 
   return (
     <div className="min-h-screen bg-[#002B5C]">
-      {/* Navigation */}
-      <nav className="py-8">
-        <div className="container mx-auto px-8 flex items-center justify-between">
-          <a href="/" className="text-2xl font-bold text-white">
-            Mo<span className="text-[#64B5F6]">Cloud</span>
-          </a>
-          <div className="hidden md:flex items-center space-x-8">
-            <a href="/" className="text-white hover:text-[#64B5F6]">
-              Home
-            </a>
-            <a href="/tasks" className="text-white hover:text-[#64B5F6]">
-              Tasks
-            </a>
-            <a href="/self-assessment" className="text-white hover:text-[#64B5F6]">
-              Self Assessment
-            </a>
-            <a href="/resources" className="text-white hover:text-[#64B5F6]">
-              Resources
-            </a>
-            <a href="/about" className="text-[#64B5F6]">
-              About
-            </a>
-          </div>
-          <div className="flex items-center space-x-4">
-            <button className="bg-[#FFD54F] text-black px-6 py-2 rounded-full hover:bg-[#FFD54F]/90">
-              Log in
-            </button>
-            <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
-              Register
-            </button>
-          </div>
-        </div>
-      </nav>
-
+      <NavigationBar />
       {/* Hero Section */}
       <div className="bg-[#002B5C] pt-16 md:pt-24 pb-16 md:pb-24">
         <div className="container mx-auto px-4 md:px-8">

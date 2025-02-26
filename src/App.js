@@ -29,6 +29,8 @@ import SurfaceFloorCleaning from "./components/Tasks/SurfaceFloorCleaning"
 import Tasks from "./components/Tasks/tasks"
 import VehicleEquipmentMaintenance from "./components/Tasks/VehicleEquipmentMaintenance"
 import { FilterProvider } from "./components/Tasks/FilterContext"
+import LoginPage from "./components/Auth/sign-in"
+import SignUpPage from "./components/Auth/sign-up"
 
 function App() {
   return (
@@ -64,6 +66,8 @@ function App() {
           <Route path="/self-assessment/question8" element={<Question8 />} />
           <Route path="/self-assessment/question9" element={<Question9 />} />
           <Route path="/self-assessment/question10" element={<Question10 />} />
+          <Route path="/sign-in" element={<LoginPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>
       </Router>
     </FilterProvider>

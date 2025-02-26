@@ -1,4 +1,4 @@
-/* @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
     darkMode: ["class"],
     content: [
@@ -7,6 +7,7 @@ module.exports = {
       "./index.html",
       "./src/**/*.{js,ts,jsx,tsx}",
       "*.{js,ts,jsx,tsx,mdx}",
+      "./index.html",
     ],
     theme: {
       extend: {
@@ -17,12 +18,12 @@ module.exports = {
           background: "hsl(var(--background))",
           foreground: "hsl(var(--foreground))",
           primary: {
-            DEFAULT: "hsl(var(--primary))",
-            foreground: "hsl(var(--primary-foreground))",
+            DEFAULT: "#4f9cf9",
+            foreground: "#ffffff",
           },
           secondary: {
-            DEFAULT: "hsl(var(--secondary))",
-            foreground: "hsl(var(--secondary-foreground))",
+            DEFAULT: "#ffe492",
+            foreground: "#043873",
           },
           destructive: {
             DEFAULT: "hsl(var(--destructive))",
