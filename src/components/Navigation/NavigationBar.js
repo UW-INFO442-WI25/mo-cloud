@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function NavigationBar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <nav className="py-8">
@@ -10,19 +11,34 @@ export default function NavigationBar() {
           Mo<span className="text-[#64B5F6]">Cloud</span>
         </Link>
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-white hover:text-[#64B5F6]">
+          <Link 
+            to="/" 
+            className={`${location.pathname === '/' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+          >
             Home
           </Link>
-          <Link to="/tasks" className="text-[#64B5F6]">
+          <Link 
+            to="/tasks" 
+            className={`${location.pathname === '/tasks' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+          >
             Tasks
           </Link>
-          <Link to="/self-assessment" className="text-white hover:text-[#64B5F6]">
+          <Link 
+            to="/self-assessment" 
+            className={`${location.pathname === '/self-assessment' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+          >
             Self Assessment
           </Link>
-          <Link to="/resources" className="text-white hover:text-[#64B5F6]">
+          <Link 
+            to="/resources" 
+            className={`${location.pathname === '/resources' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+          >
             Resources
           </Link>
-          <Link to="/about" className="text-white hover:text-[#64B5F6]">
+          <Link 
+            to="/about" 
+            className={`${location.pathname === '/about' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+          >
             About
           </Link>
         </div>
