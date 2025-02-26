@@ -31,6 +31,8 @@ import VehicleEquipmentMaintenance from "./components/Tasks/VehicleEquipmentMain
 import { FilterProvider } from "./components/Tasks/FilterContext"
 import LoginPage from "./components/Auth/sign-in"
 import SignUpPage from "./components/Auth/sign-up"
+import Resource_page from "./components/Resource/Resource_page.js"
+
 
 function App() {
   return (
@@ -68,6 +70,7 @@ function App() {
           <Route path="/self-assessment/question10" element={<Question10 />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
+          <Route path="/resource" element={<Resource_page />} />
         </Routes>
       </Router>
     </FilterProvider>
