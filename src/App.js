@@ -1,5 +1,6 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import About from "./components/About/about"
+import Dashboard from "./components/After-login/Dashboard/dashboard"
 import Assessment from "./components/Assessment/assessment"
 import Question from "./components/Assessment/question"
 import Question10 from "./components/Assessment/question10"
@@ -11,11 +12,14 @@ import Question6 from "./components/Assessment/question6"
 import Question7 from "./components/Assessment/question7"
 import Question8 from "./components/Assessment/question8"
 import Question9 from "./components/Assessment/question9"
+import LoginPage from "./components/Auth/sign-in"
+import SignUpPage from "./components/Auth/sign-up"
 import Home from "./components/Home/home"
 import ChildcareParenting from "./components/Tasks/ChildcareParenting"
 import DeepCleaningOrganization from "./components/Tasks/DeepCleaningOrganization"
 import ElderlyFamilyCare from "./components/Tasks/ElderlyFamilyCare"
 import FamilyRelationshipEmotionalSupport from "./components/Tasks/FamilyRelationshipEmotionalSupport"
+import { FilterProvider } from "./components/Tasks/FilterContext"
 import GroceryManagement from "./components/Tasks/GroceryManagement"
 import HouseholdMoodStressManagement from "./components/Tasks/HouseholdMoodStressManagement"
 import HouseholdRepairsFixes from "./components/Tasks/HouseholdRepairsFixes"
@@ -28,11 +32,6 @@ import SocialCommunityEngagement from "./components/Tasks/SocialCommunityEngagem
 import SurfaceFloorCleaning from "./components/Tasks/SurfaceFloorCleaning"
 import Tasks from "./components/Tasks/tasks"
 import VehicleEquipmentMaintenance from "./components/Tasks/VehicleEquipmentMaintenance"
-import { FilterProvider } from "./components/Tasks/FilterContext"
-import LoginPage from "./components/Auth/sign-in"
-import SignUpPage from "./components/Auth/sign-up"
-import Resource from "./components/Resource/Resource_page";
-
 
 function App() {
   return (
@@ -70,7 +69,9 @@ function App() {
           <Route path="/self-assessment/question10" element={<Question10 />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
-          <Route path="/resource" element={<Resource />} />
+          
+          {/* After Login Routes */}
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </FilterProvider>
