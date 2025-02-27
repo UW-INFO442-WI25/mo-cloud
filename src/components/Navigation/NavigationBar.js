@@ -30,7 +30,7 @@ export default function NavigationBar() {
             Self Assessment
           </Link>
           <Link 
-            to="/resources" 
+            to="/resource" 
             className={`${location.pathname === '/resources' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
           >
             Resources
@@ -58,4 +58,3 @@ export default function NavigationBar() {
     </nav>
   );
 }
-

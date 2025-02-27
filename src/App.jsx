@@ -5,6 +5,7 @@ import Home from "./components/Home/home"
 import Tasks from "./components/Tasks/tasks"
 import LoginPage from "./components/Auth/sign-in"
 import SignUpPage from "./components/Auth/sign-up"
+import Resource from "./components/Resource/Resource_page";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<LoginPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/resource" element={<Resource />} />
       </Routes>
     </Router>
   )

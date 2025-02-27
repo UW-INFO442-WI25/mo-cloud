@@ -14,6 +14,10 @@ const Home = () => {
     navigate("/about")
   }
 
+  const handleResourceClick = () => {
+    navigate("/resource");
+  }
+
   return (
     <div className="min-h-screen bg-[#002B5C]">
       <NavigationBar />
