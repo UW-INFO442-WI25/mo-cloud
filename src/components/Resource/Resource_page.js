@@ -6,7 +6,78 @@ import resource2 from "../../assets/resource_2.png";
 import resource3 from "../../assets/resource_3.png";
 import resource4 from "../../assets/resource_4.png";
 import resource5 from "../../assets/resource_5.png";
+import book from "../../assets/book.png";
 import NavigationBar from "../Navigation/NavigationBar";
+
+const articles = [
+  {
+    title: "The Invisible Workload of Women",
+    image: resource2,
+    description: "Discover the unseen mental load that women often carry and how it impacts their daily lives.",
+    link: "https://susanhyatt.co/the-invisible-workload-of-women/",
+  },
+  {
+    title: "A Timely Reminder: 'Invisible Labor' is Still Work",
+    image: resource3,
+    description: "Explore how invisible labor continues to shape women's lives and remain unrecognized in society.",
+    link: "https://www.vogue.com/article/invisible-labor-is-still-work",
+  },
+  {
+    title: "Invisible Labor: Valuing the Unseen Contributions of Women",
+    image: resource4,
+    description: "Uncover the hidden emotional and physical labor that women contribute daily and why it's time to value it.",
+    link: "https://www.drjuliehanks.com/blog/invisible-labor-valuing-the-unseen-contributions-of-women",
+  },
+  {
+    title: "Breaking Away from the Invisible Load of Motherhood",
+    image: resource5,
+    description: "Learn how to break free from the invisible load of motherhood and prioritize your own well-being.",
+    link: "https://www.momwell.com/blog/breaking-away-from-the-invisible-load-of-motherhood",
+  },
+];
+
+const researchItems = [
+  {
+    title: "Invisible Work",
+    image: book,
+    link: "https://www.jstor.org/stable/800538?seq=6",
+  },
+  {
+    title: "Unequal Care, Unequal Work: Toward a more Comprehensive Understanding of Gender Inequality in Post-Reform Urban China",
+    image: book,
+    link: "https://link.springer.com/article/10.1007/s11199-017-0751-1",
+  },
+  {
+    title: "When I Iron My Son’s Shirt, I Feel My Maternal Role: Making Women’s Invisible Work Visible",
+    image: book,
+    link: "https://journals.sagepub.com/doi/10.1177/0192513X19894351",
+  },
+  {
+    title: "Husbands' and Wives' Time Spent on Housework: A Comparison of Measures",
+    image: book,
+    link: "https://www.jstor.org/stable/3600272?seq=1",
+  },
+  {
+    title: "Women more than men adjust their careers for family life",
+    image: book,
+    link: "https://www.jstor.org/stable/3600272?seq=1",
+  },
+  {
+    title: "Research on Household Labor: Modeling and Measuring the Social Embeddedness of Routine Family Work",
+    image: book,
+    link: "https://www.jstor.org/stable/3600272?seq=1",
+  },
+  {
+    title: "Invisible Household Labor and Ramifications for Adjustment: Mothers as Captains of Households",
+    image: book,
+    link: "https://www.jstor.org/stable/3600272?seq=1",
+  },
+  {
+    title: "The Cognitive Dimension of Household Labor",
+    image: book,
+    link: "https://journals.sagepub.com/doi/10.1177/0003122419859007",
+  },
+];
 
 const Resource = () => {
   return (
@@ -28,122 +99,59 @@ const Resource = () => {
           </div>
         </div>
 
-        {/* Navigation Sections */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {/* Resource Classifications */}
-          <div className="bg-white shadow-md p-6 rounded-lg text-black">
-            <h2 className="text-lg font-semibold mb-4">Resource Classifications</h2>
-            <ul className="text-blue-500 space-y-2">
-              <li><a href="#">Research</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Organization</a></li>
-            </ul>
-          </div>
-
-          {/* Self-assessment Documentation */}
-          <div className="bg-white shadow-md p-6 rounded-lg text-black">
-            <h2 className="text-lg font-semibold mb-4">Self-assessment Documentation</h2>
-            <ul className="text-blue-500 space-y-2">
-              <li><a href="#">Insights behind ten questions</a></li>
-              <li><a href="#">Results reference</a></li>
-            </ul>
+        {/* Articles Section */}
+        <div className="mt-10">
+          <h2 className="text-2xl font-bold mb-6 text-center">Recommended Articles</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {articles.map((article, index) => (
+              <div key={index} className="bg-white shadow-sm rounded-xl overflow-hidden text-black">
+                <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold">{article.title}</h3>
+                  <p className="text-gray-600 mt-2">{article.description}</p>
+                  <a 
+                    href={article.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-500 inline-block mt-3 hover:underline"
+                  >
+                    Read more →
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Articles Section */}
+        {/* Research Section */}
         <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-6">Recommended Articles</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Article 2 */}
-            <div className="bg-white shadow-md rounded-lg overflow-hidden text-black">
-              <img
-                src={resource2}
-                alt="Article cover 2"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">The Invisible Workload of Women</h3>
-                <p className="text-gray-600 mt-2">
-                  "Discover the unseen mental load that women often carry and how it impacts their daily lives."
-                </p>
+          <h2 className="text-2xl font-bold mb-6 text-center">Recommended Research</h2>
+  
+          <div className="overflow-x-auto overflow-visible">
+            <div className="flex space-x-6 px-4 pb-4 relative">
+              {researchItems.map((research, index) => (
                 <a 
-                  href="https://susanhyatt.co/the-invisible-workload-of-women/" 
+                  key={index} 
+                  href={research.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-blue-500 inline-block mt-3 hover:underline"
+                  className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110"
                 >
-                  Read more →
-                </a>
-              </div>
-            </div>
+                  <div className="absolute -z-10 inset-0 rounded-2xl shadow-2xl group-hover:scale-110 transition duration-300"></div>
 
-            {/* Article 3 */}
-            <div className="bg-white shadow-md rounded-lg overflow-hidden text-black">
-              <img
-                src={resource3}
-                alt="Article cover 3"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">A Timely Reminder: 'Invisible Labor' is Still Work</h3>
-                <p className="text-gray-600 mt-2">
-                  "Explore how invisible labor continues to shape women's lives and remain unrecognized in society."
-                </p>
-                <a 
-                  href="https://www.vogue.com/article/invisible-labor-is-still-work" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-500 inline-block mt-3 hover:underline"
-                >
-                  Read more →
+                  <img
+                    src={research.image}
+                    alt={research.title}
+                    className="w-full h-48 object-cover transition duration-300 group-hover:opacity-80 mix-blend-multiply rounded-t-2xl"
+                  />
+                  
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 rounded-2xl">
+                    <h3 className="text-white text-lg font-semibold text-center px-4">
+                      {research.title}
+                    </h3>
+                  </div>
                 </a>
-              </div>
-            </div>
-
-            {/* Article 4 */}
-            <div className="bg-white shadow-md rounded-lg overflow-hidden text-black">
-              <img
-                src={resource4}
-                alt="Article cover 4"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">Invisible Labor: Valuing the Unseen Contributions of Women</h3>
-                <p className="text-gray-600 mt-2">
-                  "Uncover the hidden emotional and physical labor that women contribute daily and why it's time to value it."
-                </p>
-                <a 
-                  href="https://www.drjuliehanks.com/blog/invisible-labor-valuing-the-unseen-contributions-of-women" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-500 inline-block mt-3 hover:underline"
-                >
-                  Read more →
-                </a>
-              </div>
-            </div>
-
-            {/* Article 5 */}
-            <div className="bg-white shadow-md rounded-lg overflow-hidden text-black">
-              <img
-                src={resource5}
-                alt="Article cover 5"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">Breaking Away from the Invisible Load of Motherhood</h3>
-                <p className="text-gray-600 mt-2">
-                  "Learn how to break free from the invisible load of motherhood and prioritize your own well-being."
-                </p>
-                <a 
-                  href="https://www.momwell.com/blog/breaking-away-from-the-invisible-load-of-motherhood" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-500 inline-block mt-3 hover:underline"
-                >
-                  Read more →
-                </a>
-              </div>
+              ))}
             </div>
           </div>
         </div>

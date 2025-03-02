@@ -31,7 +31,7 @@ export default function NavigationBar() {
           </Link>
           <Link 
             to="/resource" 
-            className={`${location.pathname === '/resources' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
+            className={`${location.pathname === '/resource' ? 'text-[#64B5F6]' : 'text-white hover:text-[#64B5F6]'}`}
           >
             Resources
           </Link>
