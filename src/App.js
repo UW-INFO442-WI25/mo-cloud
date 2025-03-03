@@ -1,6 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import About from "./components/About/about"
 import Dashboard from "./components/After-login/Dashboard/dashboard"
+import MyTasks from "./components/After-login/My-tasks/my-tasks"
+import Profile from "./components/After-login/Profile/profile"
 import Assessment from "./components/Assessment/assessment"
 import Question from "./components/Assessment/question"
 import Question10 from "./components/Assessment/question10"
@@ -74,6 +76,8 @@ function App() {
           
           {/* After Login Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/my-tasks" element={<MyTasks />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </FilterProvider>

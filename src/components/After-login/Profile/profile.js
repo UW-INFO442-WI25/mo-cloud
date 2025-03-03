@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import pic from "../../../assets/pic.jpeg"
 import NavigationBar from "../../Navigation/NavigationBar"
 
-export default function MyTasksPage() {
+export default function Profile() {
   const navigate = useNavigate()
   
   return (
@@ -45,7 +45,7 @@ export default function MyTasksPage() {
             </a>
             <a
               href="/my-tasks"
-              className="flex items-center space-x-3 px-4 py-3 rounded-xl bg-[#FFF8E7]"
+              className="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
@@ -59,7 +59,7 @@ export default function MyTasksPage() {
             </a>
             <a
               href="/profile"
-              className="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50"
+              className="flex items-center space-x-3 px-4 py-3 rounded-xl bg-[#FFF8E7]"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path
