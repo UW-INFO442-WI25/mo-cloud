@@ -18,6 +18,7 @@ import LoginPage from "./components/Auth/sign-in"
 import SignUpPage from "./components/Auth/sign-up"
 import Home from "./components/Home/home"
 import Resource from "./components/Resource/Resource_page"
+import UserProfilePage from "./components/Userprofile/UserProfile"
 import ChildcareParenting from "./components/Tasks/ChildcareParenting"
 import DeepCleaningOrganization from "./components/Tasks/DeepCleaningOrganization"
 import ElderlyFamilyCare from "./components/Tasks/ElderlyFamilyCare"
@@ -73,6 +74,7 @@ function App() {
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/resource" element={<Resource />} />
+          <Route path="/userprofile" element={<UserProfilePage />} />
           
           {/* After Login Routes */}
           <Route path="/dashboard" element={<Dashboard />} />

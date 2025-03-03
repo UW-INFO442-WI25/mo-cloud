@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import UserProfileIcon from "../Userprofile/UserIcon";
 
 export default function NavigationBar() {
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ export default function NavigationBar() {
               Register
             </button>
           </Link>
+          <UserProfileIcon />
         </div>
       </div>
     </nav>

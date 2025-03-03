@@ -9,6 +9,8 @@ import resource5 from "../../assets/resource_5.png";
 import book from "../../assets/book.png";
 import NavigationBar from "../Navigation/NavigationBar";
 
+const heroLink = "https://news.harvard.edu/gazette/story/2023/03/counting-invisible-work-in-household-division-of-labor/";
+
 const articles = [
   {
     title: "The Invisible Workload of Women",
@@ -86,13 +88,16 @@ const Resource = () => {
 
       <div className="w-full max-w-screen-xl mx-auto p-6">
         {/* Hero Section */}
-        <div className="relative w-full h-96 bg-gray-200 rounded-xl overflow-hidden">
+        <div 
+          className="relative w-full h-96 bg-gray-200 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
+          onClick={() => window.open(heroLink, "_blank")}
+        >
           <img
             src={resource1}
             alt="Top Journal Banner"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hover:bg-opacity-40 transition duration-300">
             <h1 className="text-white text-center text-3xl md:text-5xl font-bold max-w-3xl">
               Dad’s clueless, Mom’s fried. Talking about Invisible work, maybe there’s a better way.
             </h1>
@@ -100,23 +105,19 @@ const Resource = () => {
         </div>
 
         {/* Articles Section */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-6 text-center">Recommended Articles</h2>
+        <div className="mt-24">
+        <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {articles.map((article, index) => (
-              <div key={index} className="bg-white shadow-sm rounded-xl overflow-hidden text-black">
+              <div 
+                key={index} 
+                className="bg-white shadow-sm rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer"
+                onClick={() => window.open(article.link, "_blank")}
+              >
                 <img src={article.image} alt={article.title} className="w-full h-48 object-cover" />
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{article.title}</h3>
                   <p className="text-gray-600 mt-2">{article.description}</p>
-                  <a 
-                    href={article.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-blue-500 inline-block mt-3 hover:underline"
-                  >
-                    Read more →
-                  </a>
                 </div>
               </div>
             ))}
@@ -124,9 +125,8 @@ const Resource = () => {
         </div>
 
         {/* Research Section */}
-        <div className="mt-10">
-          <h2 className="text-2xl font-bold mb-6 text-center">Recommended Research</h2>
-  
+        <div className="mt-24">
+        <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Research</h2>
           <div className="overflow-x-auto overflow-visible">
             <div className="flex space-x-6 px-4 pb-4 relative">
               {researchItems.map((research, index) => (
