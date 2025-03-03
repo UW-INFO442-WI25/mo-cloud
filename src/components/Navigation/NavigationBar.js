@@ -1,5 +1,6 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import UserProfileIcon from "../Userprofile/UserIcon";
+import Logo from "../../assets/logo.png";
 
 export default function NavigationBar() {
   const navigate = useNavigate();
@@ -8,9 +9,12 @@ export default function NavigationBar() {
   return (
     <nav className="py-8">
       <div className="container mx-auto px-8 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-bold text-white">
-          Mo<span className="text-[#64B5F6]">Cloud</span>
-        </Link>
+        <div className="flex items-center space-x-2">
+        <img src={Logo} alt="MoCloud Logo" className="w-12 h-12" />
+          <Link to="/" className="text-2xl font-bold text-white">
+            Mo<span className="text-[#64B5F6]">Cloud</span>
+          </Link>
+        </div>
         <div className="hidden md:flex items-center space-x-8">
           <Link 
             to="/" 
