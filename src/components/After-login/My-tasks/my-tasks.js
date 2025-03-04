@@ -71,13 +71,10 @@ export default function MyTasksPage() {
               </svg>
               <span>Profile</span>
             </a>
-          </nav>
-          
-          {/* Log Out Button */}
-          <button
+            <button
             onClick={() => navigate("/sign-in")}
-            className="absolute bottom-8 left-6 flex items-center space-x-3 px-4 py-3 text-gray-600 hover:bg-gray-50 rounded-xl"
-          >
+            className="flex items-center space-x-3 px-4 py-3 rounded-xl text-gray-600 hover:bg-gray-50"
+            >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path
                 strokeLinecap="round"
@@ -88,6 +85,7 @@ export default function MyTasksPage() {
             </svg>
             <span>Log Out</span>
           </button>
+          </nav>
         </aside>
 
         {/* Main Content */}
