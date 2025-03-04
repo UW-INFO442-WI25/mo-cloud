@@ -18,6 +18,9 @@ const Home = () => {
     navigate("/resource");
   }
 
+  const handleStartToday = () => {
+    navigate("/tasks")
+  }
   return (
     <div className="min-h-screen bg-[#002B5C]">
       <NavigationBar />
@@ -152,7 +155,9 @@ const Home = () => {
             </div>
             <div>
               <h3 className="font-bold mb-4">Try It Today</h3>
-              <button className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
+              <button 
+                onClick ={handleStartToday}
+                className="bg-[#64B5F6] text-white px-6 py-2 rounded-full hover:bg-[#64B5F6]/90">
                 Start today →
               </button>
             </div>

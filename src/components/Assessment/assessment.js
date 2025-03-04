@@ -13,14 +13,14 @@ const Assessment = () => {
       <NavigationBar />
 
       {/* Main Content */}
-      <main className="container mx-auto px-8 py-16">
+      <main className="container mx-auto px-8 py-24 mt-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h1 className="text-5xl font-bold text-white leading-tight max-w-xl">
               Evaluate the Quality of Your Household Labor
             </h1>
             <p className="text-gray-300 text-lg max-w-lg leading-relaxed">
-              This test consists of 10 multiple-choice questions. Choose the option that best describes your experience.
+              This test consists of 10 multiple-choice questions. Choosing the option that best describes your experience.
               Your results will include a quality score, personalized feedback, and recommendations to improve labor
               efficiency and balance.
             </p>
