@@ -1,3 +1,4 @@
+
 "use client"
 
 import { useState } from "react"
@@ -144,7 +145,7 @@ function About() {
           <div className="grid lg:grid-cols-2 gap-12 md:gap-16">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#002B5C] mb-4 md:mb-6">Send Us A Message</h2>
-              <p className="text-gray-300 text-lg md:text-l max-w-3xl">
+              <p className="text-white text-lg md:text-l max-w-3xl">
                 Fill out the form and 
                 <br />
                 our team will get back to you as quickly as we can.
@@ -156,7 +157,7 @@ function About() {
                   <img src={facebookIcon || "/placeholder.svg"} alt="Facebook" className="w-6 md:w-8 h-6 md:h-8" />
                   <div>
                     <div className="font-medium">Facebook</div>
-                    <div className="text-gray-600">MoCloud_Official</div>
+                    <div className="text-white">MoCloud_Official</div>
                   </div>
                 </div>
 
@@ -164,7 +165,7 @@ function About() {
                   <img src={instagramIcon || "/placeholder.svg"} alt="Instagram" className="w-6 md:w-8 h-6 md:h-8" />
                   <div>
                     <div className="font-medium">Instagram</div>
-                    <div className="text-gray-600">MoCloud_Official</div>
+                    <div className="text-white">MoCloud_Official</div>
                   </div>
                 </div>
 
@@ -172,7 +173,7 @@ function About() {
                   <img src={twitterIcon || "/placeholder.svg"} alt="Twitter" className="w-6 md:w-8 h-6 md:h-8" />
                   <div>
                     <div className="font-medium">Twitter</div>
-                    <div className="text-gray-600">MoCloud_Official</div>
+                    <div className="text-white">MoCloud_Official</div>
                   </div>
                 </div>
               </div>
@@ -181,7 +182,7 @@ function About() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Full name</label>
+                  <label className="block text-sm font-medium text-white mb-2">Full name</label>
                   <input
                     type="text"
                     name="fullName"
@@ -192,7 +193,7 @@ function About() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email address</label>
+                  <label className="block text-sm font-medium text-white mb-2">Email address</label>
                   <input
                     type="email"
                     name="email"
@@ -206,7 +207,7 @@ function About() {
 
               <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone number</label>
+                  <label className="block text-sm font-medium text-white mb-2">Phone number</label>
                   <input
                     type="tel"
                     name="phone"
@@ -217,7 +218,7 @@ function About() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                  <label className="block text-sm font-medium text-white mb-2">Your Name</label>
                   <input
                     type="text"
                     name="yourName"
@@ -230,7 +231,7 @@ function About() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Messages</label>
+                <label className="block text-sm font-medium text-white mb-2">Messages</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -256,4 +257,3 @@ function About() {
 }
 
 export default About
-
