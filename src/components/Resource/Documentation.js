@@ -91,24 +91,6 @@ const Documentation = () => {
     }));
   };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   return (
     <div className="min-h-screen bg-[#002B5C] text-white">
       <NavigationBar />
