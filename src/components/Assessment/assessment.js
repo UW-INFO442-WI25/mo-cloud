@@ -1,17 +1,26 @@
-import { useNavigate } from "react-router-dom"
-import read from "../../assets/read.png"
-import NavigationBar from "../Navigation/NavigationBar"
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import read from "../../assets/read.png";
+import NavigationBar from "../Navigation/NavigationBar";
+
 const Assessment = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [scores, setScores] = useState(Array(10).fill(0));
+
+  const updateScore = (questionIndex, score) => {
+    const newScores = [...scores];
+    newScores[questionIndex] = score;
+    setScores(newScores);
+  };
 
   const handleStartTest = () => {
-    navigate("/self-assessment/question")
-  }
+    navigate("/Assessment/question1", { state: { scores, updateScore } });
+  };  
 
   return (
     <div className="min-h-screen bg-[#002B5C]">
       <NavigationBar />
-
+      
       {/* Main Content */}
       <main className="container mx-auto px-8 py-24 mt-20">
         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -41,8 +50,7 @@ const Assessment = () => {
         </div>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Assessment
-
+export default Assessment;

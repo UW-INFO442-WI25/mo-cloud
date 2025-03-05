@@ -4,8 +4,7 @@ import Dashboard from "./components/After-login/Dashboard/dashboard"
 import MyTasks from "./components/After-login/My-tasks/my-tasks"
 import Profile from "./components/After-login/Profile/profile"
 import Assessment from "./components/Assessment/assessment"
-import Question from "./components/Assessment/question"
-import Question10 from "./components/Assessment/question10"
+import Question from "./components/Assessment/question1"
 import Question2 from "./components/Assessment/question2"
 import Question3 from "./components/Assessment/question3"
 import Question4 from "./components/Assessment/question4"
@@ -14,6 +13,7 @@ import Question6 from "./components/Assessment/question6"
 import Question7 from "./components/Assessment/question7"
 import Question8 from "./components/Assessment/question8"
 import Question9 from "./components/Assessment/question9"
+import Results from "./components/Assessment/results"
 import LoginPage from "./components/Auth/sign-in"
 import SignUpPage from "./components/Auth/sign-up"
 import Home from "./components/Home/home"
@@ -62,7 +62,7 @@ function App() {
           <Route path="/tasks/vehicle-equipment-maintenance" element={<VehicleEquipmentMaintenance />} />
           <Route path="/about" element={<About />} />
           <Route path="/self-assessment" element={<Assessment />} />
-          <Route path="/self-assessment/question" element={<Question />} />
+          <Route path="/self-assessment/question1" element={<Question1/>} />
           <Route path="/self-assessment/question2" element={<Question2 />} />
           <Route path="/self-assessment/question3" element={<Question3 />} />
           <Route path="/self-assessment/question4" element={<Question4 />} />
@@ -72,6 +72,7 @@ function App() {
           <Route path="/self-assessment/question8" element={<Question8 />} />
           <Route path="/self-assessment/question9" element={<Question9 />} />
           <Route path="/self-assessment/question10" element={<Question10 />} />
+          <Route path="/self-assessment/results" element={<Results />} />
           <Route path="/sign-in" element={<LoginPage />} />
           <Route path="/sign-up" element={<SignUpPage />} />
           <Route path="/resource" element={<Resource />} />

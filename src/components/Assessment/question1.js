@@ -2,23 +2,25 @@ import { useNavigate, useLocation } from "react-router-dom";
 import NavigationBar from "../Navigation/NavigationBar";
 import { useState, useEffect } from "react";
 
-const Question9 = () => {
+const Question1 = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  // Retrieve scores and updateScore function from location.state
-  const { scores = Array(10).fill(0), updateScore = () => {} } = location.state || {};
-  const questionIndex = 8; // Question 9 index
+
+  // Retrieve scores and updateScore from state or initialize default values
+  const { scores: initialScores = Array(10).fill(0), updateScore = () => {} } = location.state || {};
+
+  const questionIndex = 0; // Question 1 index
 
   const options = [
-    "I balance household labor and personal time effectively.",
-    "Household work sometimes affects my personal goals, but I manage.",
-    "My personal time is often sacrificed due to excessive household labor.",
-    "I have no time for personal development because household tasks consume my entire schedule.",
+    "I complete tasks quickly and effectively, with minimal wasted effort.",
+    "I complete tasks well, but they often take longer than expected.",
+    "I get things done, but I struggle with time management.",
+    "I often feel overwhelmed and unable to complete all tasks efficiently.",
   ];
 
   // Maintain scores in state to persist user selection
-  const [selectedOption, setSelectedOption] = useState(scores[questionIndex]);
+  const [scores, setScores] = useState(initialScores);
+  const [selectedOption, setSelectedOption] = useState(initialScores[questionIndex]);
 
   // Sync scores when navigating back
   useEffect(() => {
@@ -28,9 +30,13 @@ const Question9 = () => {
   const handleOptionSelect = (index) => {
     const newScores = [...scores];
     newScores[questionIndex] = index + 1;
+    setScores(newScores);
     setSelectedOption(index + 1);
+    
+    // Update global state before navigating
     updateScore(questionIndex, index + 1);
-    navigate("/self-assessment/question10", { state: { scores: newScores, updateScore } });
+    
+    navigate("/Assessment/question2", { state: { scores: newScores, updateScore } });
   };
 
   return (
@@ -38,7 +44,9 @@ const Question9 = () => {
       <NavigationBar />
       <div className="container mx-auto px-8 py-8">
         <div className="max-w-4xl mx-auto bg-[#003471] rounded-3xl p-12">
-          <h2 className="text-3xl font-bold text-white mb-12">How do household tasks impact your ability to focus on personal goals and activities?</h2>
+          <h2 className="text-3xl font-bold text-white mb-12">
+            How efficiently do you complete household tasks?
+          </h2>
           <div className="space-y-4 mb-12">
             {options.map((option, index) => (
               <button
@@ -54,13 +62,13 @@ const Question9 = () => {
           </div>
           <div className="flex justify-between mt-6">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate(-1)} // Use navigate(-1) to preserve state
               className="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600"
             >
               Back
             </button>
             <button
-              onClick={() => navigate("/self-assessment/question10", { state: { scores, updateScore } })}
+              onClick={() => navigate("/Assessment/question2", { state: { scores, updateScore } })}
               className="bg-[#64B5F6] text-white px-12 py-3 rounded-full text-lg hover:bg-[#64B5F6]/90"
             >
               Continue
@@ -77,4 +85,4 @@ const Question9 = () => {
   );
 };
 
-export default Question9;
+export default Question1;
