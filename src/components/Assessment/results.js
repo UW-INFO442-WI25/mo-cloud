@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import NavigationBar from "../Navigation/NavigationBar";
 import { useEffect, useState } from "react";
+import report from "../../assets/report.png";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -41,9 +42,10 @@ const Results = () => {
     <div className="min-h-screen bg-[#002B5C]">
       <NavigationBar />
       <div className="container mx-auto px-8 py-8">
-        <div className="max-w-4xl mx-auto bg-[#003471] rounded-3xl p-12 text-white">
-          <h2 className="text-4xl font-bold mb-6 text-center">Your Test Score</h2>
-          <div className="flex flex-col items-center mb-6">
+        <div className="max-w-4xl mx-auto bg-[#003471] rounded-3xl p-12 text-white flex flex-col md:flex-row items-center">
+          <img src={report} alt="Report" className="w-1/2 md:w-1/3 mb-6 md:mb-0" />
+          <div className="flex flex-col items-center md:ml-6">
+            <h2 className="text-4xl font-bold mb-6 text-center">Your Test Score</h2>
             <div className="relative w-64 h-32">
               <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold">
                 {totalScore}
@@ -58,20 +60,20 @@ const Results = () => {
             <p className="text-xl font-semibold mt-4 text-center">{resultType}</p>
             <p className="text-lg text-center">{description}</p>
           </div>
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200"
-              onClick={() => alert("Downloading report...")}
-            >
-              Download Report
-            </button>
-            <button
-              className="bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-500"
-              onClick={() => alert("Redirecting to improvements...")}
-            >
-              Suggested Improvement
-            </button>
-          </div>
+        </div>
+        <div className="flex justify-center gap-4 mt-6">
+          <button
+            className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200"
+            onClick={() => alert("Downloading report...")}
+          >
+            Download Report
+          </button>
+          <button
+            className="bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-500"
+            onClick={() => alert("Redirecting to improvements...")}
+          >
+            Suggested Improvement
+          </button>
         </div>
       </div>
     </div>

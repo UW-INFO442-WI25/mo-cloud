@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import NavigationBar from "../Navigation/NavigationBar";
 
+
+
 const documentationData = {
   title: "Self-Assessment Guide: Understanding Your Household Labor",
   sections: [
@@ -79,12 +81,33 @@ const documentationData = {
 const Documentation = () => {
   const [openSections, setOpenSections] = useState({});
 
+
+
+
   const toggleSection = (index) => {
     setOpenSections((prev) => ({
       ...prev,
       [index]: !prev[index]
     }));
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="min-h-screen bg-[#002B5C] text-white">
@@ -143,6 +166,8 @@ const Documentation = () => {
                 {section.conclusion && <p className="text-lg text-gray-300 mt-4">{section.conclusion}</p>}
               </div>
             )}
+
+
           </div>
         ))}
       </div>
