@@ -6,10 +6,12 @@ const Question1 = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Retrieve scores and updateScore from state or initialize default values
-  const { scores: initialScores = Array(10).fill(0), updateScore = () => {} } = location.state || {};
+  // Retrieve scores or initialize with default values
+  const { scores: initialScores = Array(10).fill(0) } = location.state || {};
+  const [scores, setScores] = useState(initialScores);
+  const [selectedOption, setSelectedOption] = useState(initialScores[0]); // Question 1 index is 0
 
-  const questionIndex = 0; // Question 1 index
+  const questionIndex = 0; // Index for question 1
 
   const options = [
     "I complete tasks quickly and effectively, with minimal wasted effort.",
@@ -18,25 +20,21 @@ const Question1 = () => {
     "I often feel overwhelmed and unable to complete all tasks efficiently.",
   ];
 
-  // Maintain scores in state to persist user selection
-  const [scores, setScores] = useState(initialScores);
-  const [selectedOption, setSelectedOption] = useState(initialScores[questionIndex]);
-
-  // Sync scores when navigating back
   useEffect(() => {
     setSelectedOption(scores[questionIndex]);
   }, [scores, questionIndex]);
 
-  const handleOptionSelect = (index) => {
+  // Define updateScore locally to update scores array
+  const updateScore = (index) => {
     const newScores = [...scores];
-    newScores[questionIndex] = index + 1;
+    newScores[questionIndex] = index + 1; // Store scores as 1-based index
     setScores(newScores);
     setSelectedOption(index + 1);
-    
-    // Update global state before navigating
-    updateScore(questionIndex, index + 1);
-    
-    navigate("/Assessment/question2", { state: { scores: newScores, updateScore } });
+  };
+
+  // Navigate to the next question with updated scores
+  const handleContinue = () => {
+    navigate("/self-assessment/question2", { state: { scores } });
   };
 
   return (
@@ -47,11 +45,11 @@ const Question1 = () => {
           <h2 className="text-3xl font-bold text-white mb-12">
             How efficiently do you complete household tasks?
           </h2>
-          <div className="space-y-4 mb-12">
+          <div className="space-y-4 mb-12 text-white">
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => handleOptionSelect(index)}
+                onClick={() => updateScore(index)} // Updates scores but does NOT navigate
                 className={`w-full text-left p-6 rounded-xl border-2 transition-all ${
                   selectedOption === index + 1 ? "border-[#64B5F6] bg-[#64B5F6]/10" : "border-white/20 hover:border-white/40"
                 }`}
@@ -62,14 +60,17 @@ const Question1 = () => {
           </div>
           <div className="flex justify-between mt-6">
             <button
-              onClick={() => navigate(-1)} // Use navigate(-1) to preserve state
+              onClick={() => navigate(-1)} // Go back without changing state
               className="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600"
             >
               Back
             </button>
             <button
-              onClick={() => navigate("/Assessment/question2", { state: { scores, updateScore } })}
-              className="bg-[#64B5F6] text-white px-12 py-3 rounded-full text-lg hover:bg-[#64B5F6]/90"
+              onClick={handleContinue} // Navigate only when clicking "Continue"
+              className={`px-12 py-3 rounded-full text-lg text-white ${
+                selectedOption ? "bg-[#64B5F6] hover:bg-[#64B5F6]/90" : "bg-gray-500 cursor-not-allowed"
+              }`}
+              disabled={!selectedOption} // Disable button if no option is selected
             >
               Continue
             </button>

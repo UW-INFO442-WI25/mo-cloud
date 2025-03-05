@@ -14,7 +14,7 @@ const Assessment = () => {
   };
 
   const handleStartTest = () => {
-    navigate("/Assessment/question1", { state: { scores, updateScore } });
+    navigate("/self-assessment/question1", { state: { scores } });
   };  
 
   return (
