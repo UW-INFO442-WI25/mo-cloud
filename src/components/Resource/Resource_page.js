@@ -7,6 +7,7 @@ import resource2 from "../../assets/resource_2.png";
 import resource3 from "../../assets/resource_3.png";
 import resource4 from "../../assets/resource_4.png";
 import resource5 from "../../assets/resource_5.png";
+import illustration from "../../assets/p6.png"
 import book from "../../assets/book.png";
 import NavigationBar from "../Navigation/NavigationBar";
 
@@ -132,15 +133,24 @@ const Resource = () => {
             </h1>
           </div>
         </div>
-        {/* Documentation Section */}
+        {/* Guide Section */}
         <div className="mt-24">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Documentation</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Self-assessment Overview</h2>
           <div 
-            className="bg-white shadow-sm rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer p-6 text-center"
-            onClick={() => navigate(documentationLink)} // 点击后跳转
+            className="bg-white rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer p-6 flex justify-between items-center"
+            onClick={() => navigate(documentationLink)}
           >
-            <h3 className="text-lg font-semibold">Self-Assessment Guide: Understanding Your Household Labor</h3>
-            <p className="text-gray-600 mt-2">Click here to view the full documentation and learn more about our self-assessment process.</p>
+            <div className="text-left">
+              <h3 className="text-2xl font-semibold">Self-Assessment Guide: Understanding Your Household Labor </h3>
+              <p className="text-gray-600 mt-2">
+                Click here to view the full guide and learn more about our self-assessment process.
+              </p>
+            </div>
+            <img 
+              src={illustration}
+              alt="Documentation Illustration"
+              className="w-60 h-60 object-cover rounded-lg border-none shadow-none outline-none ring-0"
+            />
           </div>
         </div>
 

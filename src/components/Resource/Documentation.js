@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // 引入箭头图标
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import NavigationBar from "../Navigation/NavigationBar";
 
 const documentationData = {
@@ -77,13 +77,12 @@ const documentationData = {
 };
 
 const Documentation = () => {
-  const [openSections, setOpenSections] = useState({}); // 存储展开/折叠状态
+  const [openSections, setOpenSections] = useState({});
 
-  // 切换某个 section 的展开/折叠
   const toggleSection = (index) => {
     setOpenSections((prev) => ({
       ...prev,
-      [index]: !prev[index] // 切换 true/false
+      [index]: !prev[index]
     }));
   };
 
@@ -92,14 +91,12 @@ const Documentation = () => {
       <NavigationBar />
 
       <div className="w-full max-w-5xl mx-auto p-8 mt-24">
-        {/* 大标题，拆分成两行 */}
         <h1 className="text-3xl md:text-5xl font-bold mb-20 leading-tight">
           Self-Assessment Guide: <br /> Understanding Your Household Labor
         </h1>
 
         {documentationData.sections.map((section, index) => (
           <div key={index} className="mb-8">
-            {/* 标题部分，带箭头按钮 */}
             <button
               className="text-2xl md:text-3xl font-semibold mb-2 text-[#64B5F6] flex justify-between w-full text-left"
               onClick={() => toggleSection(index)}
@@ -108,12 +105,9 @@ const Documentation = () => {
               {openSections[index] ? <FaChevronUp /> : <FaChevronDown />}
             </button>
 
-            {/* 可折叠的内容区域 */}
             {openSections[index] && (
               <div className="text-lg text-gray-300 leading-relaxed whitespace-pre-line mt-2 p-4 bg-[#1E3A5F] rounded-lg">
                 {section.content}
-
-                {/* 如果有 response scale */}
                 {section.response_scale && (
                   <div className="mt-4 p-8 bg-[#0E2A45] rounded-lg">
                     <h3 className="text-xl font-semibold mb-2 text-[#64B5F6]">Response Scale:</h3>
@@ -124,8 +118,6 @@ const Documentation = () => {
                     </ul>
                   </div>
                 )}
-
-                {/* 如果有 interpretation */}
                 {section.interpretation && (
                   <div className="mt-4 p-8 bg-[#0E2A45] rounded-lg">
                     <h3 className="text-xl font-semibold mb-2 text-[#64B5F6]">Score Interpretation:</h3>
@@ -138,8 +130,6 @@ const Documentation = () => {
                     </ul>
                   </div>
                 )}
-
-                {/* 如果有 recommendations */}
                 {section.recommendations && (
                   <div className="mt-4 p-8 bg-[#0E2A45] rounded-lg">
                     <h3 className="text-xl font-semibold mb-2 text-[#64B5F6]">Recommendations:</h3>
@@ -150,8 +140,6 @@ const Documentation = () => {
                     </ul>
                   </div>
                 )}
-
-                {/* Conclusion */}
                 {section.conclusion && <p className="text-lg text-gray-300 mt-4">{section.conclusion}</p>}
               </div>
             )}
@@ -162,4 +150,4 @@ const Documentation = () => {
   );
 };
 
-export default Documentation;
+export default Documentation
