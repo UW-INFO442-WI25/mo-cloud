@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import resource1 from "../../assets/resource_1.png";
 import resource2 from "../../assets/resource_2.png";
 import resource3 from "../../assets/resource_3.png";
@@ -81,7 +81,35 @@ const researchItems = [
   },
 ];
 
+const videos = [
+  {
+    title: "Invisible labor can negatively impact well-being in mothers",
+    link: "https://www.youtube.com/watch?v=WRGzjNshvGs",
+    videoEmbed: "https://www.youtube.com/embed/WRGzjNshvGs?autoplay=1&mute=1",
+    thumbnail: "https://img.youtube.com/vi/WRGzjNshvGs/0.jpg",
+  },
+  {
+    title: "Invisible Labor and Reducing Mental Load",
+    link: "https://www.youtube.com/watch?v=7LYKcNl8bu0",
+    videoEmbed: "https://www.youtube.com/embed/7LYKcNl8bu0?autoplay=1&mute=1",
+    thumbnail: "https://img.youtube.com/vi/7LYKcNl8bu0/0.jpg",
+  },
+  {
+    title: "Emotional labor and the myth of 'women's work' | TEDxFolsom",
+    link: "https://www.youtube.com/watch?v=bJLawgDbn_E",
+    videoEmbed: "https://www.youtube.com/embed/bJLawgDbn_E?autoplay=1&mute=1",
+    thumbnail: "https://img.youtube.com/vi/bJLawgDbn_E/0.jpg",
+  },
+  {
+    title: "Why Moms Are Miserable | TEDxWilmingtonWomen",
+    link: "https://www.youtube.com/watch?v=MwvctN3Uejg",
+    videoEmbed: "https://www.youtube.com/embed/MwvctN3Uejg?autoplay=1&mute=1",
+    thumbnail: "https://img.youtube.com/vi/MwvctN3Uejg/0.jpg",
+  },
+];
+
 const Resource = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
     <div className="min-h-screen bg-[#002B5C] text-white">
       <NavigationBar />
@@ -92,11 +120,7 @@ const Resource = () => {
           className="relative w-full h-96 bg-gray-200 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
           onClick={() => window.open(heroLink, "_blank")}
         >
-          <img
-            src={resource1}
-            alt="Top Journal Banner"
-            className="w-full h-full object-cover"
-          />
+          <img src={resource1} alt="Top Journal Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hover:bg-opacity-40 transition duration-300">
             <h1 className="text-white text-center text-3xl md:text-5xl font-bold max-w-3xl">
               Dad’s clueless, Mom’s fried. Talking about Invisible work, maybe there’s a better way.
@@ -106,7 +130,7 @@ const Resource = () => {
 
         {/* Articles Section */}
         <div className="mt-24">
-        <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Articles</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {articles.map((article, index) => (
               <div 
@@ -118,6 +142,39 @@ const Resource = () => {
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{article.title}</h3>
                   <p className="text-gray-600 mt-2">{article.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Videos Section */}
+        <div className="mt-24 w-full max-w-screen-xl mx-auto">
+        <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Videos</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {videos.map((video, index) => (
+              <div
+                key={index}
+                className="bg-white shadow-sm rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer relative w-full min-w-[400px]"
+                onClick={() => window.open(video.link, "_blank")}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {hoveredIndex === index ? (
+                  <iframe
+                    className="w-full h-64"
+                    src={video.videoEmbed}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media; fullscreen"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <img src={video.thumbnail} alt={video.title} className="w-full h-64 object-cover" />
+                )}
+
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold">{video.title}</h3>
                 </div>
               </div>
             ))}

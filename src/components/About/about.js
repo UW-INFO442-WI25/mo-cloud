@@ -40,7 +40,7 @@ function About() {
   }
 
   const teamMembers = [
-    { name: "Hanrul Tang", role: "Financial Advisor", image: member1 },
+    { name: "Hanrui Tang", role: "Researcher", image: member1 },
     { name: "Jia Wu", role: "Developer", image: member2 },
     { name: "Sophia Xiao", role: "Financial Advisor", image: member3 },
     { name: "Xiaoqian Zhou", role: "Designer", image: member4 },
@@ -76,12 +76,12 @@ function About() {
       {/* Hero Section */}
       <div className="bg-[#002B5C] pt-16 md:pt-24 pb-16 md:pb-24">
         <div className="container mx-auto px-4 md:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8">
             Our project,
             <br />
             Equitable Awareness
           </h1>
-          <p className="text-gray-300 text-lg md:text-xl max-w-3xl">
+          <p className="text-gray-300 text-lg md:text-xg max-w-3xl">
             Invisible Labor in Families aims to highlight the often-overlooked labor that keeps households
             running—mental, emotional, and organizational tasks disproportionately carried by women. We strive to create
             a tool that helps new parents track, visualize, and distribute household labor equitably, fostering stronger
@@ -93,10 +93,10 @@ function About() {
       {/* Team Section */}
       <div className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[#002B5C] mb-4">About our team members.</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-center text-[#002B5C] mb-4">About our team members.</h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
             We are MoCloud, a team of five passionate designers and researchers from INFO-442—Yue (Monica) Xu, Xiaoqian
-            Zhou, Hanrul (Alice) Tang, Sophia Xiao, and Jia Wu. Our team is dedicated to tackling social inequalities
+            Zhou, Hanrui (Allison) Tang, Sophia Xiao, and Jia Wu. Our team is dedicated to tackling social inequalities
             through thoughtful and impactful design solutions.
           </p>
 
