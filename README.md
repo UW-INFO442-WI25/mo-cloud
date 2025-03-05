@@ -41,17 +41,17 @@ Render – Hosts the React frontend and Node.js backend for seamless user access
 ## Installation
 
 1. Clone the repository:
-   \`\`\`bash
+   \`\`\`
    git clone https://github.com/UW-INFO442-WI25/mo-cloud.git
    \`\`\`
 
 2. Navigate to the project directory:
-   \`\`\`bash
+   \`\`\`
    cd mo-cloud
    \`\`\`
 
 3. Install the dependencies:
-   \`\`\`bash
+   \`\`\`
    npm install
    \`\`\`
 
@@ -60,12 +60,12 @@ Render – Hosts the React frontend and Node.js backend for seamless user access
 After you've installed the project, follow these steps to start the website:
 
 1. Ensure you're in the project directory:
-   \`\`\`bash
+   \`\`\`
    cd mo-cloud
    \`\`\`
 
 2. Start the development server:
-   \`\`\`bash
+   \`\`\`
    npm run dev
    \`\`\`
 
@@ -83,12 +83,12 @@ After you've installed the project, follow these steps to start the website:
 When you're ready to build the project for production:
 
 1. Run the build command:
-   \`\`\`bash
+   \`\`\`
    npm run build
    \`\`\`
 
 2. The built files will be in the `dist` directory. You can serve these files using a static server:
-   \`\`\`bash
+   \`\`\`
    npm run preview
    \`\`\`
 

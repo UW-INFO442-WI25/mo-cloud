@@ -42,7 +42,7 @@ function About() {
   const teamMembers = [
     { name: "Hanrui Tang", role: "Researcher", image: member1 },
     { name: "Jia Wu", role: "Developer", image: member2 },
-    { name: "Sophia Xiao", role: "Financial Advisor", image: member3 },
+    { name: "Sophia Xiao", role: "Developer", image: member3 },
     { name: "Xiaoqian Zhou", role: "Designer", image: member4 },
     { name: "Yue Xu", role: "Product Advisor", image: member5 },
   ]
