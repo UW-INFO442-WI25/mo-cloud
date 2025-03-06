@@ -14,10 +14,10 @@ const Question1 = () => {
   const questionIndex = 0; // Index for question 1
 
   const options = [
-    "I complete tasks quickly and effectively, with minimal wasted effort.",
-    "I complete tasks well, but they often take longer than expected.",
-    "I get things done, but I struggle with time management.",
     "I often feel overwhelmed and unable to complete all tasks efficiently.",
+    "I get things done, but I struggle with time management.",
+    "I complete tasks well, but they often take longer than expected.",
+    "I complete tasks quickly and effectively, with minimal wasted effort.",
   ];
 
   useEffect(() => {

@@ -14,10 +14,10 @@ const Question6 = () => {
   const questionIndex = 5; // Index for question 6
 
   const options = [
-    "Yes, tasks are divided fairly and efficiently.",
-    "Tasks are somewhat balanced, but I handle a bit more.",
-    "The workload is mostly on me, with little help.",
     "I do almost everything, and it feels unfair.",
+    "The workload is mostly on me, with little help.",
+    "Tasks are somewhat balanced, but I handle a bit more.",
+    "Yes, tasks are divided fairly and efficiently.",
   ];
 
   useEffect(() => {

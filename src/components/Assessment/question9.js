@@ -14,10 +14,10 @@ const Question9 = () => {
   const questionIndex = 8; // Index for question 9
 
   const options = [
-    "I balance household labor and personal time effectively.",
-    "Household work sometimes affects my personal goals, but I manage.",
-    "My personal time is often sacrificed due to excessive household labor.",
     "I have no time for personal development because household tasks consume my entire schedule.",
+    "My personal time is often sacrificed due to excessive household labor.",
+    "Household work sometimes affects my personal goals, but I manage.",
+    "I balance household labor and personal time effectively.",
   ];
 
   useEffect(() => {

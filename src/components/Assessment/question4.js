@@ -14,10 +14,10 @@ const Question4 = () => {
   const questionIndex = 3; // Index for question 4
 
   const options = [
-    "I effectively manage multiple tasks at once without quality loss.",
-    "I multitask sometimes, but it affects task quality.",
-    "I often multitask but feel rushed or distracted.",
     "I struggle with multitasking, and it affects my productivity.",
+    "I often multitask but feel rushed or distracted.",
+    "I multitask sometimes, but it affects task quality.",
+    "I effectively manage multiple tasks at once without quality loss.",
   ];
 
   useEffect(() => {

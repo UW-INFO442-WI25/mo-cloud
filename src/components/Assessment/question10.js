@@ -14,10 +14,10 @@ const Question10 = () => {
   const questionIndex = 9; // Index for question 10
 
   const options = [
-    "Frequently—my contributions are recognized and valued.",
-    "Sometimes—I receive appreciation, but not consistently.",
-    "Rarely—my efforts go unnoticed most of the time.",
     "Never—my work is taken for granted.",
+    "Rarely—my efforts go unnoticed most of the time.",
+    "Sometimes—I receive appreciation, but not consistently.",
+    "Frequently—my contributions are recognized and valued.",
   ];
 
   useEffect(() => {
