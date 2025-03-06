@@ -1,10 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Logo from "../../assets/logo.png";
+import pic from "../../assets/pic.jpeg"; // Your portrait image
 
 export default function NavigationBar() {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, [auth]);
+
+  const handleSignOut = () => {
+    signOut(auth).catch((err) => console.log(err));
+  };
 
   const NavLink = ({ to, children }) => {
     const isActive = location.pathname === to;
@@ -47,16 +62,45 @@ export default function NavigationBar() {
 
         {/* Right side: Buttons + Mobile Toggle */}
         <div className="flex items-center space-x-4">
-          <Link to="/sign-in">
-            <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90">
-              Log in
-            </button>
-          </Link>
-          <Link to="/sign-up">
-            <button className="bg-[#64B5F6] text-white px-4 py-2 rounded-full hover:bg-[#64B5F6]/90">
-              Register
-            </button>
-          </Link>
+          {user ? (
+            <div className="relative">
+              <img
+                src={pic}
+                alt="User Profile"
+                className="w-10 h-10 rounded-full cursor-pointer"
+                onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+              />
+              {isMobileMenuOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                  <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    View Profile
+                  </Link>
+                  <Link to="/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    View Dashboard
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <>
+              <Link to="/sign-in">
+                <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90">
+                  Log in
+                </button>
+              </Link>
+              <Link to="/sign-up">
+                <button className="bg-[#64B5F6] text-white px-4 py-2 rounded-full hover:bg-[#64B5F6]/90">
+                  Register
+                </button>
+              </Link>
+            </>
+          )}
           {/* Hamburger/Close for <1024px screens */}
           <button
             className="lg:hidden"

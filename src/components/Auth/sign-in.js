@@ -1,8 +1,23 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import NavigationBar from "../Navigation/NavigationBar";
 import StyledFirebaseAuth from "../../StyledFirebaseAuth"; // Import FirebaseUI component
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/dashboard");
+      }
+    });
+    return () => unsubscribe();
+  }, [auth, navigate]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-blue-400">
       <NavigationBar />
