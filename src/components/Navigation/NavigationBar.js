@@ -71,7 +71,7 @@ export default function NavigationBar() {
                 onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               />
               {isMobileMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1">
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
                   <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">
                     View Profile
                   </Link>

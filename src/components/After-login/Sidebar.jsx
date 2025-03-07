@@ -2,7 +2,6 @@ import React from "react";
 import DashboardTab from "./dashboardtab";
 import MyTasksTab from "./MyTasksTab";
 import ProfileTab from "./profiletab";
-import LogoutButton from "./LogoutButton";
 import pic from "../../assets/pic.jpeg"; 
 
 export default function Sidebar() {
@@ -27,7 +26,6 @@ export default function Sidebar() {
         <DashboardTab />
         <MyTasksTab />
         <ProfileTab />
-        <LogoutButton />
       </nav>
     </aside>
   );
