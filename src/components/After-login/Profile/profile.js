@@ -1,34 +1,22 @@
-"use client"
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import NavigationBar from "../../Navigation/NavigationBar";
-import Sidebar from "../Sidebar";
+import DashboardLayout from "../Layout/DashboardLayout";
 
 export default function Profile() {
-  const navigate = useNavigate();
-  
   return (
-    <div className="min-h-screen bg-white">
-      {/* Navigation Bar */}
-      <div className="bg-[#002B5C]">
-        <NavigationBar />
+    <DashboardLayout>
+      {/* Welcome Section */}
+      <div className="mb-8">
+        <h1 className="text-2xl font-medium">
+          Hello,
+          <br />
+          Kath 👋
+        </h1>
       </div>
-      <div className="flex">
-        {/* Sidebar Component */}
-        <Sidebar />
-        {/* Main Content */}
-        <main className="flex-1 p-8">
-          {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-2xl font-medium">
-              Hello,
-              <br />
-              Kath 👋
-            </h1>
-          </div>
-          {/* Add your profile-specific content below */}
-        </main>
+      {/* Add your profile-specific content here */}
+      <div className="bg-white p-6 rounded-lg shadow-sm">
+        <h2 className="text-xl font-medium mb-4">My Profile</h2>
+        <p>Your profile information will appear here.</p>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
