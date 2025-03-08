@@ -508,83 +508,7 @@ export const vehicleEquipmentTasks = [
 
 // Task categories for the main tasks page
 export const taskCategories = [
-  {
-    id: 1,
-    title: "Surface & Floor Cleaning",
-    image: surfaceCleaning,
-    bgColor: "bg-[#FFE4E6]",
-    route: "/tasks/surface-floor-cleaning",
-    visibility: 4,
-    frequency: "Weekly",
-    time: "1 h 5 min",
-    category: "Clean"
-  },
-  {
-    id: 2,
-    title: "Deep Cleaning & Organization",
-    image: deepCleaning,
-    bgColor: "bg-[#FFE4E6]",
-    route: "/tasks/deep-cleaning-organization",
-    visibility: 3,
-    frequency: "Monthly",
-    time: "2 h 50 min",
-    category: "Clean"
-  },
-  {
-    id: 3,
-    title: "Kitchen Maintenance",
-    image: kitchen,
-    bgColor: "bg-[#FFF8E7]",
-    route: "/tasks/kitchen-maintenance",
-    visibility: 5,
-    frequency: "Daily",
-    time: "55 min",
-    category: "Cook"
-  },
-  {
-    id: 4,
-    title: "Pet Care",
-    image: petCare,
-    bgColor: "bg-[#E5EAD7]",
-    route: "/tasks/pet-care",
-    visibility: 4,
-    frequency: "Daily",
-    time: "2 h",
-    category: "Care"
-  },
-  {
-    id: 5,
-    title: "Childcare & Parenting",
-    image: childcare,
-    bgColor: "bg-[#E5EAD7]",
-    route: "/tasks/childcare-parenting",
-    visibility: 7,
-    frequency: "Daily",
-    time: "4 h",
-    category: "Care"
-  },
-  {
-    id: 6,
-    title: "Elderly & Family Care",
-    image: elderlyCare,
-    bgColor: "bg-[#E5EAD7]",
-    route: "/tasks/elderly-family-care",
-    visibility: 8,
-    frequency: "Daily",
-    time: "3 h 30 min",
-    category: "Care"
-  },
-  {
-    id: 7,
-    title: "Household Mood & Stress Management",
-    image: moodManagement,
-    bgColor: "bg-[#FED7AA]",
-    route: "/tasks/household-mood-stress-management",
-    visibility: 3,
-    frequency: "Daily",
-    time: "2 h",
-    category: "Emotion"
-  },
+  // COOK category tasks
   {
     id: 8,
     title: "Meal Preparation & Cooking",
@@ -593,8 +517,8 @@ export const taskCategories = [
     route: "/tasks/meal-preparation",
     category: "Cook",
     frequency: "Daily",
-    time: "2 h 20 min",
-    visibility: 6
+    time: "1 h 45 min",
+    visibility: 5
   },
   {
     id: 9,
@@ -608,6 +532,41 @@ export const taskCategories = [
     visibility: 4
   },
   {
+    id: 3,
+    title: "Kitchen Maintenance",
+    image: kitchen,
+    bgColor: "bg-[#FFF8E7]",
+    route: "/tasks/kitchen-maintenance",
+    category: "Cook",
+    frequency: "Daily",
+    time: "45 min",
+    visibility: 4
+  },
+  
+  // CLEAN category tasks
+  {
+    id: 1,
+    title: "Surface & Floor Cleaning",
+    image: surfaceCleaning,
+    bgColor: "bg-[#FFE4E6]",
+    route: "/tasks/surface-floor-cleaning",
+    category: "Clean",
+    frequency: "Weekly",
+    time: "1 h 5 min",
+    visibility: 4
+  },
+  {
+    id: 2,
+    title: "Deep Cleaning & Organization",
+    image: deepCleaning,
+    bgColor: "bg-[#FFE4E6]",
+    route: "/tasks/deep-cleaning-organization",
+    category: "Clean",
+    frequency: "Monthly",
+    time: "2 h 50 min",
+    visibility: 3
+  },
+  {
     id: 10,
     title: "Laundry & Fabric Care",
     image: laundryCare,
@@ -618,6 +577,43 @@ export const taskCategories = [
     time: "2 h 40 min",
     visibility: 5
   },
+  
+  // CARE category tasks
+  {
+    id: 4,
+    title: "Childcare & Parenting",
+    image: childcare,
+    bgColor: "bg-[#E5EAD7]",
+    route: "/tasks/childcare-parenting",
+    category: "Care",
+    frequency: "Daily",
+    time: "4 h",
+    visibility: 5
+  },
+  {
+    id: 5,
+    title: "Elderly & Family Care",
+    image: elderlyCare,
+    bgColor: "bg-[#E5EAD7]",
+    route: "/tasks/elderly-family-care",
+    category: "Care",
+    frequency: "Daily",
+    time: "3 h 30 min",
+    visibility: 4
+  },
+  {
+    id: 6,
+    title: "Pet Care",
+    image: petCare,
+    bgColor: "bg-[#E5EAD7]",
+    route: "/tasks/pet-care",
+    category: "Care",
+    frequency: "Daily",
+    time: "2 h",
+    visibility: 3
+  },
+  
+  // EMOTION category tasks
   {
     id: 11,
     title: "Family Relationship & Emotional Support",
@@ -640,6 +636,19 @@ export const taskCategories = [
     time: "3 h 45 min",
     visibility: 4
   },
+  {
+    id: 7,
+    title: "Household Mood & Stress Management",
+    image: moodManagement,
+    bgColor: "bg-[#FED7AA]",
+    route: "/tasks/household-mood-stress-management",
+    category: "Emotion",
+    frequency: "Daily",
+    time: "2 h",
+    visibility: 4
+  },
+  
+  // REPAIR category tasks
   {
     id: 13,
     title: "Household Repairs & Fixes",
