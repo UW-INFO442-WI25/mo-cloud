@@ -1,6 +1,6 @@
 import React from "react";
 import NavigationBar from "../../Navigation/NavigationBar";
-import Sidebar from "../Navigation/Sidebar";
+import Sidebar from "../Navigation/SideBar";
 
 export default function DashboardLayout({ children }) {
   return (

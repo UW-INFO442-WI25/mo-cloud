@@ -74,7 +74,7 @@ export const mockTasks = [
       time: "4 h",
       image: p1,
       bgColor: "bg-[#E5EAD7]",
-      route: "/childcare-parenting",
+      route: "/tasks/childcare-parenting",
       category: "Care",
       frequency: "Daily"
     },
