@@ -163,6 +163,10 @@ export default function Filter() {
     setFilters(tempFilterState)
     setOpenFilter(null)
   }
+  const handleResetVisibility = () => {
+    setTempFilterState((prev) => ({ ...prev, visibility: null }));
+  }
+  
 
   return (
     <div className="w-64 space-y-4">
@@ -229,11 +233,22 @@ export default function Filter() {
                 className="w-full"
               />
               <div className="text-center text-gray-700">
-                {tempFilterState.visibility}
+                {tempFilterState.visibility !== null
+                  ? tempFilterState.visibility
+                  : "All"}
               </div>
             </div>
-            <div className="text-right mt-2">
-              <button onClick={handleApplyFilter} className="text-[#FFD54F] font-medium">
+            <div className="flex items-center justify-between mt-2">
+              <button
+                onClick={handleResetVisibility}
+                className="text-gray-500 font-medium"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleApplyFilter}
+                className="text-[#FFD54F] font-medium"
+              >
                 Apply
               </button>
             </div>
