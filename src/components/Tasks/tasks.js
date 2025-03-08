@@ -1,20 +1,18 @@
 // src/components/Tasks/tasks.js
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigationBar from "../Navigation/NavigationBar";
 import Filter from "./filter";
 import TaskCard from "./Components/TaskCard";
 import SearchBar from "./Components/SearchBar";
 import { taskCategories } from "./data/TaskData";
+import { FilterContext } from "./FilterContext";
 
 const Tasks = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filters, setFilters] = useState({
-    visibility: null,
-    frequency: []
-  });
+  const { filters, setFilters } = useContext(FilterContext);
   const [filteredTasks, setFilteredTasks] = useState(taskCategories);
   const navigate = useNavigate();
 
@@ -35,20 +33,21 @@ const Tasks = () => {
     }
     
     // Apply frequency filter
-    if (filters.frequency.length > 0) {
+    if (filters.frequency && filters.frequency.length > 0) {
       filtered = filtered.filter(task => 
         filters.frequency.includes(task.frequency)
       );
     }
     
+    // Apply category filter
+    if (filters.category && filters.category.length > 0) {
+      filtered = filtered.filter(task => 
+        filters.category.includes(task.category)
+      );
+    }
+    
     setFilteredTasks(filtered);
   }, [searchQuery, filters]);
-
-
-
-  const handleApplyFilter = (newFilters) => {
-    setFilters(newFilters);
-  };
 
   return (
     <div className="min-h-screen bg-[#002B5C]">
@@ -58,7 +57,7 @@ const Tasks = () => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Filters Sidebar */}
           <div className="w-full lg:w-64">
-            <Filter onApply={handleApplyFilter} />
+            <Filter />
           </div>
           {/* Tasks Grid */}
           <div className="flex-1">
