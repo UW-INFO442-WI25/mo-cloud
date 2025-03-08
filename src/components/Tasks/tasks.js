@@ -15,7 +15,7 @@ const Tasks = () => {
     visibility: null,
     frequency: []
   });
-  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState(taskCategories);
   const navigate = useNavigate();
 
   // Apply filters to tasks
@@ -43,6 +43,8 @@ const Tasks = () => {
     
     setFilteredTasks(filtered);
   }, [searchQuery, filters]);
+
+
 
   const handleApplyFilter = (newFilters) => {
     setFilters(newFilters);
