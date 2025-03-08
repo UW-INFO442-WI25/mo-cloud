@@ -3,19 +3,19 @@
 import TaskLayout from "./Layout/TaskLayout";
 import TaskList from "./Components/TaskList";
 import { useTasks } from "./hooks/UserTask";
-import { householdMoodStressTasks } from "./data/TaskData";
+import { householdRepairsTasks } from "./data/TaskData";
 
-function HouseholdMoodStressManagement() {
+function HouseholdRepairsFixes() {
   const { 
     filteredTasks, 
     searchQuery, 
     setSearchQuery, 
     handleToggleComplete 
-  } = useTasks(householdMoodStressTasks);
+  } = useTasks(householdRepairsTasks);
 
   return (
     <TaskLayout 
-      title="Household Mood & Stress Management"
+      title="Household Repairs & Fixes"
       searchQuery={searchQuery}
       setSearchQuery={setSearchQuery}
     >
@@ -24,4 +24,4 @@ function HouseholdMoodStressManagement() {
   );
 }
 
-export default HouseholdMoodStressManagement;
+export default HouseholdRepairsFixes;

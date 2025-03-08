@@ -1,16 +1,14 @@
-import { useState, useContext, useEffect } from "react";
+// src/components/Tasks/hooks/UserTask.js
+import { useState, useContext } from "react";
 import { FilterContext } from "../FilterContext";
 import { filterTasks } from "../utils/FilterTasks";
 
 export function useTasks(initialTasks) {
+  const [tasks, setTasks] = useState(initialTasks);
   const { filters } = useContext(FilterContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const [tasks, setTasks] = useState(initialTasks);
-  const [filteredTasks, setFilteredTasks] = useState([]);
 
-  useEffect(() => {
-    setFilteredTasks(filterTasks(tasks, searchQuery, filters));
-  }, [tasks, searchQuery, filters]);
+  const filteredTasks = filterTasks(tasks, searchQuery, filters);
 
   const handleToggleComplete = (taskId) => {
     setTasks(tasks.map(task => 
