@@ -75,12 +75,12 @@ export default function Filter() {
       <h2 className="text-xl font-semibold text-[#1E88E5] mb-4">Filters</h2>
 
       {/* Frequency Filter */}
-      <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <div className="rounded-xl overflow-hidden">
         <button
           onClick={() => handleToggleFilter("frequency")}
           className={`flex items-center justify-between w-full px-4 py-3 ${
             openFilter === "frequency" ? "bg-[#FFD54F] text-black" : "bg-[#1E88E5] text-white"
-          }`}
+          } rounded-xl`}
         >
           <span className="font-medium">Frequency</span>
           <svg
@@ -101,7 +101,7 @@ export default function Filter() {
         </button>
         
         {openFilter === "frequency" && (
-          <div className="p-4 bg-gray-50">
+          <div className="p-4 bg-gray-50 mt-2 rounded-xl">
             <div className="space-y-2">
               {frequencyOptions.map((option) => (
                 <label
@@ -132,12 +132,12 @@ export default function Filter() {
       </div>
       
       {/* Visibility Filter */}
-      <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <div className="rounded-xl overflow-hidden">
         <button
           onClick={() => handleToggleFilter("visibility")}
           className={`flex items-center justify-between w-full px-4 py-3 ${
             openFilter === "visibility" ? "bg-[#FFD54F] text-black" : "bg-[#1E88E5] text-white"
-          }`}
+          } rounded-xl`}
         >
           <span className="font-medium">Visibility</span>
           <svg
@@ -158,7 +158,7 @@ export default function Filter() {
         </button>
         
         {openFilter === "visibility" && (
-          <div className="p-4 bg-gray-50">
+          <div className="p-4 bg-gray-50 mt-2 rounded-xl">
             <div className="space-y-4">
               <input
                 type="range"
@@ -194,12 +194,12 @@ export default function Filter() {
       </div>
 
       {/* Category Filter */}
-      <div className="border border-gray-200 rounded-xl overflow-hidden">
+      <div className="rounded-xl overflow-hidden">
         <button
           onClick={() => handleToggleFilter("category")}
           className={`flex items-center justify-between w-full px-4 py-3 ${
             openFilter === "category" ? "bg-[#FFD54F] text-black" : "bg-[#1E88E5] text-white"
-          }`}
+          } rounded-xl`}
         >
           <span className="font-medium">Category</span>
           <svg
@@ -220,7 +220,7 @@ export default function Filter() {
         </button>
         
         {openFilter === "category" && (
-          <div className="p-4 bg-gray-50">
+          <div className="p-4 bg-gray-50 mt-2 rounded-xl">
             <div className="space-y-2">
               {categoryOptions.map((option) => (
                 <label
