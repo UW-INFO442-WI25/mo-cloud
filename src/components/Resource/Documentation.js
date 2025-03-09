@@ -105,13 +105,19 @@ const Documentation = () => {
             <button
               className="text-2xl md:text-3xl font-semibold mb-2 text-[#64B5F6] flex justify-between w-full text-left"
               onClick={() => toggleSection(index)}
+              aria-expanded={openSections[index] ? "true" : "false"}
+              aria-controls={`section-content-${index}`}
             >
               {section.title}
-              {openSections[index] ? <FaChevronUp /> : <FaChevronDown />}
+              {openSections[index] ? <FaChevronUp aria-hidden="true" /> : <FaChevronDown aria-hidden="true" />}
             </button>
 
             {openSections[index] && (
-              <div className="text-lg text-gray-300 leading-relaxed whitespace-pre-line mt-2 p-4 bg-[#1E3A5F] rounded-lg">
+              <div 
+                id={`section-content-${index}`}
+                className="text-lg text-gray-300 leading-relaxed whitespace-pre-line mt-2 p-4 bg-[#1E3A5F] rounded-lg"
+                aria-live="polite"
+              >
                 {section.content}
                 {section.response_scale && (
                   <div className="mt-4 p-8 bg-[#0E2A45] rounded-lg">

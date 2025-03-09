@@ -22,7 +22,7 @@ const Assessment = () => {
       <NavigationBar />
       
       {/* Main Content */}
-      <main className="container mx-auto px-8 py-24 mt-20">
+      <main className="container mx-auto px-8 py-24 mt-20" aria-labelledby="assessment-title">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h1 className="text-5xl font-bold text-white leading-tight max-w-xl">
@@ -36,6 +36,7 @@ const Assessment = () => {
             <button
               onClick={handleStartTest}
               className="bg-[#64B5F6] text-white px-8 py-3 rounded-full text-lg hover:bg-[#64B5F6]/90"
+              aria-label="Start the household labor self-assessment test"
             >
               Take the Test
             </button>
@@ -43,7 +44,7 @@ const Assessment = () => {
           <div className="relative">
             <img
               src={read || "/placeholder.svg"}
-              alt="Assessment illustration"
+              alt="An illustration of a person reading a self-assessment report"
               className="w-full max-w-md mx-auto relative z-10"
             />
           </div>

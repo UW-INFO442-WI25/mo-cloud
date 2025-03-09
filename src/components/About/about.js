@@ -212,7 +212,7 @@ function About() {
             {features.map((feature, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-sm">
                 <div className="bg-blue-50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
-                  <img src={feature.icon || "/placeholder.svg"} alt="" className="w-6 h-6" aria-hidden="true" />
+                  <img src={feature.icon || "/placeholder.svg"} alt="Feature icon" className="w-6 h-6" aria-hidden="true" />
                 </div>
                 <h3 className="font-semibold text-lg text-[#002B5C] mb-2">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
@@ -237,7 +237,7 @@ function About() {
 
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
-                  <img src={facebookIcon || "/placeholder.svg"} alt="Facebook" className="w-6 md:w-8 h-6 md:h-8" />
+                  <img src={facebookIcon || "/placeholder.svg"} alt="Visit our Facebook page: MoCloud_Official" className="w-6 md:w-8 h-6 md:h-8" />
                   <div>
                     <div className="font-medium">Facebook</div>
                     <div className="text-white">MoCloud_Official</div>
@@ -341,6 +341,7 @@ function About() {
                 type="submit"
                 disabled={formStatus.submitting}
                 className="w-full sm:w-auto bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90 transition-colors disabled:bg-blue-300"
+                aria-label="Submit message form"
               >
                 {formStatus.submitting ? "Sending..." : "Send message"}
               </button>

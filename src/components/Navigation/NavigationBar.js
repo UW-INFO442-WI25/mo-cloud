@@ -28,20 +28,18 @@ export default function NavigationBar() {
         to={to}
         onClick={() => setIsMobileMenuOpen(false)}
         className={`
-          px-2 
-          border-b-2 border-transparent 
-          hover:border-[#64B5F6] 
-          whitespace-nowrap
+          px-2 border-b-2 border-transparent hover:border-[#64B5F6] whitespace-nowrap
           ${isActive ? "text-[#64B5F6] border-[#64B5F6]" : "text-white"}
         `}
+        aria-current={isActive ? "page" : undefined}
       >
         {children}
       </Link>
     );
-  };
+  };  
 
   return (
-    <nav className="py-4 text-white">
+    <nav className="py-4 text-white" aria-label="Main navigation">
       <div className="container mx-auto px-4 flex items-center justify-between sm:justify-between">
         {/* Logo & Brand */}
         <div className="flex items-center space-x-2">
@@ -65,7 +63,7 @@ export default function NavigationBar() {
         </div>
 
         {/* Right side: Buttons + Mobile Toggle */}
-        <div className="flex items-center space-x-4">
+        <div aria-live="polite" className="flex items-center space-x-4">
           {user ? (
             <div className="relative">
               <img
@@ -94,13 +92,17 @@ export default function NavigationBar() {
           ) : (
             <>
               <Link to="/sign-in">
-                <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90 min-w-[80px] text-sm sm:text-base">
-                  Log in
+                <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90 min-w-[80px] text-sm sm:text-base"
+                aria-label="Log in to your MoCloud account"
+              >
+                Log in
                 </button>
               </Link>
               <Link to="/sign-up">
-                <button className="bg-[#64B5F6] text-white px-4 py-2 rounded-full hover:bg-[#64B5F6]/90">
-                  Register
+                <button className="bg-[#64B5F6] text-white px-4 py-2 rounded-full hover:bg-[#64B5F6]/90"
+                aria-label="Create a new MoCloud account"
+              >
+                Register
                 </button>
               </Link>
             </>
@@ -109,6 +111,7 @@ export default function NavigationBar() {
           <button
             className="lg:hidden"
             onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            aria-expanded={isMobileMenuOpen ? "true" : "false"}
           >
             {isMobileMenuOpen ? (
               <svg

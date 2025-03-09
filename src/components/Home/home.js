@@ -35,7 +35,7 @@ const Home = () => {
                 Invisible Visible
                 <img
                   src={Element || "/placeholder.svg"}
-                  alt=""
+                  alt="Screenshot of MoCloud app showing household task tracking"
                   className="absolute -bottom-4 left-0 w-[300px] z-0"
                   aria-hidden="true"
                 />
@@ -49,10 +49,14 @@ const Home = () => {
               <button
                 onClick={handleGetStarted}
                 className="bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90 w-full sm:w-auto min-w-[180px] text-center"
+                aria-label="Start your self-assessment test now"
               >
                 Get started now
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 w-full sm:w-auto min-w-[180px] text-center">
+              <button 
+                className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 w-full sm:w-auto min-w-[180px] text-center"
+                aria-label= "Open how MoCloud works dialog"
+              >
                 See how it works
               </button>
             </div>
@@ -68,7 +72,7 @@ const Home = () => {
       </section>
 
       {/* Why Section */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-24 " aria-labelledby="why-exist-title">
         <div className="container mx-auto px-8">
           <div className="grid md:grid-cols-2 gap-16 items-start">
             <div className="space-y-6">

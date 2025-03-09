@@ -122,9 +122,12 @@ const Resource = () => {
 
       <div className="w-full max-w-screen-xl mx-auto p-6">
         {/* Hero Section */}
-        <div 
-          className="relative w-full h-96 bg-gray-200 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105"
-          onClick={() => window.open(heroLink, "_blank")}
+        <a
+          href={heroLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative w-full h-96 bg-gray-200 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 hover:scale-105 block"
+          aria-label="Read the full article on Harvard Gazette about Invisible Work in Household Labor"
         >
           <img src={resource1} alt="Top Journal Banner" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hover:bg-opacity-40 transition duration-300">
@@ -132,12 +135,13 @@ const Resource = () => {
               Dad’s clueless, Mom’s fried. Talking about Invisible work, maybe there’s a better way.
             </h1>
           </div>
-        </div>
+        </a>
         {/* Guide Section */}
         <div className="mt-24">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Self-assessment Overview</h2>
           <div 
             className="bg-white rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer p-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+            aria-label="Go to the Self-Assessment Guide for understanding household labor"
             onClick={() => navigate(documentationLink)}
           >
             <div className="text-center md:text-left w-full md:w-1/2">
@@ -188,6 +192,7 @@ const Resource = () => {
                 onClick={() => window.open(video.link, "_blank")}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
+                aria-label={`Watch video: ${video.title}`}
               >
                 {hoveredIndex === index ? (
                   <iframe
@@ -223,6 +228,7 @@ const Resource = () => {
                   className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110 active:scale-110 snap-mandatory"
                   onTouchStart={(e) => e.currentTarget.classList.add("hover-effect")}
                   onTouchEnd={(e) => setTimeout(() => e.currentTarget.classList.remove("hover-effect"), 500)}
+                  aria-label={`Read research: ${research.title}`}
                 >
                   <div className="absolute -z-10 inset-0 rounded-2xl shadow-2xl group-hover:scale-110 transition duration-300"></div>
 
