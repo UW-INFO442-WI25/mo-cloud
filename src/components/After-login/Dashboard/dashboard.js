@@ -61,15 +61,16 @@ export default function Dashboard() {
       </div>
       
       {/* Search Bar */}
-      <div className="flex sm:flex-row gap-4 mb-8">
+      <div className="flex flex-col sm:flex-row gap-4 mb-8">
         <SearchBar 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          className="w-full sm:w-auto"
         />
-        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90">
+        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90">
           Search
         </button>
-        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90">
+        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90">
           Filter
         </button>
       </div>
@@ -79,7 +80,7 @@ export default function Dashboard() {
         <h2 className="text-xl font-medium text-gray-900 mb-4">
           Reference Lists 😊
         </h2>
-        <div className="flex overflow-x-auto pb-2">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {filterIcons.map((filter) => (
             <button
               key={filter.name}
@@ -95,15 +96,12 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
-      
+
+    
       {/* Task Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredTasks.map((task, index) => (
-          <TaskCard 
-            key={index}
-            task={task}
-            onClick={() => navigate(task.route)}
-          />
+          <TaskCard key={index} task={task} onClick={() => navigate(task.route)} />
         ))}
       </div>
     </DashboardLayout>
