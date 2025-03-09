@@ -14,10 +14,10 @@ const Question3 = () => {
   const questionIndex = 2; // Index for question 3
 
   const options = [
-    "I constantly feel exhausted and overburdened.",
-    "It often feels overwhelming and stressful.",
-    "It requires effort, but I manage it well.",
     "I have an effective system in place and feel in control.",
+    "It requires effort, but I manage it well.",
+    "It often feels overwhelming and stressful.",
+    "I constantly feel exhausted and overburdened.",
   ];
 
   useEffect(() => {

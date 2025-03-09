@@ -14,10 +14,10 @@ const Question2 = () => {
   const questionIndex = 1; // Index for question 2
 
   const options = [
-    "I struggle to keep up, and tasks often pile up unpredictably.",
-    "I handle tasks as they come, without much planning.",
-    "I prioritize based on necessity but sometimes feel overwhelmed.",
     "I plan tasks based on urgency and importance, ensuring smooth workflow.",
+    "I prioritize based on necessity but sometimes feel overwhelmed.",
+    "I handle tasks as they come, without much planning.",
+    "I struggle to keep up, and tasks often pile up unpredictably.",
   ];
 
   useEffect(() => {

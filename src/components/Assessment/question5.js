@@ -14,10 +14,10 @@ const Question5 = () => {
   const questionIndex = 4; // Index for question 5
 
   const options = [
-    "Household labor is physically exhausting and difficult to sustain.",
-    "I often feel physically drained after completing tasks.",
-    "Some tasks are tiring, but I manage.",
     "I balance physical tasks well without feeling overworked.",
+    "Some tasks are tiring, but I manage.",
+    "I often feel physically drained after completing tasks.",
+    "Household labor is physically exhausting and difficult to sustain.",
   ];
 
   useEffect(() => {

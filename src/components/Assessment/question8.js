@@ -14,10 +14,10 @@ const Question8 = () => {
   const questionIndex = 7; // Index for question 8
 
   const options = [
-    "Most of the time, I feel my work goes to waste because of inefficiency or lack of appreciation.",
-    "Frequently, tasks need to be redone due to errors.",
-    "Occasionally, I have to redo minor things.",
     "Almost never, I complete tasks effectively on the first attempt.",
+    "Occasionally, I have to redo minor things.",
+    "Frequently, tasks need to be redone due to errors.",
+    "Most of the time, I feel my work goes to waste because of inefficiency or lack of appreciation.",
   ];
 
   useEffect(() => {

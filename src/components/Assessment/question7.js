@@ -14,10 +14,10 @@ const Question7 = () => {
   const questionIndex = 6; // Index for question 7
 
   const options = [
-    "I lack proper resources, making household labor inefficient.",
-    "I don't have or use many tools, making tasks harder.",
-    "I have some tools, but I don't use them to their full potential.",
     "I use tools effectively to improve efficiency and reduce labor.",
+    "I have some tools, but I don't use them to their full potential.",
+    "I don't have or use many tools, making tasks harder.",
+    "I lack proper resources, making household labor inefficient.",
   ];
 
   useEffect(() => {
