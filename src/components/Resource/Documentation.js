@@ -35,19 +35,19 @@ const documentationData = {
       title: "Understanding Your Results",
       interpretation: [
         {
-          score_range: "10-15",
+          score_range: "36-40",
           description: "Well-Balanced Household Workload. You manage household tasks efficiently, and labor is fairly distributed. You likely receive support and recognition for your contributions."
         },
         {
-          score_range: "16-25",
+          score_range: "26-35",
           description: "Somewhat Uneven Labor Distribution. You may be experiencing some inefficiencies or occasional burdens, but overall, your workload is manageable. Consider minor adjustments for improvement."
         },
         {
-          score_range: "26-35",
+          score_range: "16-25",
           description: "High Risk of Overburdening. Your score suggests you are handling a disproportionate amount of household work. You may often feel exhausted or unrecognized. It may be time to redistribute tasks."
         },
         {
-          score_range: "36-40",
+          score_range: "10-15",
           description: "Significant Household Labor Imbalance. Your score indicates a major imbalance in household labor, leading to stress and potential burnout. Immediate steps are recommended, such as open discussions about fair task division and seeking support where needed."
         }
       ]
