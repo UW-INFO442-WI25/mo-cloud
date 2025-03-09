@@ -98,3 +98,4 @@ Note: The production build is optimized for performance and is what you would de
 
 ### Documentation
 - [User Personas](docs/user_persona.md)
+- [Testing Protocol](docs/TestingProtocol.md) 
