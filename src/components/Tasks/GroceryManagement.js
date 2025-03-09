@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { groceryManagementTasks } from "./data/TaskData";
 
 function GroceryManagement() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(groceryManagementTasks);
-
   return (
-    <TaskLayout 
-      title="Grocery Shopping & Inventory Management"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+    <TaskPageWrapper
+      title="Grocery Management"
+      taskId={1}
+      tasksData={groceryManagementTasks}
+    />
   );
 }
 

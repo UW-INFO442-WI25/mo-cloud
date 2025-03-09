@@ -60,7 +60,6 @@ export default function Filter() {
     setTempFilterState((prev) => ({ ...prev, visibility: value }))
   }
 
-  // Apply filters to the global context
   const handleApplyFilter = () => {
     setFilters({...tempFilterState})
     setOpenFilter(null)

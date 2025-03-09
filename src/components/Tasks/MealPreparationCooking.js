@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { mealPreparationTasks } from "./data/TaskData";
 
 function MealPreparationCooking() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(mealPreparationTasks);
-
   return (
-    <TaskLayout 
+    <TaskPageWrapper
       title="Meal Preparation & Cooking"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+      taskId={8}
+      tasksData={mealPreparationTasks}
+    />
   );
 }
 

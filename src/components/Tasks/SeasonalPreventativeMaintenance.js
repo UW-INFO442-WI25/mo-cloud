@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { seasonalMaintenanceTasks } from "./data/TaskData";
 
 function SeasonalPreventativeMaintenance() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(seasonalMaintenanceTasks);
-
   return (
-    <TaskLayout 
+    <TaskPageWrapper
       title="Seasonal & Preventative Maintenance"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+      taskId={11}
+      tasksData={seasonalMaintenanceTasks}
+    />
   );
 }
 

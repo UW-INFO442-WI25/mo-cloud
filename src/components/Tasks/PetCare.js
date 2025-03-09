@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { petCareTasks } from "./data/TaskData";
 
 function PetCare() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(petCareTasks);
-
   return (
-    <TaskLayout 
-      title="Pet Care Tasks"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+    <TaskPageWrapper
+      title="Pet Care"
+      taskId={6}
+      tasksData={petCareTasks}
+    />
   );
 }
 

@@ -1,27 +1,16 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
-import { householdRepairsTasks } from "./data/TaskData";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
+import { householdMoodStressTasks } from "./data/TaskData";
 
-function HouseholdRepairsFixes() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(householdRepairsTasks);
-
+function HouseholdMoodStressManagement() {
   return (
-    <TaskLayout 
-      title="Household Repairs & Fixes"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+    <TaskPageWrapper
+      title="Household Mood & Stress Management"
+      taskId={7}
+      tasksData={householdMoodStressTasks}
+    />
   );
 }
 
-export default HouseholdRepairsFixes;
+export default HouseholdMoodStressManagement;

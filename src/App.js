@@ -38,6 +38,7 @@ import SocialCommunityEngagement from "./components/Tasks/SocialCommunityEngagem
 import SurfaceFloorCleaning from "./components/Tasks/SurfaceFloorCleaning"
 import Tasks from "./components/Tasks/tasks"
 import VehicleEquipmentMaintenance from "./components/Tasks/VehicleEquipmentMaintenance"
+import TaskDetail from "./components/Tasks/TaskDetail"
 
 function App() {
   return (
@@ -84,6 +85,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/my-tasks" element={<MyTasks />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/tasks/:taskId" element={<TaskDetail />} />
         </Routes>
       </Router>
     </FilterProvider>

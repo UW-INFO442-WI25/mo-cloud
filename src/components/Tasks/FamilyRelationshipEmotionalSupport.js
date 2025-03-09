@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { familyRelationshipTasks } from "./data/TaskData";
 
 function FamilyRelationshipEmotionalSupport() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(familyRelationshipTasks);
-
   return (
-    <TaskLayout 
+    <TaskPageWrapper
       title="Family Relationship & Emotional Support"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+      taskId={6}
+      tasksData={familyRelationshipTasks}
+    />
   );
 }
 

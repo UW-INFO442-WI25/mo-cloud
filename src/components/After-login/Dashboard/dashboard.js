@@ -1,16 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, onValue } from "firebase/database";
 import DashboardLayout from "../Layout/DashboardLayout";
 import SearchBar from "../UI/SearchBar";
 import TaskCard from "../UI/TaskCard";
 import { mockTasks } from "../Mock/TaskData";
 import { filterIcons } from "./FilterIcons";
+import app from "../../../firebase";
 
 export default function Dashboard() {
   const [activeFilter, setActiveFilter] = useState("Cook");
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredTasks, setFilteredTasks] = useState([]);
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const auth = getAuth(app);
+  const db = getDatabase(app);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!auth.currentUser) return;
+      
+      const userId = auth.currentUser.uid;
+      
+      // Fetch user profile data
+      const userRef = ref(db, `users/${userId}/profile`);
+      onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          setUserData(data);
+        }
+        setLoading(false);
+      });
+    };
+    
+    fetchUserData();
+  }, [auth.currentUser, db]);
 
   useEffect(() => {
     // Filter tasks based on active category and search query
@@ -29,7 +56,7 @@ export default function Dashboard() {
         <h1 className="text-2xl font-medium">
           Hello,
           <br />
-          Kath 👋
+          {auth.currentUser?.displayName || userData?.name || 'User'} 👋
         </h1>
       </div>
       

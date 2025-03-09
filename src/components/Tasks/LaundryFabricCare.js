@@ -1,26 +1,15 @@
 "use client"
 
-import TaskLayout from "./Layout/TaskLayout";
-import TaskList from "./Components/TaskList";
-import { useTasks } from "./hooks/UserTask";
+import TaskPageWrapper from "./Components/TaskPageWrapper";
 import { laundryFabricCareTasks } from "./data/TaskData";
 
 function LaundryFabricCare() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(laundryFabricCareTasks);
-
   return (
-    <TaskLayout 
+    <TaskPageWrapper
       title="Laundry & Fabric Care"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
+      taskId={10}
+      tasksData={laundryFabricCareTasks}
+    />
   );
 }
 

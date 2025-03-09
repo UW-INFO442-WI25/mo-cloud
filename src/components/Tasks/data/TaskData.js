@@ -15,7 +15,7 @@ import seasonalMaintenance from "../../../assets/task10.png";
 import vehicleMaintenance from "../../../assets/task18.png";
 
 // Deep Cleaning & Organization Tasks
-export const deepCleaningTasks = [
+export const deepCleaningOrganizationTasks = [
   {
     id: 1,
     name: "Cleaning windows, curtains, and blinds",
@@ -395,7 +395,7 @@ export const familyRelationshipTasks = [
 ];
 
 // Social & Community Engagement Tasks
-export const socialCommunityTasks = [
+export const socialCommunityEngagementTasks = [
   {
     id: 1,
     name: "Planning and hosting social gatherings",
@@ -681,5 +681,29 @@ export const taskCategories = [
     frequency: "As Needed",
     time: "2 h",
     visibility: 4
+  }
+];
+
+export const surfaceFloorCleaningTasks = [
+  {
+    id: 1,
+    name: "Vacuum all carpeted areas",
+    timeRange: "20-30",
+    completed: false,
+    frequency: "Daily"
+  },
+  {
+    id: 2,
+    name: "Mop hard floors",
+    timeRange: "20-30",
+    completed: false,
+    frequency: "Daily"
+  },
+  {
+    id: 3,
+    name: "Dust and wipe surfaces",
+    timeRange: "15-30",
+    completed: false,
+    frequency: "Daily"
   }
 ];

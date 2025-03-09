@@ -2,16 +2,23 @@ import { useNavigate, useLocation } from "react-router-dom";
 import NavigationBar from "../Navigation/NavigationBar";
 import { useEffect, useState } from "react";
 import report from "../../assets/report.png";
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+import app from "../../firebase";
 
 const Results = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const auth = getAuth(app);
+  const db = getDatabase(app);
 
   const { scores = [] } = location.state || {};
   const [totalScore, setTotalScore] = useState(0);
   const [resultType, setResultType] = useState("");
   const [description, setDescription] = useState("");
   const [gaugePosition, setGaugePosition] = useState(0);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (scores.length === 10) {
@@ -35,8 +42,55 @@ const Results = () => {
         setDescription("You efficiently manage labor with great balance.");
         setGaugePosition(75);
       }
+      
+      // Save results to Firebase if user is logged in
+      saveResultsToFirebase(sum, scores);
     }
   }, [scores]);
+
+  const saveResultsToFirebase = async (totalScore, detailedScores) => {
+    if (!auth.currentUser) {
+      console.log("User not logged in, results not saved");
+      return;
+    }
+    
+    try {
+      setSaving(true);
+      const userId = auth.currentUser.uid;
+      const timestamp = new Date().toISOString();
+      
+      await set(ref(db, `users/${userId}/assessments/latest`), {
+        totalScore,
+        detailedScores,
+        resultType,
+        description,
+        timestamp
+      });
+      
+      // Also save to history
+      await set(ref(db, `users/${userId}/assessments/history/${timestamp.replace(/[.]/g, '_')}`), {
+        totalScore,
+        detailedScores,
+        resultType,
+        description,
+        timestamp
+      });
+      
+      setSaved(true);
+    } catch (error) {
+      console.error("Error saving assessment results:", error);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDownloadReport = () => {
+    alert("Downloading report...");
+  };
+
+  const handleViewProfile = () => {
+    navigate("/profile");
+  };
 
   return (
     <div className="min-h-screen bg-[#002B5C]">
@@ -59,20 +113,32 @@ const Results = () => {
             </div>
             <p className="text-xl font-semibold mt-4 text-center">{resultType}</p>
             <p className="text-lg text-center">{description}</p>
+            
+            {auth.currentUser && (
+              <div className="mt-4 text-center">
+                {saving ? (
+                  <p className="text-blue-300">Saving your results...</p>
+                ) : saved ? (
+                  <p className="text-green-300">Results saved to your profile!</p>
+                ) : (
+                  <p className="text-yellow-300">Unable to save results</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
         <div className="flex justify-center gap-4 mt-6">
           <button
             className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200"
-            onClick={() => alert("Downloading report...")}
+            onClick={handleDownloadReport}
           >
             Download Report
           </button>
           <button
             className="bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-500"
-            onClick={() => alert("Redirecting to improvements...")}
+            onClick={handleViewProfile}
           >
-            Suggested Improvement
+            View Profile
           </button>
         </div>
       </div>

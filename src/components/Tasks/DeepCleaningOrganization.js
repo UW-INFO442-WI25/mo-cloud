@@ -1,28 +1,16 @@
 "use client"
 
-import { useContext } from "react"
-import TaskLayout from "./Layout/TaskLayout"
-import TaskList from "./Components/TaskList"
-import { useTasks } from "./hooks/UserTask"
-import { deepCleaningTasks } from "./data/TaskData"
+import TaskPageWrapper from "./Components/TaskPageWrapper";
+import { deepCleaningOrganizationTasks } from "./data/TaskData";
 
 function DeepCleaningOrganization() {
-  const { 
-    filteredTasks, 
-    searchQuery, 
-    setSearchQuery, 
-    handleToggleComplete 
-  } = useTasks(deepCleaningTasks);
-
   return (
-    <TaskLayout 
-      title="Deep Cleaning & Organization Tasks"
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    >
-      <TaskList tasks={filteredTasks} onToggleComplete={handleToggleComplete} />
-    </TaskLayout>
-  )
+    <TaskPageWrapper
+      title="Deep Cleaning & Organization"
+      taskId={2}
+      tasksData={deepCleaningOrganizationTasks}
+    />
+  );
 }
 
-export default DeepCleaningOrganization
+export default DeepCleaningOrganization;

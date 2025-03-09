@@ -1,7 +1,6 @@
-
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import facebookIcon from "../../assets/Facebook-icon.png"
 import group1113 from "../../assets/Group 1113.png"
 import group1114 from "../../assets/Group 1114.png"
@@ -15,7 +14,9 @@ import member4 from "../../assets/member4.png"
 import member5 from "../../assets/member5.png"
 import twitterIcon from "../../assets/twitter-icon.png"
 import NavigationBar from "../Navigation/NavigationBar"
-
+import { getDatabase, ref, push } from "firebase/database"
+import { getAuth } from "firebase/auth"
+import app from "../../firebase"
 
 function About() {
   const [formData, setFormData] = useState({
@@ -26,9 +27,91 @@ function About() {
     message: "",
   })
 
-  const handleSubmit = (e) => {
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    success: false,
+    error: null
+  })
+
+  const auth = getAuth(app)
+  const db = getDatabase(app)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
+    
+    // Validate form
+    if (!formData.yourName || !formData.message) {
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: "Please provide your name and message"
+      })
+      return
+    }
+    
+    setFormStatus({
+      submitting: true,
+      success: false,
+      error: null
+    })
+    
+    try {
+      // Get current user email if logged in
+      const userEmail = auth.currentUser?.email || formData.email
+      
+      if (!userEmail && !formData.phone) {
+        setFormStatus({
+          submitting: false,
+          success: false,
+          error: "Please provide either email or phone number"
+        })
+        return
+      }
+      
+      // Create a reference to the messages collection
+      const messagesRef = ref(db, 'messages')
+      
+      // Push the new message
+      await push(messagesRef, {
+        name: formData.yourName,
+        email: userEmail || "",
+        phone: formData.phone || "",
+        message: formData.message,
+        timestamp: new Date().toISOString(),
+        userId: auth.currentUser?.uid || null
+      })
+      
+      // Reset form
+      setFormData({
+        phone: "",
+        yourName: "",
+        message: "",
+        email: ""
+      })
+      
+      // Show success message
+      setFormStatus({
+        submitting: false,
+        success: true,
+        error: null
+      })
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => ({
+          ...prev,
+          success: false
+        }))
+      }, 5000)
+      
+    } catch (error) {
+      console.error("Error sending message:", error)
+      setFormStatus({
+        submitting: false,
+        success: false,
+        error: "Failed to send message. Please try again."
+      })
+    }
   }
 
   const handleChange = (e) => {
@@ -242,11 +325,24 @@ function About() {
                 />
               </div>
 
+              {formStatus.error && (
+                <div className="text-red-400 text-sm">
+                  {formStatus.error}
+                </div>
+              )}
+              
+              {formStatus.success && (
+                <div className="text-green-400 text-sm">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full sm:w-auto bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90 transition-colors"
+                disabled={formStatus.submitting}
+                className="w-full sm:w-auto bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90 transition-colors disabled:bg-blue-300"
               >
-                Send message
+                {formStatus.submitting ? "Sending..." : "Send message"}
               </button>
             </form>
           </div>
