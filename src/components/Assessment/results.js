@@ -6,6 +6,10 @@ import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import app from "../../firebase";
 import jsPDF from "jspdf";
+import result1 from "../../assets/result_1.png"
+import result2 from "../../assets/result_2.png"
+import result3 from "../../assets/result_3.png"
+import result4 from "../../assets/result_4.png"
 
 const Results = () => {
   const navigate = useNavigate();
@@ -26,22 +30,22 @@ const Results = () => {
       const sum = scores.reduce((acc, score) => acc + score, 0);
       setTotalScore(sum);
 
-      if (sum <= 15) {
+      if (sum >= 36 && sum <= 40) {
         setResultType("Well-Balanced Household Workload");
         setDescription("You manage household tasks efficiently, and labor is fairly distributed. You likely receive support and recognition for your contributions.");
-        setGaugePosition(25);
-      } else if (sum >= 16 && sum <= 25) {
+        setGaugePosition(100);
+      } else if (sum >= 26 && sum <= 35) {
         setResultType("Somewhat Uneven Labor Distribution");
         setDescription("You may be experiencing some inefficiencies or occasional burdens, but overall, your workload is manageable. Consider minor adjustments for improvement.");
-        setGaugePosition(50);
-      } else if (sum >= 26 && sum <= 35) {
+        setGaugePosition(75);
+      } else if (sum >= 16 && sum <= 25) {
         setResultType("High Risk of Overburdening");
         setDescription("Your score suggests you are handling a disproportionate amount of household work. You may often feel exhausted or unrecognized. It may be time to redistribute tasks.");
-        setGaugePosition(75);
-      } else if (sum >= 36 && sum <= 40) {
+        setGaugePosition(50);
+      } else if (sum <= 15) {
         setResultType("Significant Household Labor Imbalance");
         setDescription("Your score indicates a major imbalance in household labor, leading to stress and potential burnout. Immediate steps are recommended, such as open discussions about fair task division and seeking support where needed.");
-        setGaugePosition(100);
+        setGaugePosition(25);
       }
       
       // Save results to Firebase if user is logged in
@@ -207,12 +211,27 @@ const Results = () => {
     navigate("/profile");
   };
 
+  const getResultImage = (type) => {
+    switch (type) {
+      case "Well-Balanced Household Workload":
+        return result1;
+      case "Somewhat Uneven Labor Distribution":
+        return result2;
+      case "High Risk of Overburdening":
+        return result3;
+      case "Significant Household Labor Imbalance":
+        return result4;
+      default:
+        return result1;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#002B5C]">
       <NavigationBar />
       <div className="container mx-auto px-8 py-8">
         <div className="max-w-4xl mx-auto bg-[#003471] rounded-3xl p-12 text-white flex flex-col md:flex-row items-center">
-          <img src={report} alt="Report" className="w-1/2 md:w-1/3 mb-6 md:mb-0" />
+          <img src={getResultImage(resultType)} alt="Report" className="w-1/2 md:w-1/3 mb-6 md:mb-0" />
           <div className="flex flex-col items-center md:ml-6">
             <h2 className="text-4xl font-bold mb-6 text-center">Your Test Score</h2>
             <div className="relative w-64 h-32">
