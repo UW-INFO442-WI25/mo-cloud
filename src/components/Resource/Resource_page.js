@@ -137,19 +137,22 @@ const Resource = () => {
         <div className="mt-24">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Self-assessment Overview</h2>
           <div 
-            className="bg-white rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer p-6 flex justify-between items-center"
+            className="bg-white rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer p-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
             onClick={() => navigate(documentationLink)}
           >
-            <div className="text-left">
-              <h3 className="text-2xl font-semibold">Self-Assessment Guide: Understanding Your Household Labor </h3>
+            <div className="text-center md:text-left w-full md:w-1/2">
+              <h3 className="text-2xl font-semibold">
+                Self-Assessment Guide: Understanding Your Household Labor 
+              </h3>
               <p className="text-gray-600 mt-2">
                 Click here to view the full guide and learn more about our self-assessment process.
               </p>
             </div>
+
             <img 
               src={illustration}
               alt="Documentation Illustration"
-              className="w-60 h-60 object-cover rounded-lg border-none shadow-none outline-none ring-0"
+              className="w-full md:w-1/2 max-w-xs md:max-w-sm object-contain rounded-lg border-none shadow-none outline-none ring-0"
             />
           </div>
         </div>
@@ -177,18 +180,18 @@ const Resource = () => {
         {/* Videos Section */}
         <div className="mt-24 w-full max-w-screen-xl mx-auto">
         <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Videos</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             {videos.map((video, index) => (
               <div
                 key={index}
-                className="bg-white shadow-sm rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer relative w-full min-w-[400px]"
+                className="bg-white shadow-sm rounded-xl overflow-hidden text-black transition-transform duration-300 hover:scale-105 cursor-pointer relative w-full"
                 onClick={() => window.open(video.link, "_blank")}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 {hoveredIndex === index ? (
                   <iframe
-                    className="w-full h-64"
+                    className="w-full aspect-video"
                     src={video.videoEmbed}
                     title={video.title}
                     frameBorder="0"
@@ -196,9 +199,8 @@ const Resource = () => {
                     allowFullScreen
                   ></iframe>
                 ) : (
-                  <img src={video.thumbnail} alt={video.title} className="w-full h-64 object-cover" />
+                  <img src={video.thumbnail} alt={video.title} className="w-full aspect-video object-cover" />
                 )}
-
                 <div className="p-4">
                   <h3 className="text-lg font-semibold">{video.title}</h3>
                 </div>
@@ -218,7 +220,9 @@ const Resource = () => {
                   href={research.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110 snap-mandatory"
+                  className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110 active:scale-110 snap-mandatory"
+                  onTouchStart={(e) => e.currentTarget.classList.add("hover-effect")}
+                  onTouchEnd={(e) => setTimeout(() => e.currentTarget.classList.remove("hover-effect"), 500)}
                 >
                   <div className="absolute -z-10 inset-0 rounded-2xl shadow-2xl group-hover:scale-110 transition duration-300"></div>
 
@@ -228,7 +232,7 @@ const Resource = () => {
                     className="w-full h-48 object-cover transition duration-300 group-hover:opacity-80 mix-blend-multiply rounded-t-2xl"
                   />
                   
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 rounded-2xl">
+                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 hover:opacity-100 group-hover:opacity-100 transition duration-300 rounded-2xl">
                     <h3 className="text-white text-lg font-semibold text-center px-4">
                       {research.title}
                     </h3>

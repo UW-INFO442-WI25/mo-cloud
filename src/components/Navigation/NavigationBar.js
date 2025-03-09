@@ -42,14 +42,18 @@ export default function NavigationBar() {
 
   return (
     <nav className="py-4 text-white">
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-4 flex items-center justify-between sm:justify-between">
         {/* Logo & Brand */}
         <div className="flex items-center space-x-2">
-          <img src={Logo} alt="MoCloud Logo" className="w-12 h-12" />
-          <Link to="/" className="text-2xl font-bold whitespace-nowrap">
-            Mo<span className="text-[#64B5F6]">Cloud</span>
-          </Link>
+          {/* Logo is only displayed when the screen width is >= 380px. */}
+          <div className="hidden sm:flex items-center space-x-2">
+            <img src={Logo} alt="MoCloud Logo" className="w-12 h-12" />
+            <Link to="/" className="text-2xl font-bold whitespace-nowrap">
+              Mo<span className="text-[#64B5F6]">Cloud</span>
+            </Link>
+          </div>
         </div>
+
 
         {/* Desktop Nav (only visible at ≥1024px) */}
         <div className="hidden lg:flex items-center space-x-6 text-lg font-semibold">
@@ -90,7 +94,7 @@ export default function NavigationBar() {
           ) : (
             <>
               <Link to="/sign-in">
-                <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90">
+                <button className="bg-[#FFD54F] text-black px-4 py-2 rounded-full hover:bg-[#FFD54F]/90 min-w-[80px] text-sm sm:text-base">
                   Log in
                 </button>
               </Link>

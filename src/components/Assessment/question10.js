@@ -58,16 +58,16 @@ const Question10 = () => {
               </button>
             ))}
           </div>
-          <div className="flex justify-between mt-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4 mt-6">
             <button
               onClick={() => navigate(-1)} // Go back without changing scores
-              className="bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600"
+              className="w-full md:w-auto bg-gray-500 text-white px-6 py-3 rounded-full hover:bg-gray-600"
             >
               Back
             </button>
             <button
               onClick={handleSubmit} // Navigate only when clicking "Submit"
-              className={`px-12 py-3 rounded-full text-lg text-white ${
+              className={`w-full md:w-auto py-3 px-6 md:px-12 rounded-full text-lg text-white text-center ${
                 selectedOption ? "bg-[#64B5F6] hover:bg-[#64B5F6]/90" : "bg-gray-500 cursor-not-allowed"
               }`}
               disabled={!selectedOption} // Disable if no option is selected

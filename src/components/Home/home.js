@@ -45,14 +45,14 @@ const Home = () => {
               MoCloud helps new parents recognize, track, and balance the unseen work that keeps your household running.
               Build stronger relationships through awareness and shared responsibility.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
               <button
                 onClick={handleGetStarted}
-                className="bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90"
+                className="bg-[#64B5F6] text-white px-8 py-3 rounded-full hover:bg-[#64B5F6]/90 w-full sm:w-auto min-w-[180px] text-center"
               >
                 Get started now
               </button>
-              <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10">
+              <button className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 w-full sm:w-auto min-w-[180px] text-center">
                 See how it works
               </button>
             </div>

@@ -10,26 +10,28 @@
   font-weight: 400;
 }
 
-body {
+html, body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: auto;
+  overflow-y: auto;
 }
 
 button, a {
-  touch-action: manipulation;
+  touch-action: auto;
 }
 
 .snap-x {
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
 .snap-mandatory > * {
-  scroll-snap-align: start;
+  scroll-snap-align: none;
 }
