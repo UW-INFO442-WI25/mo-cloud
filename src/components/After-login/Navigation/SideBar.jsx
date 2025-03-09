@@ -4,7 +4,7 @@ import pic from "../../../assets/pic.jpeg";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, onValue } from "firebase/database";
 import app from "../../../firebase";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiHome, FiClipboard, FiUser } from "react-icons/fi";
 
 export default function Sidebar({ isOpen, toggleSidebar }) {
   const [userData, setUserData] = useState(null);
@@ -24,22 +24,24 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
   }, [auth.currentUser, db]);
 
   const navItems = [
-    { to: "/dashboard", label: "Dashboard", icon: <FiMenu className="w-5 h-5" /> },
-    { to: "/my-tasks", label: "My Tasks", icon: <FiMenu className="w-5 h-5" /> },
-    { to: "/profile", label: "Profile", icon: <FiMenu className="w-5 h-5" /> },
+    { to: "/dashboard", label: "Dashboard", icon: <FiHome className="w-5 h-5" /> },
+    { to: "/my-tasks", label: "My Tasks", icon: <FiClipboard className="w-5 h-5" /> },
+    { to: "/profile", label: "Profile", icon: <FiUser className="w-5 h-5" /> },
   ];
 
   return (
     <>
-      {/* phone mode-hide sidebar */}
-      <button 
-        onClick={toggleSidebar} 
-        className="lg:hidden fixed top-4 left-4 z-50 bg-[#002B5C] text-white p-2 rounded-md"
-      >
-        {isOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
-      </button>
+      {/* shown Sidebar Toggle (FiMenu) only when phone-size */}
+      {!isOpen && (
+        <button 
+          onClick={toggleSidebar} 
+          className="lg:hidden fixed top-4 left-4 z-50 bg-[#002B5C] text-white p-2 rounded-md"
+        >
+          <FiMenu className="w-6 h-6 text-white" />
+        </button>
+      )}
 
-      {/* sidebar */}
+      {/* Sidebar */}
       <div
         className={`fixed lg:relative inset-y-0 left-0 w-64 bg-white shadow-lg transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -47,11 +49,11 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
       >
         <div className="lg:hidden flex justify-end p-4">
           <button onClick={toggleSidebar}>
-            <FiX className="text-2xl" />
+            <FiX className="text-2xl text-black" />
           </button>
         </div>
 
-        <div className="p-4 border-b">
+        <div className="p-4 border-b bg-white">
           <div className="flex items-center">
             <img src={pic} alt="Profile" className="w-12 h-12 rounded-full object-cover" />
             <div className="ml-3">
