@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import NavigationBar from "../../Navigation/NavigationBar";
 import Sidebar from "../Navigation/Sidebar";
-import { FiMenu } from "react-icons/fi";
 
 export default function DashboardLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

@@ -53,12 +53,6 @@ const Home = () => {
               >
                 Get started now
               </button>
-              <button 
-                className="border-2 border-white text-white px-8 py-3 rounded-full hover:bg-white/10 w-full sm:w-auto min-w-[180px] text-center"
-                aria-label= "Open how MoCloud works dialog"
-              >
-                See how it works
-              </button>
             </div>
           </div>
           <div className="relative">
