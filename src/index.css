@@ -19,5 +19,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Add any additional global styles here */
+button, a {
+  touch-action: manipulation;
+}
 
+.snap-x {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.snap-mandatory > * {
+  scroll-snap-align: start;
+}

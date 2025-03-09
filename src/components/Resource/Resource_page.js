@@ -211,14 +211,14 @@ const Resource = () => {
         <div className="mt-24">
         <h2 className="text-2xl md:text-4xl font-bold mb-6 text-center">Recommended Research</h2>
           <div className="overflow-x-auto overflow-visible">
-            <div className="flex space-x-6 px-4 pb-4 relative">
+            <div className="overflow-x-auto snap-x flex space-x-6 px-4 pb-4 relative">
               {researchItems.map((research, index) => (
                 <a 
                   key={index} 
                   href={research.link} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110"
+                  className="relative group flex-shrink-0 w-64 bg-white rounded-2xl overflow-visible transform transition duration-300 hover:scale-110 snap-mandatory"
                 >
                   <div className="absolute -z-10 inset-0 rounded-2xl shadow-2xl group-hover:scale-110 transition duration-300"></div>
 
