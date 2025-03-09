@@ -25,22 +25,22 @@ const Results = () => {
       const sum = scores.reduce((acc, score) => acc + score, 0);
       setTotalScore(sum);
 
-      if (sum <= 9) {
-        setResultType("Poor Labor Quality");
-        setDescription("You may struggle with labor efficiency and balance.");
-        setGaugePosition(10);
-      } else if (sum <= 17) {
-        setResultType("Struggling with Labor Efficiency");
-        setDescription("You are managing tasks, but improvements are needed.");
-        setGaugePosition(30);
-      } else if (sum <= 24) {
-        setResultType("Moderate Labor Quality");
-        setDescription("You handle household labor well but have some inefficiencies.");
+      if (sum <= 15) {
+        setResultType("Well-Balanced Household Workload");
+        setDescription("You manage household tasks efficiently, and labor is fairly distributed. You likely receive support and recognition for your contributions.");
+        setGaugePosition(25);
+      } else if (sum >= 16 && sum <= 25) {
+        setResultType("Somewhat Uneven Labor Distribution");
+        setDescription("You may be experiencing some inefficiencies or occasional burdens, but overall, your workload is manageable. Consider minor adjustments for improvement.");
         setGaugePosition(50);
-      } else {
-        setResultType("Excellent Labor Quality");
-        setDescription("You efficiently manage labor with great balance.");
+      } else if (sum >= 26 && sum <= 35) {
+        setResultType("High Risk of Overburdening");
+        setDescription("Your score suggests you are handling a disproportionate amount of household work. You may often feel exhausted or unrecognized. It may be time to redistribute tasks.");
         setGaugePosition(75);
+      } else if (sum >= 36 && sum <= 40) {
+        setResultType("Significant Household Labor Imbalance");
+        setDescription("Your score indicates a major imbalance in household labor, leading to stress and potential burnout. Immediate steps are recommended, such as open discussions about fair task division and seeking support where needed.");
+        setGaugePosition(100);
       }
       
       // Save results to Firebase if user is logged in
