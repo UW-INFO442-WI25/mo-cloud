@@ -5,6 +5,7 @@ import report from "../../assets/report.png";
 import { getAuth } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
 import app from "../../firebase";
+import jsPDF from "jspdf";
 
 const Results = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Results = () => {
   const auth = getAuth(app);
   const db = getDatabase(app);
 
-  const { scores = [] } = location.state || {};
+  const { scores = [], questions = [] } = location.state || {};
   const [totalScore, setTotalScore] = useState(0);
   const [resultType, setResultType] = useState("");
   const [description, setDescription] = useState("");
@@ -85,8 +86,122 @@ const Results = () => {
   };
 
   const handleDownloadReport = () => {
-    alert("Downloading report...");
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("Self-Assessment Report", 20, 20);
+
+  
+    // Score Summary
+    doc.setFontSize(14);
+    doc.text(`Your Score: ${totalScore}`, 20, 40);
+    doc.text(`Category: ${resultType}`, 20, 50);
+    
+    // Wrap long text for better readability
+    const splitDescription = doc.splitTextToSize(description, 170);
+    doc.text(splitDescription, 20, 60);
+  
+    // User Answers
+    doc.setFontSize(12);
+    doc.text("Your Answers:", 20, 80);
+  
+    const questions = [
+      "How efficiently do you complete household tasks?",
+      "How do you prioritize household tasks?",
+      "How often do you feel overwhelmed by household labor?",
+      "How often do you multitask when doing household labor?",
+      "How would you describe the physical effort involved in your household labor?",
+      "Do you feel the household labor is distributed fairly in your household?",
+      "How often do you experience stress from household labor?",
+      "How do you approach organizing and maintaining household spaces?",
+      "How do you feel about the division of household responsibilities?",
+      "How often do you receive acknowledgment or appreciation for the household labor you do?"
+    ];
+  
+    const options = [
+      [
+        "I complete tasks quickly and effectively, with minimal wasted effort.",
+        "I complete tasks well, but they often take longer than expected.",
+        "I get things done, but I struggle with time management.",
+        "I often feel overwhelmed and unable to complete all tasks efficiently."
+      ],
+      [
+        "I plan tasks based on urgency and importance, ensuring smooth workflow.",
+        "I prioritize based on necessity but sometimes feel overwhelmed.",
+        "I handle tasks as they come, without much planning.",
+        "I struggle to keep up, and tasks often pile up unpredictably."
+      ],
+      [
+        "Rarely, I manage to stay on top of household tasks.",
+        "Occasionally, I feel overwhelmed but can manage.",
+        "Frequently, I struggle with the workload.",
+        "Almost always, household labor feels unmanageable."
+      ],
+      [
+        "I effectively manage multiple tasks at once without quality loss.",
+        "I multitask sometimes, but it affects task quality.",
+        "I often multitask but feel rushed or distracted.",
+        "I struggle with multitasking, and it affects my productivity."
+      ],
+      [
+        "I balance physical tasks well without feeling overworked.",
+        "Some tasks are tiring, but I manage.",
+        "I often feel physically drained after completing tasks.",
+        "Household labor is physically exhausting and difficult to sustain."
+      ],
+      [
+        "Yes, tasks are divided fairly and efficiently.",
+        "Tasks are somewhat balanced, but I handle a bit more.",
+        "The workload is mostly on me, with little help.",
+        "I do almost everything, and it feels unfair."
+      ],
+      [
+        "Rarely, I feel little to no stress from household labor.",
+        "Occasionally, it causes mild stress but is manageable.",
+        "Frequently, I feel stressed from the household workload.",
+        "Almost always, household labor is a major source of stress for me."
+      ],
+      [
+        "I have a structured system in place for organizing and maintaining household spaces.",
+        "I try to keep things organized but struggle with consistency.",
+        "I clean and organize when things become too messy.",
+        "I find it difficult to maintain household organization."
+      ],
+      [
+        "I am satisfied with how responsibilities are divided.",
+        "I wish there was a more balanced distribution of tasks.",
+        "I often feel like I am doing more than my fair share.",
+        "I strongly feel that household responsibilities are unfairly distributed."
+      ],
+      [
+        "Frequently—my contributions are recognized and valued.",
+        "Sometimes—I receive appreciation, but not consistently.",
+        "Rarely—my efforts go unnoticed most of the time.",
+        "Never—my work is taken for granted."
+      ]
+    ];
+  
+    let yPosition = 95;
+  
+    scores.forEach((score, index) => {
+      const questionText = doc.splitTextToSize(`${index + 1}. ${questions[index]}`, 170);
+      doc.text(questionText, 20, yPosition);
+      yPosition += questionText.length * 7;
+  
+      doc.setFont("helvetica", "italic");
+      doc.text(`- Selected Answer: ${options[index][score - 1]}`, 25, yPosition);
+      yPosition += 10;
+      doc.setFont("helvetica", "normal");
+  
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
+    });
+  
+    doc.save("self-assessment-report.pdf");
   };
+  
 
   const handleViewProfile = () => {
     navigate("/profile");
@@ -129,9 +244,12 @@ const Results = () => {
         </div>
         <div className="flex justify-center gap-4 mt-6">
           <button
-            className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200"
+            className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 flex items-center gap-2"
             onClick={handleDownloadReport}
           >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l4-4m-4 4l-4-4" />
+            </svg>
             Download Report
           </button>
           <button
