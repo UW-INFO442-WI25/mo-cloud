@@ -65,12 +65,20 @@ export default function Dashboard() {
         <SearchBar 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          aria-label="Search tasks by name"
+          placeholder="Search tasks..."
           className="w-full sm:w-auto"
         />
-        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90">
+        <button 
+          className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90"
+          aria-label="Search tasks"
+        >
           Search
         </button>
-        <button className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90">
+        <button 
+          className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90"
+          aria-label="Open filter options"
+        >
           Filter
         </button>
       </div>
@@ -99,10 +107,14 @@ export default function Dashboard() {
 
     
       {/* Task Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredTasks.map((task, index) => (
-          <TaskCard key={index} task={task} onClick={() => navigate(task.route)} />
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
+        {filteredTasks.length > 0 ? (
+          filteredTasks.map((task, index) => (
+            <TaskCard key={index} task={task} onClick={() => navigate(task.route)} />
+          ))
+        ) : (
+          <p>No tasks found</p>
+        )}
       </div>
     </DashboardLayout>
   );

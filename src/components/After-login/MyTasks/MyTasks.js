@@ -152,13 +152,14 @@ export default function MyTasks() {
 
   return (
     <DashboardLayout>
-      <div className="mb-8">
+      <div className="mb-8" role="status" aria-live="polite">
         <h1 className="text-2xl font-medium">Hello, {auth.currentUser?.displayName || 'User'} 👋</h1>
         <p className="text-gray-600 mt-2">Here are your saved tasks</p>
       </div>
       
       {loading ? (
-        <div className="flex justify-center items-center h-64">
+        <div className="flex justify-center items-center h-64" role="status" aria-live="assertive">
+          <p className="sr-only">Loading tasks...</p>
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
         </div>
       ) : selectedTask ? (
@@ -168,8 +169,9 @@ export default function MyTasks() {
             <button
               onClick={handleBackToList}
               className="mr-4 p-2 rounded-full hover:bg-gray-100"
+              aria-label="Back to task list"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="True">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -229,7 +231,7 @@ export default function MyTasks() {
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-lg font-medium mb-4">Tasks by Category</h3>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" aria-label="Tasks by category chart">
                     <PieChart>
                       <Pie
                         data={taskStats.tasksByCategory}
@@ -239,6 +241,7 @@ export default function MyTasks() {
                         outerRadius={80}
                         fill="#8884d8"
                         dataKey="value"
+                        aria-label="Pie chart representing the distribution of tasks by category"
                         label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                       >
                         {taskStats.tasksByCategory.map((entry, index) => (
@@ -256,7 +259,7 @@ export default function MyTasks() {
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-lg font-medium mb-4">Weekly Activity</h3>
                 <div className="h-64">
-                  <ResponsiveContainer width="100%" height="100%">
+                  <ResponsiveContainer width="100%" height="100%" aria-label="Weekly activity chart">
                     <BarChart
                       data={taskStats.weeklyActivityData}
                       margin={{
@@ -265,6 +268,7 @@ export default function MyTasks() {
                         left: 20,
                         bottom: 5,
                       }}
+                      aria-label="Bar chart representing task completion over the week"
                     >
                       <XAxis dataKey="day" />
                       <YAxis />
@@ -290,7 +294,10 @@ export default function MyTasks() {
                   <div 
                     key={task.firebaseKey}
                     onClick={() => handleTaskClick(task)}
+                    role="button"
+                    tabIndex="0"
                     className="p-4 border border-gray-100 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                    aria-label={`View task: ${task.title}`}
                   >
                     <div className="flex justify-between items-center">
                       <h3 className="font-medium">{task.title}</h3>

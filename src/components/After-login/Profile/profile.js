@@ -54,7 +54,7 @@ export default function Profile() {
   
   return (
     <DashboardLayout>
-      <div className="mb-8">
+      <div className="mb-8" role="status" aria-live="polite">
         <h1 className="text-2xl font-medium">Hello, {auth.currentUser?.displayName || 'User'} 👋</h1>
         <p className="text-gray-600 mt-2">Welcome to your profile</p>
       </div>
@@ -62,22 +62,18 @@ export default function Profile() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow-sm">
           <h2 className="text-xl font-medium mb-4">Profile Information</h2>
-          
-          <div className="space-y-4">
+          <dl>
             <div>
-              <p className="text-gray-500">Email</p>
-              <p>{auth.currentUser?.email}</p>
+              <dt className="text-gray-500">Email</dt>
+              <dd>{auth.currentUser?.email}</dd>
             </div>
-            
             <div>
-              <p className="text-gray-500">Name</p>
-              <p>{auth.currentUser?.displayName || 'Not set'}</p>
+              <dt className="text-gray-500">Name</dt>
+              <dd>{auth.currentUser?.displayName || 'Not set'}</dd>
             </div>
-            
-            {/* Add more profile fields as needed */}
-          </div>
+          </dl>
         </div>
-        
+
         <div className="bg-white p-6 rounded-lg shadow-sm">
           <h2 className="text-xl font-medium mb-4">Labor Quality Assessment</h2>
           
@@ -87,6 +83,7 @@ export default function Profile() {
               <Link 
                 to="/self-assessment" 
                 className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                aria-label="Start a new self-assessment test"
               >
                 Take Assessment
               </Link>
@@ -112,7 +109,14 @@ export default function Profile() {
                 <div className="grid grid-cols-5 gap-2">
                   {assessmentData.detailedScores.map((score, index) => (
                     <div key={index} className="text-center">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 mb-1">
+                      <div 
+                        className="w-full bg-gray-200 rounded-full h-1.5 mb-1"
+                        role="progressbar"
+                        aria-valuenow={score}
+                        aria-valuemin="0"
+                        aria-valuemax="4"
+                        aria-label={`Question ${index + 1} score: ${score} out of 4`}
+                      >
                         <div 
                           className="bg-blue-600 h-1.5 rounded-full" 
                           style={{ width: `${(score / 4) * 100}%` }}
@@ -132,6 +136,7 @@ export default function Profile() {
                 <Link 
                   to="/self-assessment" 
                   className="text-blue-600 hover:text-blue-800"
+                  aria-label="Retake your self-assessment test"
                 >
                   Retake Assessment
                 </Link>

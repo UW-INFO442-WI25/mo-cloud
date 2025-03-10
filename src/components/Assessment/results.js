@@ -231,9 +231,9 @@ const Results = () => {
       <NavigationBar />
       <div className="container mx-auto px-8 py-8">
         <div className="max-w-4xl mx-auto bg-[#003471] rounded-3xl p-12 text-white flex flex-col md:flex-row items-center">
-          <img src={getResultImage(resultType)} alt="Report" className="w-1/2 md:w-1/3 mb-6 md:mb-0" />
+          <img src={getResultImage(resultType)} alt="`Assessment result: ${resultType}`" className="w-1/2 md:w-1/3 mb-6 md:mb-0" />
           <div className="flex flex-col items-center md:ml-6">
-            <h2 className="text-4xl font-bold mb-6 text-center">Your Test Score</h2>
+            <h1 className="text-4xl font-bold mb-6 text-center">Your Test Score</h1>
             <div className="relative w-64 h-32">
               <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold">
                 {totalScore}
@@ -249,7 +249,7 @@ const Results = () => {
             <p className="text-lg text-center">{description}</p>
             
             {auth.currentUser && (
-              <div className="mt-4 text-center">
+              <div className="mt-4 text-center" aria-live="polite">
                 {saving ? (
                   <p className="text-blue-300">Saving your results...</p>
                 ) : saved ? (
@@ -265,8 +265,9 @@ const Results = () => {
           <button
             className="bg-white text-black px-6 py-3 rounded-full hover:bg-gray-200 flex items-center gap-2"
             onClick={handleDownloadReport}
+            aria-label="Download your self-assessment report as a PDF"
           >
-            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l4-4m-4 4l-4-4" />
             </svg>
             Download Report
@@ -274,6 +275,7 @@ const Results = () => {
           <button
             className="bg-yellow-400 text-black px-6 py-3 rounded-full hover:bg-yellow-500"
             onClick={handleViewProfile}
+            aria-label="View your profile and saved assessments"
           >
             View Profile
           </button>
