@@ -32,10 +32,18 @@ Render – Hosts the React frontend and Node.js backend for seamless user access
 
 ## Usage Guide
 1. How to log labor entries
+Users can navigate to "Tasks" through the navigation bar or "View Dashboard" through the profile. Then, users can select the tasks they want to record and click on the "Add to MY Tasks" button in green.
+<img width="1000" alt="laborentry" src="https://github.com/user-attachments/assets/c507aec7-4168-4206-86e8-251234ff89ae" />
+
    
 2. How to view and interpret tracking data
+Users can go to "My Tasks" in the profile. Then, users can see the data insights and visualization generated based on what the users record. 
+<img width="1000" alt="visual" src="https://github.com/user-attachments/assets/ffa476ac-3f12-4f25-a20d-e567b0c63fe5" />
+
 
 3. How the assessment works and how to use recommendations
+Users can click on "Get Started Now" on the homepage or go to "Self-Assessment" through the navigation bar to take the assessment. After answering the questions, the user will be able to see the score with the option to download their responses into a PDF document. 
+<img width="1000" alt="assessment" src="https://github.com/user-attachments/assets/2662f05b-dba3-4393-a954-a3eb3ea88c96" />
 
 
 ## Installation
