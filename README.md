@@ -45,6 +45,10 @@ Users can go to "My Tasks" in the profile. Then, users can see the data insights
 Users can click on "Get Started Now" on the homepage or go to "Self-Assessment" through the navigation bar to take the assessment. After answering the questions, the user will be able to see the score with the option to download their responses into a PDF document. 
 <img width="1000" alt="assessment" src="https://github.com/user-attachments/assets/2662f05b-dba3-4393-a954-a3eb3ea88c96" />
 
+## Documentation
+- [User Personas](docs/user_persona.md)
+- [Testing Protocol](docs/TestingProtocol.md) 
+
 
 ## Installation
 
@@ -103,7 +107,3 @@ When you're ready to build the project for production:
 3. Visit `http://localhost:4173` to see the production build.
 
 Note: The production build is optimized for performance and is what you would deploy to a web server.
-
-### Documentation
-- [User Personas](docs/user_persona.md)
-- [Testing Protocol](docs/TestingProtocol.md) 
