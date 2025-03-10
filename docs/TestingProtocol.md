@@ -25,6 +25,7 @@ This testing protocol covers three main features of our web application: task da
 - The user can apply each filter individually and in combination.
 - The user can use the search bar to receive the matching tasks.
 - The user can see the visualization generated on the dashboard after recording the tasks. 
+- The user can open and close sidebar menu on dahsboard easily with all responsive size
 
 #### Expected Result
 - All core features (add tasks, search bar, task filter, and visualization) work without bugs or system errors.
@@ -35,7 +36,7 @@ This testing protocol covers three main features of our web application: task da
 - More than 40% of users encounter bugs or misoperations.
 - More than 25% of users are confused about the feature and need extra training to understand the feature.
 - The interactivity of the features is redundant and unclear, which decreases the overall user experience.
-
+- Sidebar menu with the phone-size cannot stick to the top and disappear/reappear when scrolling down/up [This is a bug. Solution (1): trying to change the mode of Sidebar toggle when it was closed, change the location of the sidebar menu form "fixed" to the "absolute" or "relative"; Solution(2): revise the Dashboardlayout.js and Sidebar.js to make sure that the sidebar menu when it was closed under the phone-size can acted as header that stick to the top but won't flowing at the page.]
 
 ### 3. Data integrity test
 #### Testing Steps 
