@@ -75,12 +75,6 @@ export default function Dashboard() {
         >
           Search
         </button>
-        <button 
-          className="w-full sm:w-auto bg-[#64B5F6] text-white px-6 py-3 rounded-full hover:bg-[#64B5F6]/90"
-          aria-label="Open filter options"
-        >
-          Filter
-        </button>
       </div>
       
       {/* Reference Lists Section */}
