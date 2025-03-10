@@ -27,7 +27,7 @@ Node.js & Express.js – Handles labor entry, tracking, and assessment API reque
 MongoDB Atlas / Firebase Firestore – Stores user task logs, labor distribution data, and assessment scores.
 
 3. Hosting & Deployment:
-Render – Hosts the React frontend and Node.js backend for seamless user access.
+Firebase – Hosts the React frontend and Node.js backend for seamless user access.
 
 
 ## Usage Guide
