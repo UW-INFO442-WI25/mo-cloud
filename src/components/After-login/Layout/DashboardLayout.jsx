@@ -17,9 +17,6 @@ export default function DashboardLayout({ children }) {
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
-        <header className="bg-[#002B5C] text-white p-4 flex items-center justify-between lg:hidden">
-          <h1 className="text-lg font-bold">Dashboard</h1>
-        </header>
           <main className="flex-1 p-6 overflow-y-auto">{children}</main>
         </div>
       </div>

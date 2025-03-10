@@ -35,7 +35,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
       {!isOpen && (
         <button 
           onClick={toggleSidebar} 
-          className="lg:hidden fixed top-4 left-4 z-50 bg-[#002B5C] text-white p-2 rounded-md"
+          className="lg:hidden absolute top-4 left-4 z-50 bg-[#002B5C] text-white p-2 rounded-md"
         >
           <FiMenu className="w-6 h-6 text-white" />
         </button>
